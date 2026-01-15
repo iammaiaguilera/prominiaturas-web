@@ -1,0 +1,524 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --green: #d5ec2c;
+    --green-dark: #9ED800;
+    --purple: #C59BFD;
+    --purple-dark: #591DCC;
+    --cream: #FBFCEB;
+    --dark: #191B32;
+    --kontigo: #FF7400;
+}
+
+body {
+    font-family: 'Unbounded', sans-serif;
+    background-color: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+.heading {
+    font-family: 'Unbounded', sans-serif;
+}
+
+/* --- REVEAL ANIMATIONS --- */
+.reveal-blur {
+    opacity: 0;
+    filter: blur(15px);
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-blur.active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* Staggered delays */
+.delay-100 {
+    transition-delay: 100ms;
+}
+
+.delay-200 {
+    transition-delay: 200ms;
+}
+
+.delay-300 {
+    transition-delay: 300ms;
+}
+
+.delay-400 {
+    transition-delay: 400ms;
+}
+
+/* --- EXISTING STYLES --- */
+
+@keyframes aura {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.showroom-pro {
+    background: linear-gradient(-45deg, var(--dark), #591DCC, #0F0F12, #004d00);
+    background-size: 400% 400%;
+    animation: aura 10s ease infinite;
+    color: white;
+    transition: background 0.5s ease;
+}
+
+.showroom-essential {
+    background: linear-gradient(-45deg, var(--cream), #e5e5f7, var(--green), var(--cream));
+    background-size: 400% 400%;
+    animation: aura 10s ease infinite;
+    transition: background 0.5s ease;
+}
+
+.faq-aura {
+    background: linear-gradient(-45deg, var(--purple), var(--green), var(--purple), var(--green));
+    background-size: 400% 400%;
+    animation: aura 15s ease infinite;
+    position: relative;
+    z-index: 1;
+}
+
+/* Semi-rounded theme */
+.neo-brutal {
+    border: 4px solid var(--dark);
+    box-shadow: 4px 4px 0px 0px var(--dark);
+    border-radius: 1.5rem;
+}
+
+.neo-brutal-sm {
+    border: 4px solid var(--dark);
+    box-shadow: 4px 4px 0px 0px var(--dark);
+    border-radius: 1rem;
+}
+
+/* Updated Flat Card for Workflow (Bento) */
+.bento-card {
+    border: 4px solid var(--dark);
+    border-radius: 1.5rem;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Topographic Background Pattern */
+.topographic-bg {
+    /* background-color removed to allow bg utility classes to work */
+    background-image:
+        repeating-radial-gradient(circle at 50% 50%,
+            transparent 0,
+            transparent 20px,
+            rgba(25, 27, 50, 0.03) 21px,
+            transparent 22px),
+        repeating-radial-gradient(circle at 0% 0%,
+            transparent 0,
+            transparent 15px,
+            rgba(25, 27, 50, 0.03) 16px,
+            transparent 17px);
+    background-size: 100% 100%;
+    animation: topographic-move 60s linear infinite alternate;
+}
+
+@keyframes topographic-move {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+/* STEAM BORDER GLOW ANIMATION */
+.glow-border {
+    position: relative;
+    z-index: 1;
+}
+
+/* Interior Glow Border */
+.glow-border-inset {
+    position: relative;
+    z-index: 1;
+    padding: 4px;
+    /* Thickness of the border */
+    border-radius: 1.5rem;
+    /* Match card radius */
+    overflow: hidden;
+    border: 4px solid var(--dark);
+    /* Add the black border */
+    box-shadow: 4px 4px 0px 0px var(--dark);
+    /* Keep shadow for consistency */
+}
+
+/* The animated gradient filling the background */
+.glow-border-inset::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, var(--purple), var(--green), var(--purple), var(--green), var(--purple));
+    background-size: 400%;
+    z-index: -1;
+    animation: steam 15s linear infinite;
+}
+
+/* The sharp glowing border */
+.glow-border:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    bottom: -4px;
+    right: -4px;
+    background: linear-gradient(45deg, var(--purple), var(--green), var(--purple), var(--green), var(--purple));
+    background-size: 400%;
+    z-index: -1;
+    animation: steam 15s linear infinite;
+    border-radius: calc(1.5rem + 4px);
+    /* Match card radius + thickness */
+}
+
+/* The outer blur glow */
+.glow-border:after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    bottom: -4px;
+    right: -4px;
+    background: linear-gradient(45deg, var(--purple), var(--green), var(--purple), var(--green), var(--purple));
+    background-size: 400%;
+    z-index: -2;
+    animation: steam 15s linear infinite;
+    border-radius: calc(1.5rem + 4px);
+    filter: blur(20px);
+    opacity: 0.8;
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Pricing Section Background Transition */
+.pricing-section {
+    transition: background-color 2s ease, color 2s ease;
+    background-color: transparent;
+    /* Default */
+}
+
+.pricing-pro-mode {
+    background-color: #050511;
+    /* Very dark background */
+    background-image: radial-gradient(circle at 50% 100%, #2e1065, #050511 60%);
+    color: white;
+}
+
+.pricing-pro-mode .text-slate-400 {
+    color: #94a3b8;
+}
+
+
+
+.pricing-pro-mode .no-text-shadow {
+    text-shadow: none !important;
+}
+
+.pricing-pro-mode .bg-white {
+    color: var(--dark);
+}
+
+/* Kontigo Button Style */
+.btn-kontigo {
+    background-color: var(--kontigo);
+    color: white;
+    height: 44px;
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-kontigo:hover {
+    opacity: 0.9;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    display: flex;
+    animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+.galaxy-bg {
+    background: radial-gradient(circle at center, #1a1a2e 0%, #050508 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+/* --- HERO GRID INTERACTION --- */
+#hero-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    flex-wrap: wrap;
+    pointer-events: auto;
+    /* Allow interaction */
+}
+
+.hero-grid-cell {
+    position: relative;
+    border: 1px solid rgba(25, 27, 50, 0.03);
+    box-sizing: border-box;
+    transition: background-color 1s ease;
+    /* Slow fade out */
+}
+
+.hero-grid-cell:hover {
+    background-color: var(--green);
+    /* Highlight color */
+    opacity: 0.3;
+    transition: background-color 0s;
+    /* Immediate on hover */
+}
+
+/* Hide particles as requested */
+#hero-particles {
+    display: none;
+}
+
+/* --- FAQ INTERACTIVE GRADIENT BACKGROUND --- */
+:root {
+    --color-bg1: #FBFCEB;
+    /* var(--cream) */
+    --color-bg2: #FFFFFF;
+    /* White */
+    --color1: 213, 236, 44;
+    /* var(--green) */
+    --color2: 197, 155, 253;
+    /* var(--purple) */
+    --color3: 200, 200, 255;
+    /* Light Blue/Purple mix */
+    --color4: 213, 236, 44;
+    /* var(--green) again for balance */
+    --color5: 197, 155, 253;
+    /* var(--purple) again */
+    --color-interactive: 213, 236, 44;
+    /* var(--green) */
+    --circle-size: 80%;
+    --blending: multiply;
+    /* Better for light backgrounds to mix colors nicely */
+}
+
+@keyframes moveInCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes moveVertical {
+    0% {
+        transform: translateY(-50%);
+    }
+
+    50% {
+        transform: translateY(50%);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes moveHorizontal {
+    0% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+
+    50% {
+        transform: translateX(50%) translateY(10%);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+}
+
+.gradient-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+    top: 0;
+    left: 0;
+    z-index: 0;
+    /* Behind content */
+}
+
+.gradient-bg svg {
+    display: none;
+    /* Hide SVG element structure but keep filter definition valid if inline */
+}
+
+/* We will place the filter definitions invisibly in HTML */
+.gradients-container {
+    filter: url(#goo) blur(40px);
+    width: 100%;
+    height: 100%;
+}
+
+.g1 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: center center;
+    animation: moveVertical 30s ease infinite;
+    opacity: 1;
+}
+
+.g2 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 400px);
+    animation: moveInCircle 20s reverse infinite;
+    opacity: 1;
+}
+
+.g3 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2 + 200px);
+    left: calc(50% - var(--circle-size) / 2 - 500px);
+    transform-origin: calc(50% + 400px);
+    animation: moveInCircle 40s linear infinite;
+    opacity: 1;
+}
+
+.g4 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 200px);
+    animation: moveHorizontal 40s ease infinite;
+    opacity: 0.7;
+}
+
+.g5 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: calc(var(--circle-size) * 2);
+    height: calc(var(--circle-size) * 2);
+    top: calc(50% - var(--circle-size));
+    left: calc(50% - var(--circle-size));
+    transform-origin: calc(50% - 800px) calc(50% + 200px);
+    animation: moveInCircle 20s ease infinite;
+    opacity: 1;
+}
+
+.interactive {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: 100%;
+    height: 100%;
+    top: -50%;
+    left: -50%;
+    opacity: 0.7;
+}

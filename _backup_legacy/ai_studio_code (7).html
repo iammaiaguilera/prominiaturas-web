@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRO Miniaturas | Authority Thumbnails</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Mega:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --green: #B4FF39;
+            --purple: #A855F7;
+            --cream: #FFFBEB;
+            --dark: #0F0F12;
+            --kontigo: #FF7400;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--cream); color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; }
+        h1, h2, h3, .heading { font-family: 'Lexend Mega', sans-serif; }
+
+        /* Semi-rounded theme */
+        .neo-brutal { border: 3px solid var(--dark); box-shadow: 6px 6px 0px 0px var(--dark); border-radius: 1.5rem; }
+        .neo-brutal-sm { border: 2px solid var(--dark); box-shadow: 4px 4px 0px 0px var(--dark); border-radius: 1rem; }
+        
+        /* STEAM BORDER GLOW ANIMATION */
+        .glow-border {
+            position: relative;
+            z-index: 1;
+        }
+        /* The sharp glowing border */
+        .glow-border:before {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; bottom: -4px; right: -4px;
+            background: linear-gradient(45deg, var(--purple), var(--green), var(--purple), var(--green), var(--purple));
+            background-size: 400%;
+            z-index: -1;
+            animation: steam 15s linear infinite;
+            border-radius: calc(1.5rem + 4px); /* Match card radius + thickness */
+        }
+        /* The outer blur glow */
+        .glow-border:after {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; bottom: -4px; right: -4px;
+            background: linear-gradient(45deg, var(--purple), var(--green), var(--purple), var(--green), var(--purple));
+            background-size: 400%;
+            z-index: -2;
+            animation: steam 15s linear infinite;
+            border-radius: calc(1.5rem + 4px);
+            filter: blur(20px);
+            opacity: 0.8;
+        }
+        @keyframes steam {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        /* Kontigo Button Style */
+        .btn-kontigo {
+            background-color: var(--kontigo);
+            color: white;
+            height: 44px;
+            width: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 400;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-kontigo:hover { opacity: 0.9; }
+
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
+        .animate-marquee:hover { animation-play-state: paused; }
+
+        .galaxy-bg {
+            background: radial-gradient(circle at center, #1a1a2e 0%, #050508 100%);
+            position: relative; overflow: hidden;
+        }
+        .star { position: absolute; background: white; border-radius: 50%; animation: pulse 3s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body x-data="{ 
+    galleryTab: 'pro', 
+    lightboxOpen: false, 
+    activeImg: '', 
+    inquiry: '',
+    openKontigo(amountUsd, planName) {
+        const slug = 'ee782fe5-2c70-4744-a0ed-43467de5468a';
+        const amountCents = amountUsd * 100;
+        const url = `https://app.kontigo.lat/pay/${slug}?amount=${amountCents}&redirect_url=${encodeURIComponent(window.location.href)}`;
+        window.open(url, '_blank');
+    },
+    setInquiry(plan) {
+        this.inquiry = `Hi! I'm interested on ${plan} this plan, please send over the invoice link so I'm paying asap`;
+        document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+    }
+}">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/90 backdrop-blur-md neo-brutal-sm p-4">
+            <div class="heading text-xl font-black italic tracking-tighter uppercase">PRO <span class="text-purple-600">MINI</span></div>
+            <div class="hidden md:flex gap-8 font-bold text-xs uppercase tracking-widest">
+                <a href="#why-us" class="hover:text-purple-600">Benefits</a>
+                <a href="#gallery" class="hover:text-purple-600">Showroom</a>
+                <a href="#pricing" class="hover:text-purple-600">Plans</a>
+            </div>
+            <a href="#contact" class="bg-[var(--green)] neo-brutal-sm px-6 py-2 font-black text-xs uppercase hover:translate-x-1 transition-all">Claim FREE Draft</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="pt-40 pb-24 px-6 text-center">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-5xl md:text-8xl font-black mb-8 leading-none uppercase">
+                DOMINATE THE <br>
+                <span class="text-white bg-black px-6 rounded-2xl inline-block -rotate-1 italic">DISCOVERY</span> PAGE.
+            </h1>
+            <p class="max-w-3xl mx-auto text-xl font-semibold text-slate-600 mb-12">
+                We design thumbnails that bypass logic and target the viewer's instinct. High-end visual engineering for creators who don't settle for "average".
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <button @click="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})" class="bg-[var(--purple)] text-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-black transition-all">VIEW PLANS</button>
+                <button @click="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})" class="bg-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-[var(--green)] transition-all">SEE GALLERY</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- WHY US -->
+    <section id="why-us" class="py-24 px-6 bg-white border-y-4 border-black">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
+            <div class="lg:w-1/3">
+                <h2 class="text-4xl md:text-6xl font-black uppercase mb-6 leading-none">Why us?</h2>
+                <p class="text-xl font-bold text-slate-500 mb-8">We don't just "make images". We engineer points of interest that force a click through data-backed design patterns.</p>
+                <div class="bg-purple-100 p-6 rounded-semi-lg border-2 border-purple-200 italic font-bold text-purple-700">
+                    "A thumbnail is 90% of your success. We handle that 90% with mastery."
+                </div>
+            </div>
+            <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="p-8 bg-[var(--green)] neo-brutal">
+                    <i data-lucide="zap" class="mb-4"></i>
+                    <h3 class="heading font-bold text-xl mb-2">24H DELIVERY</h3>
+                    <p class="font-bold text-sm">Your upload schedule is sacred. We deliver high-quality drafts within 24-48 hours, guaranteed.</p>
+                </div>
+                <div class="p-8 bg-white neo-brutal">
+                    <i data-lucide="refresh-cw" class="mb-4 text-purple-600"></i>
+                    <h3 class="heading font-bold text-xl mb-2">UNLIMITED EDITS</h3>
+                    <p class="font-bold text-sm">We iterate until it hits your exact vision. No extra charges, no friction. Just results.</p>
+                </div>
+                <!-- GLOWING BORDER MONEY WARRANTY -->
+                <div class="glow-border">
+                    <div class="p-8 bg-black text-white neo-brutal h-full relative z-10">
+                        <i data-lucide="shield-check" class="mb-4 text-[var(--green)]"></i>
+                        <h3 class="heading font-bold text-xl mb-2">MONEY WARRANTY</h3>
+                        <p class="font-bold text-sm opacity-80">Not feeling the draft? We offer a total refund. We believe in our quality that much.</p>
+                    </div>
+                </div>
+                <div class="p-8 bg-white neo-brutal">
+                    <i data-lucide="target" class="mb-4 text-purple-600"></i>
+                    <h3 class="heading font-bold text-xl mb-2 uppercase">CTR PSYCHOLOGY</h3>
+                    <p class="font-bold text-sm">Applying color theory, facial expression analysis, and elite framing to stop the scroll.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOWROOM -->
+    <section id="gallery" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-black uppercase">Showroom</h2>
+                    <p x-show="galleryTab === 'pro'" class="font-bold text-slate-500 mt-2">For enthusiast videos with a top-notch mastery thumbnail... designed for high-budget storytelling and extreme complexity.</p>
+                    <p x-show="galleryTab === 'essential'" class="font-bold text-slate-500 mt-2">For channels who look for functional thumbnails and manage many uploads per month without sacrificing quality.</p>
+                </div>
+                <div class="flex bg-white neo-brutal-sm p-2">
+                    <button @click="galleryTab = 'pro'" :class="galleryTab === 'pro' ? 'bg-black text-white' : ''" class="px-10 py-3 font-black rounded-xl transition-all">PRO</button>
+                    <button @click="galleryTab = 'essential'" :class="galleryTab === 'essential' ? 'bg-black text-white' : ''" class="px-10 py-3 font-black rounded-xl transition-all">ESSENTIAL</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <template x-for="i in 9">
+                    <div class="aspect-video neo-brutal bg-slate-200"></div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section id="how-it-works" class="py-32 px-6 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl md:text-7xl font-black text-center mb-24 uppercase">The <span class="text-purple-600">Workflow</span></h2>
+            <div class="space-y-12">
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="w-20 h-20 bg-white neo-brutal rounded-full flex items-center justify-center text-3xl font-black">01</div>
+                    <div class="neo-brutal p-10 flex-grow bg-white">
+                        <h3 class="text-2xl font-black mb-2 uppercase">Choose a Plan</h3>
+                        <p class="font-medium text-slate-500">Select the tier that fits your content strategy and goals.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="w-20 h-20 bg-white neo-brutal rounded-full flex items-center justify-center text-3xl font-black">02</div>
+                    <div class="neo-brutal p-10 flex-grow bg-white">
+                        <h3 class="text-2xl font-black mb-2 uppercase">Secure Pay</h3>
+                        <p class="font-medium text-slate-500 italic">Once paid, usually via Payoneer, PayPal and Kontigo invoices, your project moves to the design desk.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="w-20 h-20 bg-white neo-brutal rounded-full flex items-center justify-center text-3xl font-black">03</div>
+                    <div class="neo-brutal p-10 flex-grow bg-white">
+                        <h3 class="text-2xl font-black mb-2 uppercase">Send the Brief</h3>
+                        <p class="font-medium text-slate-500">Provide details for your first or firsts thumbnail/s.</p>
+                    </div>
+                </div>
+                <!-- GLOWING BORDER REVISE CARD -->
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="w-20 h-20 bg-black text-white neo-brutal rounded-full flex items-center justify-center text-3xl font-black">04</div>
+                    <div class="glow-border flex-grow">
+                        <div class="neo-brutal p-10 bg-white relative z-10">
+                            <h3 class="text-2xl font-black mb-2 uppercase text-purple-600">Revise</h3>
+                            <p class="font-bold text-slate-800">You get the draft in less than 48h. We tweak every detail until it’s a verified click-magnet.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="w-20 h-20 bg-white neo-brutal rounded-full flex items-center justify-center text-3xl font-black group-hover:bg-[var(--green)]">05</div>
+                    <div class="neo-brutal p-10 flex-grow bg-[var(--green)]">
+                        <h3 class="text-2xl font-black mb-2 uppercase">Done!</h3>
+                        <p class="font-black text-slate-900 italic">Final files delivered in ultra-high resolution. Ready to scale your views.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-black uppercase mb-12">Essential <span class="text-slate-400">Plans</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+                <div class="bg-white neo-brutal p-8 flex flex-col h-full">
+                    <h3 class="font-black text-xl mb-4">Starter (1 Thumb)</h3>
+                    <div class="text-5xl font-black mb-6">$50</div>
+                    <ul class="space-y-3 mb-8 text-sm font-bold flex-grow">
+                        <li>✓ 1 Functional Design</li>
+                        <li>✓ 24h Delivery</li>
+                        <li>✓ Unlimited Revisions</li>
+                        <li>✓ Money Warranty</li>
+                    </ul>
+                    <button @click="setInquiry('Essential Starter')" class="w-full py-4 neo-brutal-sm font-black uppercase bg-white hover:bg-slate-50 mb-4">Select Plan</button>
+                    <button @click="openKontigo(50, 'Essential Starter')" class="btn-kontigo">
+                        Pay with <span><img src="https://app.kontigo.lat/static/media/logo-white.09247d84.svg" class="h-4" alt="Kontigo Logo"></span> Pay
+                    </button>
+                </div>
+                <div class="bg-white neo-brutal p-8 flex flex-col h-full relative">
+                    <div class="absolute -top-4 right-6 bg-black text-white px-4 py-1 rounded-lg text-xs font-black">SAVE $60</div>
+                    <h3 class="font-black text-xl mb-4">Growth (4 Thumbs)</h3>
+                    <div class="text-5xl font-black mb-6">$140</div>
+                    <ul class="space-y-3 mb-8 text-sm font-bold flex-grow">
+                        <li>✓ 4 Functional Designs</li>
+                        <li>✓ Strategy Insight</li>
+                        <li>✓ Unlimited Revisions</li>
+                        <li>✓ Money Warranty</li>
+                    </ul>
+                    <button @click="setInquiry('Essential Growth')" class="w-full py-4 neo-brutal-sm font-black uppercase bg-white hover:bg-slate-50 mb-4">Select Plan</button>
+                    <button @click="openKontigo(140, 'Essential Growth')" class="btn-kontigo">
+                        Pay with <span><img src="https://app.kontigo.lat/static/media/logo-white.09247d84.svg" class="h-4" alt="Kontigo Logo"></span> Pay
+                    </button>
+                </div>
+                <div class="bg-black text-white neo-brutal p-8 flex flex-col h-full relative">
+                    <div class="absolute -top-4 right-6 bg-[var(--green)] text-black px-4 py-1 rounded-lg text-xs font-black">SAVE $160</div>
+                    <h3 class="font-black text-xl mb-4 text-[var(--green)]">Master (8 Thumbs)</h3>
+                    <div class="text-5xl font-black mb-6">$240</div>
+                    <ul class="space-y-3 mb-8 text-sm font-bold flex-grow">
+                        <li>✓ 8 Functional Designs</li>
+                        <li>✓ Priority Allocation</li>
+                        <li>✓ Unlimited Revisions</li>
+                        <li>✓ Money Warranty</li>
+                    </ul>
+                    <button @click="setInquiry('Essential Master')" class="w-full py-4 bg-[var(--green)] text-black neo-brutal-sm font-black uppercase mb-4">Most Popular</button>
+                    <button @click="openKontigo(240, 'Essential Master')" class="btn-kontigo">
+                        Pay with <span><img src="https://app.kontigo.lat/static/media/logo-white.09247d84.svg" class="h-4" alt="Kontigo Logo"></span> Pay
+                    </button>
+                </div>
+            </div>
+
+            <h2 class="text-4xl font-black uppercase mb-12">PRO <span class="text-purple-600">Elite</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white neo-brutal p-10 flex flex-col h-full">
+                    <h3 class="font-black text-3xl mb-4 uppercase">The Elite Single</h3>
+                    <div class="text-6xl font-black mb-8">$200</div>
+                    <ul class="space-y-4 mb-10 text-lg font-bold flex-grow">
+                        <li>✓ Mr. Beast Level Complexity</li>
+                        <li>✓ Custom Asset Creation</li>
+                        <li>✓ Unlimited Revisions</li>
+                        <li>✓ Money Warranty</li>
+                    </ul>
+                    <button @click="setInquiry('Pro Single')" class="w-full py-5 bg-white neo-brutal-sm font-black text-xl uppercase mb-4">Order Pro</button>
+                    <button @click="openKontigo(200, 'Pro Single')" class="btn-kontigo h-14">
+                        Pay with <span><img src="https://app.kontigo.lat/static/media/logo-white.09247d84.svg" class="h-5" alt="Kontigo Logo"></span> Pay
+                    </button>
+                </div>
+                <div class="bg-white neo-brutal p-10 flex flex-col h-full relative border-[var(--purple)] border-4">
+                    <div class="absolute -top-4 right-8 bg-purple-600 text-white px-6 py-2 rounded-lg font-black">SAVE $200 USD</div>
+                    <h3 class="font-black text-3xl mb-4 uppercase text-purple-600">The Pro Bundle (4)</h3>
+                    <div class="text-6xl font-black mb-8">$600</div>
+                    <ul class="space-y-4 mb-10 text-lg font-bold flex-grow">
+                        <li>✓ 4 Elite Masterpieces</li>
+                        <li>✓ Strategic Consultation</li>
+                        <li>✓ Unlimited Revisions</li>
+                        <li>✓ Money Warranty</li>
+                    </ul>
+                    <button @click="setInquiry('Pro Bundle')" class="w-full py-6 bg-black text-white neo-brutal-sm rounded-xl font-black text-2xl uppercase mb-4 transition-all hover:bg-purple-700">Claim Bundle</button>
+                    <button @click="openKontigo(600, 'Pro Bundle')" class="btn-kontigo h-14">
+                        Pay with <span><img src="https://app.kontigo.lat/static/media/logo-white.09247d84.svg" class="h-5" alt="Kontigo Logo"></span> Pay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT GALAXY -->
+    <section id="contact" class="galaxy-bg mx-6 mb-24 p-10 md:p-32 rounded-2xl neo-brutal">
+        <div id="stars"></div>
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="text-white">
+                <h2 class="text-6xl font-black mb-8 uppercase leading-none italic">Ready for <span class="text-[var(--green)]">Victory?</span></h2>
+                <div class="space-y-4 font-bold text-slate-300">
+                    <p><i data-lucide="mail" class="inline w-5"></i> peteralliaguilera@outlook.com</p>
+                    <p><i data-lucide="phone" class="inline w-5"></i> +58 414 589 2733</p>
+                </div>
+            </div>
+            <div class="bg-white neo-brutal p-10">
+                <form class="space-y-6">
+                    <input type="text" placeholder="Name" class="w-full p-4 bg-slate-50 neo-brutal-sm rounded-xl font-bold">
+                    <input type="email" placeholder="Email" class="w-full p-4 bg-slate-50 neo-brutal-sm rounded-xl font-bold">
+                    <textarea rows="4" x-model="inquiry" class="w-full p-6 bg-slate-50 neo-brutal-sm rounded-2xl font-bold"></textarea>
+                    <button type="submit" class="w-full py-6 bg-[var(--green)] neo-brutal rounded-xl font-black text-2xl uppercase">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILED FOOTER -->
+    <footer class="bg-white border-t-4 border-black pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div>
+                <div class="heading text-3xl font-black mb-6 uppercase tracking-tighter italic">PRO <span class="text-purple-600">MINI</span></div>
+                <p class="font-bold text-slate-500 mb-8">Professional visual design for creators and brands worldwide.</p>
+            </div>
+            <div>
+                <h4 class="font-black uppercase mb-6 text-purple-600 text-sm">Links</h4>
+                <ul class="font-bold space-y-4 text-slate-500">
+                    <li>Showroom</li>
+                    <li>Pricing</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-black uppercase mb-6 text-purple-600 text-sm">Contact</h4>
+                <ul class="font-bold space-y-2 text-slate-500 text-sm">
+                    <li>peteralliaguilera@outlook.com</li>
+                    <li>contact@prominiaturas.com</li>
+                    <li>+58 414 589 2733</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-black uppercase mb-6 text-purple-600 text-sm">Legal</h4>
+                <ul class="font-bold space-y-4 text-slate-500">
+                    <li>Privacy Policy</li>
+                    <li>Refund Policy</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center pt-10 border-t-2 border-slate-100 font-black text-xs uppercase opacity-40">
+            © 2024 PRO MINIATURAS AGENCY • ALL CLICKS RESERVED
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const starContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>

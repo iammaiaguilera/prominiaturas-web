@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRO Miniaturas | Authority Thumbnails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body x-data="app" class="bg-[var(--cream)]">
+
+    <!-- NAVIGATION -->
+    <nav x-data="{ show: true, lastScroll: 0 }"
+        @scroll.window="show = window.scrollY < lastScroll || window.scrollY < 100; lastScroll = window.scrollY"
+        :class="show ? 'translate-y-0' : '-translate-y-full'"
+        class="fixed top-0 w-full z-50 px-6 py-4 transition-transform duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/90 backdrop-blur-md neo-brutal-sm p-4">
+            <a href="#" class="block">
+                <img src="/logo.png?v=3" alt="PRO MINIATURAS" class="h-5 md:h-6 w-auto object-contain">
+            </a>
+            <div class="hidden md:flex gap-8 font-bold text-xs uppercase tracking-widest">
+                <a href="#why-us" class="hover:text-purple-600">Why us?</a>
+                <a href="#gallery" class="hover:text-purple-600">Showroom</a>
+                <a href="#pricing" class="hover:text-purple-600">Pricing</a>
+                <a href="#faq" class="hover:text-purple-600">FAQ</a>
+            </div>
+            <a href="#contact"
+                class="bg-[var(--green)] neo-brutal-sm px-6 py-2 font-black text-xs uppercase hover:translate-x-1 transition-all">Get
+                in touch!</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="pt-40 pb-24 px-6 text-center bg-[var(--green-dark)] relative overflow-hidden">
+        <div id="hero-grid"></div>
+        <div class="max-w-7xl mx-auto relative z-10 pointer-events-none">
+            <!-- pointer-events-none on wrapper so mouse reaches grid -->
+            <div>
+                <h1 class="reveal-blur text-5xl md:text-8xl font-black mb-8 leading-none uppercase">
+                    STOP THE SCROLL. <br>
+                    <span class="text-white bg-[var(--dark)] px-6 rounded-2xl inline-block -rotate-1 italic">GET THE
+                        CLICK.</span>
+                </h1>
+                <p class="reveal-blur delay-200 max-w-3xl mx-auto text-xl font-semibold text-slate-600 mb-12">
+                    We design thumbnails that bypass logic and target the viewer's instinct. High-end visual engineering
+                    for
+                    creators who don't settle for "average".
+                </p>
+                <!-- Buttons must be interactable -->
+                <div class="reveal-blur delay-400 flex flex-wrap justify-center gap-6 pointer-events-auto">
+                    <button @click="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})"
+                        class="bg-[var(--purple)] text-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-[var(--purple-dark)] transition-all">VIEW
+                        PRICING</button>
+                    <button @click="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
+                        class="bg-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-[var(--green)] transition-all">SEE
+                        GALLERY</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TESTIMONIALS CAROUSEL -->
+    <section
+        class="py-16 bg-[var(--green)] border-b-4 border-black overflow-hidden relative flex flex-col items-center justify-center">
+        <!-- Background "Trusted by" Text - Moved to Top with Fade -->
+        <div class="w-full relative z-10 text-center -mb-4">
+            <h2 class="text-4xl md:text-6xl font-black uppercase text-black/20 select-none tracking-widest">
+                TRUSTED BY
+            </h2>
+            <div class="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[var(--green)] to-transparent"></div>
+        </div>
+
+        <!-- Marquee Container -->
+        <div class="relative w-full overflow-hidden group py-4 z-10">
+            <!-- The animation wrapper -->
+            <div class="animate-marquee flex gap-8 w-max px-6 hover:[animation-play-state:paused]">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Gaming Legends</h4>
+                            <p class="text-xs font-semibold text-slate-500">1.2M Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"My CTR went from 4% to 11% in just one week. These guys are
+                        wizards."</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Tech Breakdown</h4>
+                            <p class="text-xs font-semibold text-slate-500">850K Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"Professional, fast, and exactly what the algorithm wants.
+                        highly
+                        recommend."</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Milo" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Everyday Vlogs</h4>
+                            <p class="text-xs font-semibold text-slate-500">2.1M Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"They captured the emotion perfectly. Best investment for my
+                        channel."</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Finance King</h4>
+                            <p class="text-xs font-semibold text-slate-500">300K Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"Stop looking. This is the quality you need to compete
+                        today."
+                    </p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Fitness Pro</h4>
+                            <p class="text-xs font-semibold text-slate-500">500K Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"Clean, snappy, and high res. My audience noticed the
+                        upgrade
+                        immediately."
+                    </p>
+                </div>
+
+                <!-- DUPLICATES FOR LOOP -->
+                <!-- Card 1 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Gaming Legends</h4>
+                            <p class="text-xs font-semibold text-slate-500">1.2M Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"My CTR went from 4% to 11% in just one week. These guys are
+                        wizards."</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Tech Breakdown</h4>
+                            <p class="text-xs font-semibold text-slate-500">850K Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"Professional, fast, and exactly what the algorithm wants.
+                        highly
+                        recommend."</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Milo" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Everyday Vlogs</h4>
+                            <p class="text-xs font-semibold text-slate-500">2.1M Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"They captured the emotion perfectly. Best investment for my
+                        channel."</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Finance King</h4>
+                            <p class="text-xs font-semibold text-slate-500">300K Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"Stop looking. This is the quality you need to compete
+                        today."
+                    </p>
+                </div>
+                <!-- Card 5 -->
+                <div class="bg-white p-6 neo-brutal-sm w-80 shrink-0 flex flex-col gap-4 border-4 border-black">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="Avatar"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black uppercase text-sm">Fitness Pro</h4>
+                            <p class="text-xs font-semibold text-slate-500">500K Subscribers</p>
+                        </div>
+                    </div>
+                    <p class="text-sm font-semibold italic">"Clean, snappy, and high res. My audience noticed the
+                        upgrade
+                        immediately."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="why-us" class="py-24 px-6 bg-white border-y-4 border-black">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
+            <div class="lg:w-1/3">
+                <h2 class="reveal-blur text-4xl md:text-6xl font-black uppercase mb-6 leading-none">Why us?</h2>
+                <p class="reveal-blur delay-100 text-xl font-semibold text-slate-500 mb-8">We don't just "make images".
+                    We
+                    engineer points of
+                    interest that force a click through data-backed design patterns.</p>
+                <div
+                    class="bg-purple-100 p-6 rounded-[10px] border-2 border-purple-200 italic font-semibold text-purple-700">
+                    "A thumbnail is 90% of your success. We handle that 90% with mastery."
+                </div>
+            </div>
+            <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="reveal-blur delay-200 p-8 bg-[var(--green)] neo-brutal">
+                    <i data-lucide="zap" class="mb-4"></i>
+                    <h3 class="heading font-bold text-xl mb-2">24H DELIVERY</h3>
+                    <p class="font-semibold text-sm">Your upload schedule is sacred. We deliver high-quality drafts
+                        within
+                        24-48 hours, guaranteed.</p>
+                </div>
+                <div class="reveal-blur delay-300 p-8 bg-white neo-brutal">
+                    <i data-lucide="refresh-cw" class="mb-4 text-purple-600"></i>
+                    <h3 class="heading font-bold text-xl mb-2">UNLIMITED EDITS</h3>
+                    <p class="font-semibold text-sm">We iterate until it hits your exact vision. No extra charges, no
+                        friction. Just results.</p>
+                </div>
+                <!-- WARRANTY -->
+                <div class="reveal-blur delay-400 glow-border-inset">
+                    <div class="p-8 bg-white h-full relative z-10" style="border-radius: calc(1.5rem - 4px);">
+                        <i data-lucide="shield-check" class="mb-4 text-[var(--green)]"></i>
+                        <h3 class="heading font-bold text-xl mb-2">MONEY WARRANTY</h3>
+                        <p class="font-semibold text-sm opacity-80">Not feeling the draft? We offer a total refund. We
+                            believe in our quality that much.</p>
+                    </div>
+                </div>
+                <div class="reveal-blur delay-500 p-8 bg-white neo-brutal">
+                    <i data-lucide="target" class="mb-4 text-purple-600"></i>
+                    <h3 class="heading font-bold text-xl mb-2 uppercase">CTR PSYCHOLOGY</h3>
+                    <p class="font-semibold text-sm">Applying color theory, facial expression analysis, and elite
+                        framing to
+                        stop the scroll.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOWROOM -->
+    <section id="gallery" class="py-24 px-6 transition-colors duration-500 relative"
+        :class="galleryTab === 'pro' ? 'showroom-pro' : 'showroom-essential'">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <div>
+                    <h2 class="reveal-blur text-4xl md:text-6xl font-black uppercase">Showroom</h2>
+                    <p x-show="galleryTab === 'pro'" class="reveal-blur delay-100 font-bold text-slate-500 mt-2">For
+                        enthusiast videos with a
+                        top-notch mastery thumbnail... designed for high-budget storytelling and extreme complexity.</p>
+                    <p x-show="galleryTab === 'essential'" class="reveal-blur delay-100 font-bold text-slate-500 mt-2">
+                        For channels who look
+                        for functional thumbnails and manage many uploads per month without sacrificing quality.</p>
+                </div>
+
+                <!-- Toggle with Sliding Animation (Moved Here) -->
+                <div class="reveal-blur delay-200">
+                    <div class="relative bg-white neo-brutal-sm p-1 flex">
+                        <!-- Sliding Indicator -->
+                        <div class="absolute top-1 bottom-1 bg-black rounded-lg transition-all duration-300 ease-out z-0 w-[calc(50%-4px)]"
+                            :class="galleryTab === 'essential' ? 'left-1' : 'left-[50%]'"></div>
+
+                        <!-- Buttons -->
+                        <button @click="galleryTab = 'essential'"
+                            class="relative z-10 w-32 py-3 font-black text-sm rounded-lg transition-colors duration-300 uppercase select-none"
+                            :class="galleryTab === 'essential' ? 'text-white' : 'text-slate-400 hover:text-black'">
+                            Essential
+                        </button>
+                        <button @click="galleryTab = 'pro'"
+                            class="relative z-10 w-32 py-3 font-black text-sm rounded-lg transition-colors duration-300 uppercase select-none"
+                            :class="galleryTab === 'pro' ? 'text-white' : 'text-slate-400 hover:text-black'">
+                            Pro
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Essential Images -->
+                <template x-for="(img, index) in essentialImages.slice(0, limit)" :key="index">
+                    <div x-show="galleryTab === 'essential'" x-transition:enter="transition ease-out duration-700"
+                        x-transition:enter-start="opacity-0 blur-sm translate-y-10"
+                        x-transition:enter-end="opacity-100 blur-0 translate-y-0"
+                        class="reveal-blur aspect-video neo-brutal bg-slate-200 cursor-zoom-in group hover:scale-[1.02] transition-transform overflow-hidden relative"
+                        @click="lightboxOpen = true; activeImg = img">
+                        <img :src="img" class="w-full h-full object-cover" loading="lazy" alt="Thumbnail">
+                    </div>
+                </template>
+
+                <!-- Pro Placeholders -->
+                <template x-for="i in 3" :key="i">
+                    <div x-show="galleryTab === 'pro'" x-transition:enter="transition ease-out duration-700"
+                        x-transition:enter-start="opacity-0 blur-sm translate-y-10"
+                        x-transition:enter-end="opacity-100 blur-0 translate-y-0"
+                        class="reveal-blur aspect-video neo-brutal bg-slate-900 flex items-center justify-center cursor-zoom-in group hover:scale-[1.02] transition-transform"
+                        @click="lightboxOpen = true">
+                        <span
+                            class="font-black text-3xl text-slate-700 select-none group-hover:text-slate-600 transition-colors">PRO
+                            (Soon)</span>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Load More / Collapse Buttons -->
+            <div class="flex justify-center mt-12" x-show="galleryTab === 'essential'">
+                <!-- Load More -->
+                <button x-show="limit < essentialImages.length"
+                    @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); lucide.createIcons(); })"
+                    class="reveal-blur bg-[var(--green)] text-black w-20 h-20 rounded-full border-4 border-black flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#000]">
+                    <i data-lucide="arrow-down" class="w-10 h-10"></i>
+                </button>
+
+                <!-- Collapse -->
+                <button x-show="limit >= essentialImages.length && limit > 9"
+                    @click="limit = 9; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
+                    class="reveal-blur bg-[var(--green)] text-black w-20 h-20 rounded-full border-4 border-black flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#000]">
+                    <i data-lucide="arrow-up" class="w-10 h-10"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW (BENTO GRID) -->
+    <section id="how-it-works" class="py-32 px-6 bg-white relative border-t-4 border-black">
+        <div class="max-w-7xl mx-auto relative z-20">
+            <h2 class="text-5xl md:text-7xl font-black text-center mb-24 uppercase">The <span
+                    class="text-purple-600">Workflow</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Item 1: Choose Plan -->
+                <div class="reveal-blur bento-card p-10 flex flex-col justify-between h-full">
+                    <div
+                        class="w-16 h-16 bg-[var(--purple)] text-white rounded-full flex items-center justify-center text-2xl font-black mb-6 border-4 border-black">
+                        01</div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase">Choose a Plan</h3>
+                        <p class="font-medium text-slate-500">Select the tier that fits your content strategy and goals.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Secure Pay -->
+                <div class="reveal-blur delay-100 bento-card p-10 flex flex-col justify-between h-full">
+                    <div
+                        class="w-16 h-16 bg-white text-black border-4 border-black rounded-full flex items-center justify-center text-2xl font-black mb-6">
+                        02</div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase">Secure Pay</h3>
+                        <p class="font-medium text-slate-500 italic">Fast and secure payments via Payoneer, PayPal or
+                            Kontigo invoices.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Brief -->
+                <div class="reveal-blur delay-200 bento-card p-10 flex flex-col justify-between h-full">
+                    <div
+                        class="w-16 h-16 bg-white text-black border-4 border-black rounded-full flex items-center justify-center text-2xl font-black mb-6">
+                        03</div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase">Send the Brief</h3>
+                        <p class="font-medium text-slate-500">Provide details for your first thumbnail.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4: Revise (Large) -->
+                <!-- Item 4: Revise (Large) -->
+                <div class="col-span-1 md:col-span-2 lg:col-span-2 relative reveal-blur delay-300">
+                    <div class="glow-border-inset h-full">
+                        <div class="p-10 bg-white relative z-10 h-full flex flex-col md:flex-row items-center gap-10"
+                            style="border-radius: calc(1.5rem - 4px);">
+                            <div
+                                class="w-20 h-20 bg-[var(--dark)] text-white border-4 border-black rounded-full flex-shrink-0 flex items-center justify-center text-3xl font-black">
+                                04</div>
+                            <div>
+                                <h3 class="text-3xl font-black mb-4 uppercase text-purple-600">Revise</h3>
+                                <p class="font-bold text-slate-800 text-lg">You get the draft in less than 48h. We tweak
+                                    every detail until it’s a verified click-magnet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: Done -->
+                <div
+                    class="reveal-blur delay-400 bento-card p-10 bg-[var(--green)] flex flex-col justify-between h-full">
+                    <div
+                        class="w-16 h-16 bg-white text-black border-4 border-black rounded-full flex items-center justify-center text-2xl font-black mb-6">
+                        05</div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase">Done!</h3>
+                        <p class="font-black text-slate-900 italic">Final files delivered in ultra-high resolution.
+                            Ready to scale.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-24 px-6 pricing-section" :class="pricingMode === 'pro' ? 'pricing-pro-mode' : ''">
+        <div class="max-w-7xl mx-auto">
+            <div id="essential-plans">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16">
+                    <h2 class="reveal-blur text-6xl md:text-8xl font-black uppercase">Essential <span
+                            class="text-slate-400">Plans</span></h2>
+                    <!-- Optional Button -->
+                    <button
+                        @click="galleryTab = 'essential'; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
+                        class="hidden md:block whitespace-nowrap reveal-blur delay-200 px-8 py-4 border-4 border-black font-black uppercase hover:bg-[var(--green)] transition-all rounded-xl">
+                        See Gallery
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+                    <div class="reveal-blur bg-white neo-brutal p-8 flex flex-col h-full">
+                        <h3 class="font-black text-2xl mb-1">Starter</h3>
+                        <p class="text-sm font-bold text-slate-500 mb-6">1 thumbnail credit</p>
+                        <div class="text-5xl font-black mb-6">$50 <span class="text-lg">USD</span></div>
+                        <ul class="space-y-3 mb-8 text-sm font-bold flex-grow">
+                            <li>✓ 1 Functional Design</li>
+                            <li>✓ 24h Delivery</li>
+                            <li>✓ Unlimited Revisions</li>
+                            <li>✓ Money Warranty</li>
+                        </ul>
+                        <button @click="setInquiry('Essential Starter')"
+                            class="w-full py-4 neo-brutal-sm font-black uppercase bg-white hover:bg-[var(--green)] transition-all mb-4">Select
+                            Plan</button>
+                        <button @click="openKontigo(50, 'Essential Starter')"
+                            class="btn-kontigo hover:opacity-80 transition-all flex items-center justify-center gap-1">
+                            <span>Pay with</span> <img src="/kontigo.png?v=4" class="h-8" alt="Kontigo">
+                            <span>pay</span>
+                        </button>
+                    </div>
+                    <div class="reveal-blur delay-100 bg-white neo-brutal p-8 flex flex-col h-full relative">
+                        <div
+                            class="absolute -top-4 right-6 bg-black text-white px-4 py-1 rounded-lg text-xs font-black">
+                            SAVE $60</div>
+                        <h3 class="font-black text-2xl mb-1">Growth</h3>
+                        <p class="text-sm font-bold text-slate-500 mb-6">4 thumbnail credits</p>
+                        <div class="text-5xl font-black mb-6">$140 <span class="text-lg">USD</span></div>
+                        <ul class="space-y-3 mb-8 text-sm font-bold flex-grow">
+                            <li>✓ 4 Functional Designs</li>
+                            <li>✓ Strategy Insight</li>
+                            <li>✓ Unlimited Revisions</li>
+                            <li>✓ Money Warranty</li>
+                        </ul>
+                        <button @click="setInquiry('Growth')"
+                            class="w-full py-4 neo-brutal-sm font-black uppercase bg-white hover:bg-[var(--green)] transition-all mb-4">Select
+                            Plan</button>
+                        <button @click="openKontigo(140, 'Essential Growth')"
+                            class="btn-kontigo hover:opacity-80 transition-all flex items-center justify-center gap-1">
+                            <span>Pay with</span> <img src="/kontigo.png?v=4" class="h-8" alt="Kontigo">
+                            <span>pay</span>
+                        </button>
+                    </div>
+                    <!-- 240 Plan (Essential Master) -->
+                    <!-- 240 Plan (Essential Master) -->
+                    <div class="reveal-blur delay-200 relative h-full">
+                        <div
+                            class="absolute -top-4 right-6 bg-[var(--green)] text-black px-4 py-1 rounded-lg text-xs font-black z-20">
+                            SAVE $160</div>
+                        <div class="glow-border-inset h-full">
+                            <div class="bg-[var(--purple)] text-white h-full relative z-10 flex flex-col p-8"
+                                style="border-radius: calc(1.5rem - 4px);">
+                                <h3 class="font-black text-2xl mb-1 text-[var(--green)]">Master</h3>
+                                <p class="text-sm font-bold text-purple-200 mb-6">8 thumbnail credits</p>
+                                <div class="text-5xl font-black mb-6">$240 <span class="text-lg">USD</span></div>
+                                <ul class="space-y-3 mb-8 text-sm font-bold flex-grow">
+                                    <li>✓ 8 Functional Designs</li>
+                                    <li>✓ Priority Allocation</li>
+                                    <li>✓ Unlimited Revisions</li>
+                                    <li>✓ Money Warranty</li>
+                                </ul>
+                                <button @click="setInquiry('Master')"
+                                    class="w-full py-4 bg-[var(--green)] text-black neo-brutal-sm font-black uppercase mb-4 hover:bg-[var(--green-dark)] transition-all">Select
+                                    Plan</button>
+                                <button @click="openKontigo(240, 'Essential Master')"
+                                    class="btn-kontigo hover:opacity-80 transition-all flex items-center justify-center gap-1">
+                                    <span>Pay with</span> <img src="/kontigo.png?v=4" class="h-8" alt="Kontigo">
+                                    <span>pay</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pro-plans" class="scroll-mt-32 transition-all duration-500 transform"
+                    :class="pricingMode === 'pro' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-16">
+                        <h2 class="text-6xl md:text-8xl font-black uppercase">PRO <span
+                                class="text-purple-600">Plans</span></h2>
+                        <button
+                            @click="galleryTab = 'pro'; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
+                            class="hidden md:block whitespace-nowrap reveal-blur delay-200 px-8 py-4 border-4 border-white text-white font-black uppercase hover:bg-[var(--purple)] hover:text-white hover:scale-105 transition-transform duration-200 rounded-xl">
+                            See Gallery
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div class="reveal-blur bg-white neo-brutal p-10 flex flex-col h-full">
+                            <h3 class="font-black text-3xl mb-1 uppercase no-text-shadow">APEX</h3>
+                            <p class="text-sm font-bold text-slate-500 mb-6">1 PRO thumbnail credit</p>
+                            <div class="text-6xl font-black mb-8">$200 <span class="text-xl">USD</span></div>
+                            <ul class="space-y-4 mb-10 text-lg font-bold flex-grow">
+                                <li>✓ 3D Blender Sketch</li>
+                                <li>✓ Custom Asset Creation</li>
+                                <li>✓ Unlimited Revisions</li>
+                                <li>✓ Money Warranty</li>
+                            </ul>
+                            <button @click="setInquiry('APEX')"
+                                class="w-full py-5 bg-white neo-brutal-sm font-black text-2xl uppercase mb-4 hover:bg-[var(--green-dark)] transition-all">Select
+                                Plan</button>
+                            <button @click="openKontigo(200, 'Pro Single')"
+                                class="btn-kontigo h-14 hover:opacity-80 transition-all flex items-center justify-center gap-1">
+                                <span>Pay with</span> <img src="/kontigo.png?v=4" class="h-8" alt="Kontigo">
+                                <span>pay</span>
+                            </button>
+                        </div>
+                        <!-- 600 Plan (Pro Bundle) -->
+                        <div class="reveal-blur delay-100 relative h-full">
+                            <div
+                                class="absolute -top-4 right-6 bg-purple-600 text-white px-6 py-2 rounded-lg font-black z-20">
+                                SAVE $200 USD</div>
+                            <div class="glow-border-inset h-full">
+                                <div class="bg-white p-10 flex flex-col h-full relative z-10"
+                                    style="background: linear-gradient(135deg, white 0%, #e9d5ff 100%); border-radius: calc(1.5rem - 4px);">
+
+                                    <h3 class="font-black text-3xl mb-1 uppercase text-purple-600">EMPIRE</h3>
+                                    <p class="text-sm font-bold text-purple-700/60 mb-6">4 PRO thumbnail credits</p>
+                                    <div class="text-6xl font-black mb-8">$600 <span class="text-xl">USD</span></div>
+                                    <ul class="space-y-4 mb-10 text-lg font-bold flex-grow">
+                                        <li>✓ 4 Elite Masterpieces</li>
+                                        <li>✓ Strategic Consultation</li>
+                                        <li>✓ Unlimited Revisions</li>
+                                        <li>✓ Money Warranty</li>
+                                    </ul>
+                                    <button @click="setInquiry('EMPIRE')"
+                                        class="w-full py-6 bg-[var(--green)] neo-brutal-sm rounded-xl font-black text-2xl uppercase mb-4 transition-all hover:bg-[var(--green-dark)]">Select
+                                        Plan</button>
+                                    <button @click="openKontigo(600, 'Pro Bundle')"
+                                        class="btn-kontigo h-14 hover:opacity-80 transition-all flex items-center justify-center gap-1">
+                                        <span>Pay with</span> <img src="/kontigo.png?v=4" class="h-8" alt="Kontigo">
+                                        <span>pay</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Close pro-plans -->
+            </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-24 px-6 border-t-4 border-black relative overflow-hidden">
+        <div class="gradient-bg">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                            result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                </defs>
+            </svg>
+            <div class="gradients-container">
+                <div class="g1"></div>
+                <div class="g2"></div>
+                <div class="g3"></div>
+                <div class="g4"></div>
+                <div class="g5"></div>
+                <div class="interactive"></div>
+            </div>
+        </div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h2 class="reveal-blur text-5xl md:text-7xl font-black text-center mb-16 uppercase">Get All Your Questions
+                Solved</h2>
+            <div class="space-y-6">
+                <!-- Question 1 -->
+                <div class="reveal-blur border-4 border-black bg-white rounded-2xl overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <span class="text-xl font-black">What information do I need to provide you to create a
+                            thumbnail?</span>
+                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600">
+                        Video topic, quick sum-up, and some questions replied.
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="reveal-blur delay-100 border-4 border-black bg-white rounded-2xl overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <span class="text-xl font-black">Do you help me brainstorm a thumbnail concept?</span>
+                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600">
+                        Yep, that's exactly what we're here for you, you don't waste your time by how to create a
+                        functional design, that all is on us.
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="reveal-blur delay-200 border-4 border-black bg-white rounded-2xl overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <span class="text-xl font-black">Do you work with YouTube clients of all sizes?</span>
+                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600">
+                        Even the greatest channels started with zero subscribers… Of course we will work with you and we
+                        will love it. :)
+                    </div>
+                </div>
+                <!-- Question 4 -->
+                <div class="reveal-blur delay-300 border-4 border-black bg-white rounded-2xl overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <span class="text-xl font-black">How do I pay?</span>
+                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600">
+                        <p class="mb-2"><strong>Main ones:</strong> Payoneer, Kontigo, PayPal. (in that order)</p>
+                        <p><strong>Secondary:</strong> Zinli, Meru, Binance Pay, AirTM, Cryptos.</p>
+                    </div>
+                </div>
+                <!-- Question 5 -->
+                <div class="reveal-blur delay-400 border-4 border-black bg-white rounded-2xl overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <span class="text-xl font-black">What is a 3D blender sketch?</span>
+                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600">
+                        For PRO thumbnails to ensure we match the realism needed we work on realistic environments
+                        created on Blender with custom 3D models, so that you get an accurate idea for the thumbnail.
+                    </div>
+                </div>
+                <!-- Question 6 -->
+                <div class="reveal-blur delay-500 border-4 border-black bg-white rounded-2xl overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
+                        <span class="text-xl font-black">Can I get a free trial?</span>
+                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600">
+                        <p class="mb-2">Yes! If you meet these requirements:</p>
+                        <ol class="list-decimal list-inside">
+                            <li>+100k subscribers.</li>
+                            <li>Consistency (posting at least once/week)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT GALAXY -->
+    <section id="contact" class="galaxy-bg py-24 px-6 md:p-32 overflow-hidden relative">
+        <canvas id="galaxy-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="text-white">
+                <h2 class="reveal-blur text-7xl md:text-8xl font-black mb-8 uppercase leading-none italic">Ready for
+                    <span class="text-[var(--green)]">Takeoff?</span>
+                </h2>
+                <p class="reveal-blur delay-100 text-2xl font-bold text-slate-300 mb-8">Fill the form and let's work on
+                    your next thumbnail
+                </p>
+
+                <div class="reveal-blur delay-200 flex flex-wrap gap-4">
+                    <a href="https://www.instagram.com/prominiaturas" target="_blank"
+                        class="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:bg-[var(--green)] hover:scale-110 transition-all cursor-pointer">
+                        <i data-lucide="instagram" class="w-8 h-8 text-black"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@prominiaturas" target="_blank"
+                        class="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:bg-[var(--green)] hover:scale-110 transition-all cursor-pointer text-black">
+                        <!-- TikTok Icon SVG (Bootstrap) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-8 h-8">
+                            <path
+                                d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/people/PRO-Miniaturas/61561512830102/" target="_blank"
+                        class="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:bg-[var(--green)] hover:scale-110 transition-all cursor-pointer">
+                        <i data-lucide="facebook" class="w-8 h-8 text-black"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="reveal-blur delay-300 bg-white/10 backdrop-blur-md border border-white/20 neo-brutal p-10 relative overflow-hidden grid"
+                style="min-height: 480px;">
+                <!-- Success Message -->
+                <div x-show="formSuccess" x-transition:enter="transition ease-out duration-500"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+                    class="col-start-1 row-start-1 h-full flex flex-col justify-center items-center text-center py-10 z-10">
+                    <h2 class="text-7xl font-black uppercase text-[var(--green)] mb-6 text-shadow-none"
+                        style="-webkit-text-stroke: 0px;">SENT!</h2>
+                    <p class="text-xl font-bold text-white mb-2">We'll get in touch ASAP.</p>
+                    <p class="text-sm font-medium text-slate-300 mb-8 italic max-w-sm">If we don't contact you within
+                        the next 2-3 hours, we are probably strictly outside working hours.</p>
+                    <button @click="formSuccess = false"
+                        class="px-8 py-3 bg-[var(--green)] hover:bg-[var(--green-dark)] rounded-xl font-bold neo-brutal-sm transition-all border-2 border-black">
+                        Send new Inquire
+                    </button>
+                </div>
+
+                <!-- Form -->
+                <form x-show="!formSuccess" x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                    class="col-start-1 row-start-1 space-y-6 z-20" @submit.prevent="submitForm">
+                    <input type="text" name="name" placeholder="Name" required
+                        class="w-full p-4 bg-white/80 focus:bg-white neo-brutal-sm rounded-xl font-bold outline-none border-transparent focus:border-[var(--green)] transition-all">
+                    <input type="email" name="email" placeholder="Email" required
+                        class="w-full p-4 bg-white/80 focus:bg-white neo-brutal-sm rounded-xl font-bold outline-none border-transparent focus:border-[var(--green)] transition-all">
+                    <textarea rows="4" name="inquiry" x-model="inquiry" placeholder="tell us about your channel..."
+                        required
+                        class="w-full p-6 bg-white/80 focus:bg-white neo-brutal-sm rounded-2xl font-bold outline-none border-transparent focus:border-[var(--green)] transition-all"></textarea>
+                    <button type="submit"
+                        class="w-full py-6 bg-[var(--green)] neo-brutal-sm text-[var(--dark)] font-black text-2xl uppercase hover:bg-[var(--green-dark)] transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Send
+                        Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILED FOOTER -->
+    <footer class="bg-[#050508] text-white pt-24 pb-12 px-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div>
+                <a href="#" class="block mb-6">
+                    <img src="/logo.png?v=3" alt="PRO MINIATURAS"
+                        class="h-10 w-auto object-contain brightness-0 invert opacity-80" style="height: 70%;">
+                </a>
+                <h4 class="font-bold text-white mb-2 uppercase text-sm">About Us</h4>
+                <p class="font-medium text-slate-400 mb-8 text-sm">Professional visual design for creators and brands
+                    worldwide.</p>
+
+                <h4 class="font-bold text-white mb-2 uppercase text-sm">Get Help</h4>
+                <a href="#faq"
+                    class="block font-medium text-slate-400 hover:text-[var(--green)] transition-colors text-sm mb-2">Read
+                    our FAQ</a>
+                <a href="https://www.instagram.com/prominiaturas" target="_blank"
+                    class="block font-medium text-slate-400 hover:text-[var(--green)] transition-colors text-sm">Chat
+                    via Instagram</a>
+            </div>
+
+            <div>
+                <h4 class="font-black uppercase mb-6 text-[var(--green)] text-sm">Links</h4>
+                <ul class="font-medium space-y-4 text-slate-400 text-sm">
+                    <li><a href="#why-us" class="hover:text-white transition-colors">Why us?</a></li>
+                    <li><a href="#gallery" class="hover:text-white transition-colors">Showroom</a></li>
+                    <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-black uppercase mb-6 text-[var(--green)] text-sm">Contact</h4>
+                <ul class="font-medium space-y-2 text-slate-400 text-sm">
+                    <li>peter@prominiaturas.com</li>
+                    <li>peteralliaguilera@outlook.com</li>
+                </ul>
+                <p class="text-xs text-slate-500 mt-4 mb-2 italic leading-relaxed">For business inquiries, please prefer
+                    email or just fill the form.</p>
+                <div class="font-medium text-slate-400 text-sm">+58 (414) 589-2733</div>
+            </div>
+
+            <div>
+                <h4 class="font-black uppercase mb-6 text-[var(--green)] text-sm">Our Socials</h4>
+                <ul class="font-medium space-y-4 text-slate-400 text-sm">
+                    <li><a href="https://www.instagram.com/prominiaturas" target="_blank"
+                            class="hover:text-white transition-colors flex items-center gap-2"><i
+                                data-lucide="instagram" class="w-4 h-4"></i> Instagram</a></li>
+                    <li>
+                        <a href="https://www.tiktok.com/@prominiaturas" target="_blank"
+                            class="hover:text-white transition-colors flex items-center gap-2">
+                            <!-- TikTok Icon SVG Small (Bootstrap) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                class="w-4 h-4">
+                                <path
+                                    d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z" />
+                            </svg> TikTok
+                        </a>
+                    </li>
+                    <li><a href="https://www.facebook.com/people/PRO-Miniaturas/61561512830102/" target="_blank"
+                            class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="facebook"
+                                class="w-4 h-4"></i> Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center pt-10 border-t border-white/10 font-medium text-xs uppercase opacity-40 text-slate-500">
+            © 2026 PRO MINIATURAS • ALL CLICKS RESERVED
+        </div>
+    </footer>
+    <!-- LIGHTBOX -->
+    <div x-show="lightboxOpen" x-transition.opacity x-cloak
+        class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-6"
+        @click.self="lightboxOpen = false">
+        <div class="relative max-w-6xl w-full aspect-video flex items-center justify-center">
+            <!-- Close Button -->
+            <button @click="lightboxOpen = false"
+                class="absolute -top-8 -right-4 md:-right-8 bg-[var(--green)] text-black font-black w-12 h-12 rounded-full border-4 border-black text-xl hover:scale-110 transition-transform z-50 flex items-center justify-center cursor-pointer">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="neo-brutal bg-black w-full h-full overflow-hidden flex items-center justify-center relative">
+                <!-- Image for Essential -->
+                <template x-if="galleryTab === 'essential'">
+                    <img :src="activeImg" class="w-full h-full object-contain" alt="Gallery Zoom">
+                </template>
+
+                <!-- Placeholder for Pro -->
+                <template x-if="galleryTab === 'pro'">
+                    <span class="font-black text-6xl md:text-8xl text-slate-700 select-none">PRO (Soon)</span>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
