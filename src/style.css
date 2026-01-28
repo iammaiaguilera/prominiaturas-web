@@ -229,6 +229,24 @@ h3,
     }
 }
 
+.glow-animated {
+    position: absolute;
+    inset: -4px;
+    background: linear-gradient(45deg, var(--green), #9333ea, var(--green), #9333ea);
+    background-size: 400%;
+    z-index: -1;
+    border-radius: 1.2rem;
+    animation: steam 20s linear infinite;
+    filter: blur(20px);
+    opacity: 0.5;
+    transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.group:hover .glow-animated {
+    opacity: 1;
+    filter: blur(30px);
+}
+
 /* Pricing Section Background Transition */
 .pricing-section {
     transition: background-color 2s ease, color 2s ease;
@@ -326,7 +344,7 @@ h3,
     display: none !important;
 }
 
-/* --- HERO GRID INTERACTION --- */
+/* --- HERO GRID INTERACTION (RESTORED) --- */
 #hero-grid {
     position: absolute;
     inset: 0;
@@ -334,23 +352,87 @@ h3,
     display: flex;
     flex-wrap: wrap;
     pointer-events: auto;
-    /* Allow interaction */
 }
 
 .hero-grid-cell {
     position: relative;
+    width: 30px;
+    height: 30px;
     border: 1px solid rgba(25, 27, 50, 0.03);
     box-sizing: border-box;
     transition: background-color 1s ease;
-    /* Slow fade out */
 }
 
 .hero-grid-cell:hover {
     background-color: var(--green);
-    /* Highlight color */
     opacity: 0.3;
+    /* Highlight color */
     transition: background-color 0s;
     /* Immediate on hover */
+}
+
+/* --- HERO 3D SLIDER --- */
+#hero-slider-container {
+    position: relative;
+    width: 100%;
+    margin-top: 0;
+    /* Closer to buttons */
+    height: 350px;
+    overflow: hidden;
+    cursor: grab;
+    z-index: 20;
+    perspective: 1000px;
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#hero-slider-container.active {
+    cursor: grabbing;
+}
+
+#hero-slider-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.hero-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 440px;
+    height: 247px;
+    /* 16:9 ratio approx */
+    margin-left: -220px;
+    /* Center horizontally */
+    margin-top: -123px;
+    /* Center vertically */
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* Anchor bottom for fan/roulette effect */
+    transform-origin: 50% 150%;
+    will-change: transform, opacity, z-index, filter;
+}
+
+/* Handled by JS */
+
+
+.hero-card::after {
+    display: none;
+}
+
+.hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
 }
 
 /* Hide particles as requested */
@@ -521,4 +603,41 @@ h3,
     top: -50%;
     left: -50%;
     opacity: 0.7;
+}
+
+/* --- HERO GRID CSS --- */
+#hero-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 30px);
+    grid-template-rows: repeat(var(--rows), 30px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-grid-cell {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+@keyframes flashDim {
+    0% {
+        background: rgba(213, 236, 44, 1);
+        box-shadow: 0 0 15px rgba(213, 236, 44, 0.8);
+    }
+
+    100% {
+        background: rgba(213, 236, 44, 0.3);
+        box-shadow: 0 0 10px rgba(213, 236, 44, 0.4);
+    }
+}
+
+.hero-grid-cell.active {
+    animation: flashDim 0.4s forwards;
 }
