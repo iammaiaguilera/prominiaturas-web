@@ -104,7 +104,8 @@ document.addEventListener('alpine:init', () => {
                 ctr_title: "CTR PSYCHOLOGY",
                 ctr_desc: "Applying color theory, facial expression analysis, and elite framing to stop the scroll.",
                 workflow_title: "The ",
-                workflow_word: "Process",
+                workflow_word: "Workflow",
+                workflow_desc: "Easy, simple and quick, asking for a thumbnail doesn't mean a head-ache",
                 step1_title: "CHOOSE A PLAN",
                 step1_desc: "Select the tier that fits your content strategy and goals.",
                 step2_title: "SECURE PAY",
@@ -319,7 +320,7 @@ document.addEventListener('alpine:init', () => {
                 t6_role: "Spark Media Management",
                 btn_gallery: "Ver galería",
                 select_msg_start: "¡Hola! Me interesa el plan",
-                select_msg_end: ", por favor envíame el enlace de pago para hacerlo ASAP."
+                select_msg_end: ", por favor envíame el enlace de pago para hacerlo lo más pronto posible."
             }
         }
     });
