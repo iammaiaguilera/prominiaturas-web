@@ -299,7 +299,7 @@ document.addEventListener('alpine:init', () => {
                 our_socials: "Síguenos",
                 rights: "© 2026 PRO MINIATURAS • TODOS LOS CLICKS RESERVADOS",
                 footer_desc: "PRO Miniaturas es una agencia de diseño especializada en miniaturas de alto CTR para creadores de YouTube.",
-                footer_business: "Para consultas de negocios, por favor prefiere el correo o simplemente llena el formulario.",
+                footer_business: "Para consultas de negocios, por favor enviar el correo @prominiaturas.com o simplemente llena el formulario.",
                 t1_text: "Muchísimas gracias por todo porque usted es una persona muy respetuosa y nunca contradijo mis ideas y de hecho las tomaba en cuenta todas. Esto me pareció muy bueno... Muchas gracias por todo su buen trabajo.",
                 t1_author: "Arsenia Fernandez-Uckele",
                 t1_role: "Creadora",
