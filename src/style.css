@@ -107,7 +107,7 @@ h3,
 .neo-brutal-sm {
     border: 4px solid var(--dark);
     box-shadow: 4px 4px 0px 0px var(--dark);
-    border-radius: 1rem;
+    border-radius: 1.5rem;
 }
 
 /* Updated Flat Card for Workflow (Bento) */

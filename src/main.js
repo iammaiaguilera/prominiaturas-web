@@ -182,18 +182,12 @@ document.addEventListener('alpine:init', () => {
                 t1_text: "Thank you so much for everything because you are a very respectful person and never contradicted my ideas and in fact took them all into account. I found this very good... Thank you very much for all your good work.",
                 t1_author: "Arsenia Fernandez-Uckele",
                 t1_role: "Creator",
-                t2_text: "It was a pleasure working with you, everything went smooth, correctly on time, and done multiple revisions, delivered in 1 day. Will come back for sure!",
-                t2_author: "Crime M",
-                t2_role: "Creator",
-                t3_text: "They captured the emotion perfectly. Best investment for my channel.",
-                t3_author: "Everyday Vlogs",
-                t3_role: "2.1M Subscribers",
-                t4_text: "Stop looking. This is the quality you need to compete today.",
-                t4_author: "Finance King",
-                t4_role: "300K Subscribers",
-                t5_text: "Clean, snappy, and high res. My audience noticed the upgrade immediately.",
-                t5_author: "Fitness Pro",
-                t5_role: "500K Subscribers",
+                lewis_text: "Michael and his team have been creating thumbnails for my channel for a long time now and we've seen incredible results. Not only are the designs professional and eye-catching, a lot of the time his team think of things you wouldn't of. Couldn't recommend him more.",
+                lewis_author: "Lewis Menelaws",
+                lewis_role: "Creator - Coding With Lewis",
+                mitchell_text: "I have worked with proministuras for about a year now and took my channel from averaging 2-3% Ctr to now 6-8% Ctr. If you’re wanting more views on YouTube this is the only person I would recommend.",
+                mitchell_author: "Mitchell Wright",
+                mitchell_role: "Creator",
                 t6_text: "Working with Pro Miniaturas has been an absolute game changer for my YouTube channel. He consistently exceeds my expectations and brings even my wildest ideas to life exactly how I picture them. His turnaround time is fast, his communication is incredible, and he’s always open to feedback.\n\nMost importantly, switching to him for thumbnails has had a real, noticeable impact on the engagement and performance of my videos. I couldn’t recommend him more.",
                 t6_author: "Zach McDermott",
                 t6_role: "Spark Media Management",
@@ -307,18 +301,12 @@ document.addEventListener('alpine:init', () => {
                 t1_text: "Muchísimas gracias por todo porque usted es una persona muy respetuosa y nunca contradijo mis ideas y de hecho las tomaba en cuenta todas. Esto me pareció muy bueno... Muchas gracias por todo su buen trabajo.",
                 t1_author: "Arsenia Fernandez-Uckele",
                 t1_role: "Creadora",
-                t2_text: "Fue un placer trabajar contigo, todo salió bien, a tiempo y con múltiples revisiones, entregado en 1 día. ¡Definitivamente volveré!",
-                t2_author: "Crime M",
-                t2_role: "Creador",
-                t3_text: "Capturaron la emoción perfectamente. La mejor inversión para mi canal.",
-                t3_author: "Everyday Vlogs",
-                t3_role: "2.1M Suscriptores",
-                t4_text: "Deja de buscar. Esta es la calidad que necesitas para competir hoy.",
-                t4_author: "Finance King",
-                t4_role: "300K Suscriptores",
-                t5_text: "Limpio, rápido y en alta resolución. Mi audiencia notó la mejora de inmediato.",
-                t5_author: "Fitness Pro",
-                t5_role: "500K Suscriptores",
+                lewis_text: "Michael y su equipo han estado creando miniaturas para mi canal desde hace mucho tiempo y hemos visto resultados increíbles. No solo los diseños son profesionales y llamativos, sino que muchas veces su equipo piensa en cosas que a uno no se le ocurrirían. No podría recomendarlos más.",
+                lewis_author: "Lewis Menelaws",
+                lewis_role: "Creador - Coding With Lewis",
+                mitchell_text: "He trabajado con proministuras por un año y mi canal pasó de un CTR promedio de 2-3% a 6-8%. Si quieres más vistas en YouTube, esta es la única persona que recomendaría.",
+                mitchell_author: "Mitchell Wright",
+                mitchell_role: "Creador",
                 t6_text: "Trabajar con Pro Miniaturas ha sido un cambio absoluto para mi canal de YouTube. Constantemente superan mis expectativas y dan vida incluso a mis ideas más locas exactamente como las imagino. Su tiempo de respuesta es rápido, su comunicación es increíble y siempre están abiertos a comentarios.\n\nLo más importante, cambiar a ellos para las miniaturas tuvo un impacto real y notable en la participación y el rendimiento de mis videos. No podría recomendarlos más.",
                 t6_author: "Zach McDermott",
                 t6_role: "Spark Media Management",
@@ -433,28 +421,20 @@ Alpine.data('app', () => ({
     ],
     testimonials: [
         {
-            key: 't6', // New one first
+            key: 'lewis',
+            image: "/lewis.png"
+        },
+        {
+            key: 'mitchell',
+            image: "/mitchell.png"
+        },
+        {
+            key: 't6', // Zach
             image: "/zach.png"
         },
         {
-            key: 't1',
+            key: 't1', // Arsenia
             image: "/arsenia.png"
-        },
-        {
-            key: 't2',
-            image: "/rejox.png"
-        },
-        {
-            key: 't3',
-            image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Milo"
-        },
-        {
-            key: 't4',
-            image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
-        },
-        {
-            key: 't5',
-            image: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
         }
     ],
     activeTestimonial: 0,
