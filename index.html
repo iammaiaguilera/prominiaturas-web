@@ -447,205 +447,189 @@
     <!-- PRICING STACKED -->
     <!-- PRICING FUSION (RESPONSIVE) -->
     <!-- On Desktop: Tall sticky section with animation. On Mobile: Auto height, stacked content. -->
-    <section id="pricing" class="relative bg-black md:h-[150vh] h-auto" x-data="{ 
-        progress: 0,
-        calculateProgress() {
-            if (window.innerWidth < 768) { this.progress = 0; return; }
-            const el = this.$el;
-            const rect = el.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const start = 0; 
-            const end = el.offsetHeight - windowHeight;
-            const current = -rect.top;
-            this.progress = Math.max(0, Math.min(1, current / end));
-        }
-    }" @scroll.window="calculateProgress()">
+    <!-- PRICING SECTION (Standard Layout) -->
+    <section id="pricing" class="relative">
 
-        <div class="relative md:sticky md:top-0 md:h-screen w-full md:overflow-hidden h-auto overflow-visible p-0">
-
-            <!-- BACKGROUND TRANSITION (Desktop Only) -->
-            <div class="absolute inset-0 z-0 transition-colors duration-0 hidden md:block"
-                :style="`background-color: ${progress > 0.5 ? '#000000' : 'var(--cream)'}`">
-                <div class="absolute inset-0 opacity-20 pointer-events-none transition-transform duration-700"
-                    :style="`transform: scale(${1 + progress}) rotate(${progress * 90}deg); filter: blur(100px); background: radial-gradient(circle at 50% 50%, var(--green), transparent 70%);`">
+        <!-- ESSENTIAL PLANS (Light) -->
+        <div class="bg-[var(--cream)] py-16 md:py-24 relative z-10 transition-colors duration-500">
+            <div class="max-w-7xl mx-auto w-full px-6">
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+                    <h2
+                        class="text-4xl md:text-5xl lg:text-8xl font-black uppercase text-center md:text-left text-black">
+                        <span x-text="$store.lang.t('essential_title')">Essential </span>
+                        <span class="text-slate-400" x-text="$store.lang.t('essential_word')">Plans</span>
+                    </h2>
+                    <button
+                        @click="galleryTab = 'essential'; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
+                        class="block whitespace-nowrap px-6 py-3 border-4 border-black font-black uppercase hover:bg-[var(--green)] transition-colors rounded-xl text-sm"
+                        x-text="$store.lang.t('btn_gallery')">
+                        See Gallery
+                    </button>
                 </div>
-            </div>
 
-            <!-- Mobile Background (Static) -->
-            <div class="absolute inset-0 z-0 bg-white md:hidden"></div>
-
-            <!-- LAYER 1: ESSENTIAL PLANS -->
-            <div class="relative md:absolute md:inset-0 z-10 md:p-6 flex flex-col justify-center transition-all duration-0 ease-linear mb-12 md:mb-0"
-                style="will-change: opacity, transform, filter;" :style="window.innerWidth >= 768 ? `
-                    opacity: ${Math.max(0, 1 - (progress * 1.8))}; 
-                    filter: blur(${progress * 8}px); 
-                    transform: scale(${1 - (progress * 0.1)}) translateY(${progress * -50}px);
-                    pointer-events: ${progress > 0.4 ? 'none' : 'auto'};
-                 ` : 'position: relative; pointer-events: auto; opacity: 1; filter: none; transform: none;'">
-
-                <div class="max-w-7xl mx-auto w-full p-6 md:p-0">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
-                        <h2
-                            class="text-4xl md:text-5xl lg:text-8xl font-black uppercase text-center md:text-left text-black">
-                            <span x-text="$store.lang.t('essential_title')">Essential </span>
-                            <span class="text-slate-400" x-text="$store.lang.t('essential_word')">Plans</span>
-                        </h2>
-                        <button
-                            @click="galleryTab = 'essential'; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                            class="block whitespace-nowrap px-6 py-3 border-4 border-black font-black uppercase hover:bg-[var(--green)] transition-colors rounded-xl text-sm"
-                            x-text="$store.lang.t('btn_gallery')">
-                            See Gallery
-                        </button>
+                <!-- ESSENTIAL GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                    <!-- Starter -->
+                    <div
+                        class="bg-white neo-brutal p-6 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300">
+                        <h3 class="font-black text-2xl mb-1 text-black" x-text="$store.lang.t('starter_title')">Starter
+                        </h3>
+                        <p class="text-sm font-bold text-slate-500 mb-6" x-text="$store.lang.t('starter_credits')">1
+                            thumbnail credit</p>
+                        <div class="text-4xl md:text-5xl font-black mb-6 text-black">$50 <span
+                                class="text-lg">USD</span></div>
+                        <ul class="space-y-3 mb-8 text-sm font-bold flex-grow text-black">
+                            <template x-for="feature in $store.lang.t('starter_features')">
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="check-circle-2"
+                                        class="w-5 h-5 fill-[var(--green)] text-white flex-shrink-0"></i>
+                                    <span x-text="feature.replace('✓', '').trim()"></span>
+                                </li>
+                            </template>
+                        </ul>
+                        <button @click="setInquiry('Essential Starter')"
+                            class="w-full py-4 neo-brutal-sm font-black uppercase bg-white border-2 border-black hover:bg-[var(--green)] transition-all text-black rounded-xl"
+                            x-text="$store.lang.t('select_plan')">Select Plan</button>
                     </div>
 
-                    <!-- ESSENTIAL GRID -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <!-- Starter -->
-                        <div class="bg-white neo-brutal p-6 md:p-4 lg:p-6 flex flex-col h-full">
-                            <!-- Added border for mobile visibility -->
-                            <h3 class="font-black text-2xl mb-1 text-black" x-text="$store.lang.t('starter_title')">
-                                Starter</h3>
-                            <p class="text-sm font-bold text-slate-500 mb-4" x-text="$store.lang.t('starter_credits')">1
-                                thumbnail credit</p>
-                            <div class="text-4xl md:text-5xl font-black mb-4 text-black">$50 <span
-                                    class="text-lg">USD</span></div>
-                            <ul class="space-y-2 mb-6 text-xs md:text-sm font-bold flex-grow text-black">
-                                <template x-for="feature in $store.lang.t('starter_features')">
-                                    <li x-text="feature"></li>
-                                </template>
-                            </ul>
-                            <button @click="setInquiry('Essential Starter')"
-                                class="w-full py-3 neo-brutal-sm font-black uppercase bg-white border-2 border-black hover:bg-[var(--green)] transition-all mb-4 text-black rounded-2xl"
-                                x-text="$store.lang.t('select_plan')">Select Plan</button>
-                        </div>
-
-                        <!-- Master -->
-                        <div class="relative h-full">
-                            <div class="absolute -top-2.5 right-6 bg-[var(--green)] text-black px-4 py-1 rounded-2xl text-xs font-black z-20 shadow-sm border border-black/10"
+                    <!-- Master -->
+                    <div class="relative h-full hover:scale-[1.02] transition-transform duration-300 md:-translate-y-4">
+                        <div class="absolute -top-3 right-6 z-20">
+                            <div class="bg-[var(--green)] text-black px-4 py-1 rounded-full text-xs font-black shadow-sm border-2 border-black"
                                 x-text="$store.lang.t('save_160')">SAVE $160</div>
-                            <div class="glow-border-inset h-full">
-                                <div class="bg-[var(--purple)] text-white h-full relative z-10 flex flex-col p-6 md:p-4 lg:p-6"
-                                    style="border-radius: 1rem;">
-                                    <h3 class="font-black text-2xl mb-1 text-[var(--green)]"
-                                        x-text="$store.lang.t('master_title')">Master</h3>
-                                    <p class="text-sm font-bold text-purple-200 mb-4"
-                                        x-text="$store.lang.t('master_credits')">8 thumbnail credits</p>
-                                    <div class="text-4xl md:text-5xl font-black mb-4">$240 <span
-                                            class="text-lg">USD</span></div>
-                                    <ul class="space-y-2 mb-6 text-xs md:text-sm font-bold flex-grow">
-                                        <template x-for="feature in $store.lang.t('master_features')">
-                                            <li x-text="feature"></li>
-                                        </template>
-                                    </ul>
-                                    <button @click="setInquiry('Master')"
-                                        class="w-full py-3 bg-[var(--green)] text-black neo-brutal-sm font-black uppercase mb-4 hover:bg-[var(--green-dark)] transition-all rounded-2xl"
-                                        x-text="$store.lang.t('select_plan')">Select Plan</button>
-                                </div>
-                            </div>
                         </div>
-
-                        <!-- Growth -->
-                        <div class="bg-white neo-brutal p-6 md:p-4 lg:p-6 flex flex-col h-full relative">
-                            <div class="absolute -top-3.5 right-6 bg-black text-white px-4 py-1 rounded-2xl text-xs font-black z-20 shadow-sm"
-                                x-text="$store.lang.t('save_60')">SAVE $60</div>
-                            <h3 class="font-black text-2xl mb-1 text-black" x-text="$store.lang.t('growth_title')">
-                                Growth</h3>
-                            <p class="text-sm font-bold text-slate-500 mb-4" x-text="$store.lang.t('growth_credits')">4
-                                thumbnail credits</p>
-                            <div class="text-4xl md:text-5xl font-black mb-4 text-black">$140 <span
-                                    class="text-lg">USD</span></div>
-                            <ul class="space-y-2 mb-6 text-xs md:text-sm font-bold flex-grow text-black">
-                                <template x-for="feature in $store.lang.t('growth_features')">
-                                    <li x-text="feature"></li>
-                                </template>
-                            </ul>
-                            <button @click="setInquiry('Growth')"
-                                class="w-full py-3 neo-brutal-sm font-black uppercase bg-white border-2 border-black hover:bg-[var(--green)] transition-all mb-4 text-black rounded-2xl"
-                                x-text="$store.lang.t('select_plan')">Select Plan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Divider -->
-            <div class="md:hidden h-12 bg-black w-full my-8"></div>
-
-            <!-- LAYER 2: PRO PLANS -->
-            <div class="relative md:absolute md:inset-0 z-20 transition-all duration-0 ease-linear pointer-events-auto md:pointer-events-none p-0"
-                style="will-change: opacity, transform, filter;"
-                :style="window.innerWidth >= 768 ? `
-                    opacity: ${Math.max(0, (progress - 0.3) * 2.5)}; 
-                    filter: blur(${Math.max(0, (0.7 - progress) * 10)}px); 
-                    transform: scale(${0.9 + (progress * 0.1)});
-                    pointer-events: ${progress > 0.4 ? 'auto' : 'none'};
-                 ` : 'position: relative; opacity: 1; filter: none; transform: none; pointer-events: auto; background-color: black; margin-top: 0;'">
-
-                <!-- Mobile Only Background for Pro -->
-                <div class="absolute inset-0 bg-black md:bg-transparent -z-10 md:z-auto"></div>
-
-                <div class="max-w-7xl mx-auto w-full relative z-10 p-6 md:p-0">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
-                        <h2
-                            class="text-4xl md:text-6xl lg:text-8xl font-black uppercase text-center md:text-left text-white">
-                            <span x-text="$store.lang.t('pro_plans_title')">PRO </span>
-                            <span class="text-[var(--green)]" x-text="$store.lang.t('pro_plans_word')">Plans</span>
-                        </h2>
-                        <button
-                            @click="galleryTab = 'pro'; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                            class="mb-8 md:mb-0 block whitespace-nowrap px-6 py-3 border-4 border-white text-white font-black uppercase hover:bg-[var(--green)] hover:text-black hover:border-black transition-colors rounded-2xl text-sm"
-                            x-text="$store.lang.t('btn_gallery')">
-                            See Gallery
-                        </button>
-                    </div>
-
-                    <!-- PRO GRID -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pb-12 md:pb-0">
-                        <!-- APEX -->
-                        <div
-                            class="bg-white/5 backdrop-blur-sm border-2 border-white/10 p-6 flex flex-col h-full rounded-2xl hover:bg-white/10 transition-colors">
-                            <h3 class="font-black text-2xl md:text-3xl mb-1 uppercase no-text-shadow text-white">APEX
-                            </h3>
-                            <p class="text-sm font-bold text-slate-400 mb-4" x-text="$store.lang.t('apex_credits')">1
-                                PRO thumbnail credit</p>
-                            <div class="text-4xl md:text-6xl font-black mb-6 text-[var(--green)]">$200 <span
-                                    class="text-base md:text-xl text-white">USD</span></div>
-                            <ul class="space-y-3 mb-8 text-xs md:text-sm font-bold flex-grow text-slate-300">
-                                <template x-for="feature in $store.lang.t('apex_features')">
-                                    <li x-text="feature"></li>
-                                </template>
-                            </ul>
-                            <button @click="setInquiry('APEX')"
-                                class="w-full py-4 bg-white text-black neo-brutal-sm font-black text-xl uppercase mb-4 transition-colors hover:bg-[var(--green)] rounded-2xl"
-                                x-text="$store.lang.t('select_plan')">Select Plan</button>
-                        </div>
-
-                        <!-- EMPIRE -->
-                        <div class="relative group">
-                            <div class="glow-animated"></div>
-                            <div
-                                class="relative bg-[#3b0764] border-2 border-[var(--green)] p-6 flex flex-col h-full rounded-2xl">
-                                <div class="absolute top-0 right-6 bg-[var(--green)] text-black px-4 py-2 rounded-b-2xl text-xs md:text-sm font-black"
-                                    x-text="$store.lang.t('best_value')">BEST VALUE</div>
-                                <h3 class="font-black text-2xl md:text-3xl mb-1 uppercase text-[var(--green)]">EMPIRE
-                                </h3>
-                                <p class="text-sm font-bold text-purple-200 mb-4"
-                                    x-text="$store.lang.t('empire_credits')">4 PRO thumbnail credits</p>
-                                <div class="text-4xl md:text-6xl font-black mb-6 text-white">$600 <span
-                                        class="text-base md:text-xl text-slate-500">USD</span></div>
-                                <ul class="space-y-3 mb-8 text-xs md:text-sm font-bold flex-grow text-white">
-                                    <template x-for="feature in $store.lang.t('empire_features')">
-                                        <li x-text="feature"></li>
+                        <div class="glow-border-inset h-full">
+                            <div class="h-full bg-[var(--purple)] p-6 md:p-8 flex flex-col relative z-10"
+                                style="border-radius: 1.2rem;">
+                                <h3 class="font-black text-2xl mb-1 text-[var(--green)]"
+                                    x-text="$store.lang.t('master_title')">Master</h3>
+                                <p class="text-sm font-bold text-purple-200 mb-6"
+                                    x-text="$store.lang.t('master_credits')">8 thumbnail credits</p>
+                                <div class="text-4xl md:text-5xl font-black mb-6 text-white">$240 <span
+                                        class="text-lg opacity-80">USD</span></div>
+                                <ul class="space-y-3 mb-8 text-sm font-bold flex-grow text-white">
+                                    <template x-for="feature in $store.lang.t('master_features')">
+                                        <li class="flex items-start gap-2">
+                                            <i data-lucide="check-circle-2"
+                                                class="w-5 h-5 fill-[var(--green)] text-white flex-shrink-0"></i>
+                                            <span x-text="feature.replace('✓', '').trim()"></span>
+                                        </li>
                                     </template>
                                 </ul>
-                                <button @click="setInquiry('EMPIRE')"
-                                    class="w-full py-4 bg-[var(--green)] text-black neo-brutal-sm font-black text-xl uppercase mb-4 transition-colors hover:bg-[var(--green-dark)] rounded-2xl"
+                                <button @click="setInquiry('Master')"
+                                    class="w-full py-4 bg-[var(--green)] text-black neo-brutal-sm font-black uppercase hover:bg-[var(--green-dark)] transition-all rounded-2xl shadow-lg"
                                     x-text="$store.lang.t('select_plan')">Select Plan</button>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Growth -->
+                    <div
+                        class="bg-white neo-brutal p-6 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300 relative">
+                        <div class="absolute -top-3 right-6 z-20">
+                            <div class="bg-black text-white px-4 py-1 rounded-full text-xs font-black border-2 border-black"
+                                x-text="$store.lang.t('save_60')">SAVE $60</div>
+                        </div>
+                        <h3 class="font-black text-2xl mb-1 text-black" x-text="$store.lang.t('growth_title')">Growth
+                        </h3>
+                        <p class="text-sm font-bold text-slate-500 mb-6" x-text="$store.lang.t('growth_credits')">4
+                            thumbnail credits</p>
+                        <div class="text-4xl md:text-5xl font-black mb-6 text-black">$140 <span
+                                class="text-lg">USD</span></div>
+                        <ul class="space-y-3 mb-8 text-sm font-bold flex-grow text-black">
+                            <template x-for="feature in $store.lang.t('growth_features')">
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="check-circle-2"
+                                        class="w-5 h-5 fill-[var(--green)] text-white flex-shrink-0"></i>
+                                    <span x-text="feature.replace('✓', '').trim()"></span>
+                                </li>
+                            </template>
+                        </ul>
+                        <button @click="setInquiry('Growth')"
+                            class="w-full py-4 neo-brutal-sm font-black uppercase bg-white border-2 border-black hover:bg-[var(--green)] transition-all text-black rounded-2xl"
+                            x-text="$store.lang.t('select_plan')">Select Plan</button>
+                    </div>
                 </div>
             </div>
+        </div>
 
+        <!-- PRO PLANS (Dark) -->
+        <div class="bg-black py-16 md:py-24 relative z-10 border-t border-white/10">
+            <div class="max-w-7xl mx-auto w-full px-6">
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+                    <h2
+                        class="text-4xl md:text-6xl lg:text-8xl font-black uppercase text-center md:text-left text-white">
+                        <span x-text="$store.lang.t('pro_plans_title')">PRO </span>
+                        <span class="text-[var(--green)]" x-text="$store.lang.t('pro_plans_word')">Plans</span>
+                    </h2>
+                    <button
+                        @click="galleryTab = 'pro'; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
+                        class="block whitespace-nowrap px-6 py-3 border-4 border-white text-white font-black uppercase hover:bg-[var(--green)] hover:text-black hover:border-black transition-colors rounded-2xl text-sm"
+                        x-text="$store.lang.t('btn_gallery')">
+                        See Gallery
+                    </button>
+                </div>
+
+                <!-- PRO GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pb-12">
+                    <!-- APEX -->
+                    <div
+                        class="bg-white/5 backdrop-blur-sm border-2 border-white/10 p-6 md:p-10 flex flex-col h-full rounded-2xl hover:bg-white/10 transition-colors">
+                        <h3 class="font-black text-2xl md:text-3xl mb-1 uppercase no-text-shadow text-white">APEX</h3>
+                        <p class="text-sm font-bold text-slate-400 mb-6" x-text="$store.lang.t('apex_credits')">1 PRO
+                            thumbnail credit</p>
+                        <div class="text-4xl md:text-6xl font-black mb-8 text-[var(--green)]">$200 <span
+                                class="text-base md:text-xl text-white">USD</span></div>
+                        <ul class="space-y-4 mb-10 text-sm font-bold flex-grow text-slate-300">
+                            <template x-for="feature in $store.lang.t('apex_features')">
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="check-circle-2"
+                                        class="w-5 h-5 fill-[var(--green)] text-white flex-shrink-0"></i>
+                                    <span x-text="feature.replace('✓', '').trim()"></span>
+                                </li>
+                            </template>
+                        </ul>
+                        <button @click="setInquiry('APEX')"
+                            class="w-full py-4 bg-white text-black neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green)] rounded-2xl"
+                            x-text="$store.lang.t('select_plan')">Select Plan</button>
+                    </div>
+
+                    <!-- EMPIRE -->
+                    <div class="relative group">
+                        <div class="glow-animated"></div>
+                        <div
+                            class="relative bg-[#3b0764] border-2 border-[var(--green)] p-6 md:p-10 flex flex-col h-full rounded-2xl">
+                            <div class="absolute top-0 right-10 bg-[var(--green)] text-black px-6 py-2 rounded-b-xl text-xs md:text-sm font-black shadow-lg"
+                                x-text="$store.lang.t('best_value')">BEST VALUE</div>
+
+                            <div class="flex items-center gap-3 mb-1">
+                                <i data-lucide="crown"
+                                    class="w-8 h-8 md:w-10 md:h-10 text-[var(--green)] fill-[var(--green)]"></i>
+                                <h3 class="font-black text-2xl md:text-3xl uppercase text-[var(--green)]">EMPIRE</h3>
+                            </div>
+
+                            <p class="text-sm font-bold text-purple-200 mb-6" x-text="$store.lang.t('empire_credits')">4
+                                PRO thumbnail credits</p>
+                            <div class="text-4xl md:text-6xl font-black mb-8 text-white">$600 <span
+                                    class="text-base md:text-xl text-slate-500">USD</span></div>
+                            <ul class="space-y-4 mb-10 text-sm font-bold flex-grow text-white">
+                                <template x-for="feature in $store.lang.t('empire_features')">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check-circle-2"
+                                            class="w-5 h-5 fill-[var(--green)] text-white flex-shrink-0"></i>
+                                        <span x-text="feature.replace('✓', '').trim()"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                            <button @click="setInquiry('EMPIRE')"
+                                class="w-full py-4 bg-[var(--green)] text-black neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green-dark)] rounded-2xl"
+                                x-text="$store.lang.t('select_plan')">Select Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
