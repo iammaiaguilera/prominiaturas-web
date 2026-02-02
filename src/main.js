@@ -346,8 +346,11 @@ Alpine.data('app', () => ({
         btn.disabled = true;
         btn.innerText = "SENDING...";
 
+        const formData = new FormData(form);
+        formData.append('lang', Alpine.store('lang').current);
+
         try {
-            await fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
+            await fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' });
             this.formSuccess = true;
             form.reset();
             this.inquiry = '';
