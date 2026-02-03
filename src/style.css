@@ -58,6 +58,26 @@ h3,
     transition-delay: 400ms;
 }
 
+@keyframes moveGradient {
+    0% {
+        background-position: center 0%;
+        background-size: 120% 120%;
+    }
+
+    100% {
+        background-position: center 10%;
+        background-size: 160% 160%;
+    }
+}
+
+.animate-gradient-radial {
+    background-color: #191B32;
+    background-image: radial-gradient(circle at center top, #191B32 20%, #581c87 70%, #3b0764 100%);
+    background-size: 120% 120%;
+    animation: moveGradient 8s ease-in-out infinite alternate;
+    background-repeat: no-repeat;
+}
+
 /* --- EXISTING STYLES --- */
 
 @keyframes aura {
@@ -107,6 +127,12 @@ h3,
 .neo-brutal-sm {
     border: 4px solid var(--dark);
     box-shadow: 4px 4px 0px 0px var(--dark);
+    border-radius: 1.5rem;
+}
+
+.neo-brutal-sm-white {
+    border: 4px solid var(--cream);
+    box-shadow: 4px 4px 0px 0px var(--cream);
     border-radius: 1.5rem;
 }
 
@@ -382,7 +408,7 @@ h3,
     cursor: grab;
     z-index: 20;
     perspective: 1000px;
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, #191B32 15%, #191B32 85%, transparent);
     user-select: none;
     -webkit-user-select: none;
 }
@@ -412,7 +438,7 @@ h3,
     border-radius: 16px;
     overflow: hidden;
     background: #000;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px rgba(25, 27, 50, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
 
     /* Anchor bottom for fan/roulette effect */
@@ -524,7 +550,7 @@ h3,
 
 /* We will place the filter definitions invisibly in HTML */
 .gradients-container {
-    filter: url(#goo) blur(40px);
+    filter: blur(40px);
     width: 100%;
     height: 100%;
 }

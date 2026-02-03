@@ -1,4 +1,4 @@
-import { createIcons, Zap, RefreshCw, ShieldCheck, Target, Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp, Instagram, Facebook, Clapperboard, Globe, Music2, Menu } from 'lucide';
+import { createIcons, Zap, RefreshCw, ShieldCheck, Target, Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp, Instagram, Facebook, Clapperboard, Globe, Music2, Menu, Crown, Check } from 'lucide';
 import Alpine from 'alpinejs';
 import intersect from '@alpinejs/intersect';
 import collapse from '@alpinejs/collapse';
@@ -141,6 +141,7 @@ document.addEventListener('alpine:init', () => {
                 empire_features: ["✓ 4 Elite Masterpieces", "✓ 3D Blender Sketch", "✓ Top notch AI", "✓ Dedicated Designer", "✓ Strategic Consultation", "✓ Unlimited Revisions", "✓ Money Warranty"],
                 best_value: "BEST VALUE",
                 faq_title: "Questions? Answers:",
+                faq_desc: "Can't find the answer you're looking for? Reach out to our team directly via our <a href='#contact' class='text-[var(--purple-dark)] underline hover:text-[var(--purple)] transition-colors'>contact form</a>.",
                 q1: "What information do I need to provide you to create a thumbnail?",
                 a1: "Video topic, quick sum-up, and some questions replied.",
                 q2: "Do you help me brainstorm a thumbnail concept?",
@@ -260,6 +261,7 @@ document.addEventListener('alpine:init', () => {
                 empire_features: ["✓ 4 Obras Maestras Elite", "✓ Boceto 3D Blender", "✓ Top notch AI", "✓ Diseñador dedicado", "✓ Consultoría Estratégica", "✓ Revisiones Ilimitadas", "✓ Garantía de Reembolso"],
                 best_value: "MEJOR VALOR",
                 faq_title: "¿Preguntas? Respuestas:",
+                faq_desc: "¿No encuentras la respuesta que buscas? Contacta directamente a nuestro equipo a través del <a href='#contact' class='text-[var(--purple-dark)] underline hover:text-[var(--purple)] transition-colors'>formulario de contacto</a>.",
                 q1: "¿Qué información necesito darte para crear una miniatura?",
                 a1: "Tema del video, resumen rápido y algunas preguntas respondidas.",
                 q2: "¿Me ayudan a pensar el concepto de la miniatura?",
@@ -473,7 +475,9 @@ createIcons({
         Clapperboard,
         Globe,
         Music2,
-        Menu
+        Menu,
+        Crown,
+        Check
     }
 });
 
