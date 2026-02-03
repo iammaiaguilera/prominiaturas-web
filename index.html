@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/src/style.css">
 </head>
 
-<body x-data="app" class="bg-[var(--cream)] overflow-x-hidden">
+<body x-data="app" class="bg-[var(--cream)] overflow-x-hidden" :class="mobileMenuOpen ? 'overflow-hidden' : ''">
 
     <!-- NAVIGATION -->
     <!-- NAVIGATION -->
@@ -30,10 +30,11 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <!-- Dropdown Desktop (> lg) -->
-                <div class="relative group hidden xl:block" x-data="{ open: false }" @mouseenter="open = true"
-                    @mouseleave="open = false">
-                    <button class="hover:scale-110 transition-transform bg-transparent p-1 flex items-center gap-1"
+                <!-- Dropdown Language (Visible always, toggle on click for mobile) -->
+                <div class="relative group block" x-data="{ open: false }" @mouseenter="open = true"
+                    @mouseleave="open = false" @click.away="open = false">
+                    <button @click="open = !open"
+                        class="hover:scale-110 transition-transform bg-transparent p-1 flex items-center gap-1"
                         aria-label="Switch Language">
                         <i data-lucide="globe" class="w-5 h-5 transition-colors text-slate-400 hover:text-pm-dark"></i>
                         <span class="text-xs font-bold uppercase transition-colors text-slate-500"
@@ -454,7 +455,7 @@
         <div id="essential-plans" class="bg-[var(--cream)] py-16 md:py-24 relative z-10 transition-colors duration-500">
             <div class="max-w-7xl mx-auto w-full px-0">
                 <!-- Header -->
-                <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 px-4 md:px-6">
                     <h2
                         class="text-4xl md:text-5xl lg:text-8xl font-black uppercase text-center md:text-left text-pm-dark">
                         <span x-text="$store.lang.t('essential_title')">Essential </span>
@@ -469,7 +470,7 @@
                 </div>
 
                 <!-- ESSENTIAL GRID -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch px-4 md:px-6">
                     <!-- Starter -->
                     <div
                         class="bg-white neo-brutal p-6 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300">
@@ -561,7 +562,7 @@
         <div class="py-16 md:py-24 relative z-10 border-t border-white/10 animate-gradient-radial">
             <div class="max-w-7xl mx-auto w-full px-0">
                 <!-- Header -->
-                <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 px-4 md:px-6">
                     <h2
                         class="text-4xl md:text-5xl lg:text-8xl font-black uppercase text-center md:text-left text-white">
                         <span x-text="$store.lang.t('pro_plans_title')">PRO </span>
@@ -576,7 +577,7 @@
                 </div>
 
                 <!-- PRO GRID -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pb-12 px-4 md:px-6">
                     <!-- APEX -->
                     <div
                         class="bg-white/5 backdrop-blur-sm border-2 border-white/10 p-6 md:p-10 flex flex-col h-full rounded-2xl hover:bg-white/10 transition-colors">
@@ -961,33 +962,29 @@
     <!-- Mobile Menu Overlay (New Design) -->
     <!-- Mobile Menu Overlay (New Design) -->
     <div x-show="mobileMenuOpen" x-transition.opacity x-cloak
-        class="fixed inset-0 bg-pm-dark/80 backdrop-blur-md z-[40] flex flex-col pt-32 px-6" style="display: none;">
+        class="fixed inset-0 bg-[var(--cream)] z-[40] flex flex-col pt-20 px-6 overflow-y-auto" style="display: none;">
 
         <!-- Menu List -->
-        <div class="flex flex-col gap-6 text-white font-medium text-xl md:text-2xl uppercase tracking-widest mt-4">
+        <div class="flex flex-col gap-0 text-pm-dark font-medium text-xl md:text-2xl uppercase tracking-widest mt-4">
             <a href="#why-us" @click="mobileMenuOpen = false"
-                class="flex justify-between items-center group py-4 border-b border-white/10 hover:bg-white/5 px-2 rounded-lg transition-colors">
+                class="flex justify-between items-center group py-4 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
                 <span x-text="$store.lang.t('nav_why')"></span>
-                <i data-lucide="arrow-right"
-                    class="text-[var(--green)] group-hover:translate-x-2 transition-transform"></i>
+                <i data-lucide="chevron-right" class="text-pm-dark group-hover:translate-x-2 transition-transform"></i>
             </a>
             <a href="#gallery" @click="mobileMenuOpen = false"
-                class="flex justify-between items-center group py-4 border-b border-white/10 hover:bg-white/5 px-2 rounded-lg transition-colors">
+                class="flex justify-between items-center group py-4 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
                 <span x-text="$store.lang.t('nav_showroom')"></span>
-                <i data-lucide="arrow-right"
-                    class="text-[var(--green)] group-hover:translate-x-2 transition-transform"></i>
+                <i data-lucide="chevron-right" class="text-pm-dark group-hover:translate-x-2 transition-transform"></i>
             </a>
             <a href="#pricing" @click="mobileMenuOpen = false"
-                class="flex justify-between items-center group py-4 border-b border-white/10 hover:bg-white/5 px-2 rounded-lg transition-colors">
+                class="flex justify-between items-center group py-4 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
                 <span x-text="$store.lang.t('nav_pricing')"></span>
-                <i data-lucide="arrow-right"
-                    class="text-[var(--green)] group-hover:translate-x-2 transition-transform"></i>
+                <i data-lucide="chevron-right" class="text-pm-dark group-hover:translate-x-2 transition-transform"></i>
             </a>
             <a href="#faq" @click="mobileMenuOpen = false"
-                class="flex justify-between items-center group py-4 border-b border-white/10 hover:bg-white/5 px-2 rounded-lg transition-colors">
+                class="flex justify-between items-center group py-4 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
                 <span x-text="$store.lang.t('nav_faq')"></span>
-                <i data-lucide="arrow-right"
-                    class="text-[var(--green)] group-hover:translate-x-2 transition-transform"></i>
+                <i data-lucide="chevron-right" class="text-pm-dark group-hover:translate-x-2 transition-transform"></i>
             </a>
         </div>
 
