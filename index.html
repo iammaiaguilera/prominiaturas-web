@@ -1028,55 +1028,112 @@
 
     <!-- LIGHTBOX -->
     <div x-show="lightboxOpen" x-transition.opacity x-cloak
-        class="fixed inset-0 z-[100] bg-pm-dark/90 backdrop-blur-sm flex items-center justify-center p-6"
+        class="fixed inset-0 z-[100] bg-pm-dark/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
         @click.self="lightboxOpen = false">
-        <div class="relative max-w-6xl w-full aspect-video flex items-center justify-center p-4">
-            <!-- Close Button (Square) -->
+
+        <!-- Main Container Card (Holds Everything) -->
+        <div class="relative w-full max-w-5xl bg-[var(--cream)] rounded-[2rem] p-3 md:p-4 shadow-2xl flex flex-col gap-6"
+            x-data="{ dragging: false }" @mousemove.window="if(dragging && viewMode === 'compare') { 
+                const rect = $refs.compareContainer.getBoundingClientRect();
+                const x = Math.min(Math.max(0, $event.clientX - rect.left), rect.width);
+                sliderPosition = (x / rect.width) * 100;
+             }" @mouseup.window="dragging = false" @touchmove.window="if(dragging && viewMode === 'compare') {
+                const rect = $refs.compareContainer.getBoundingClientRect();
+                const touchX = $event.touches[0].clientX;
+                const x = Math.min(Math.max(0, touchX - rect.left), rect.width);
+                sliderPosition = (x / rect.width) * 100;
+             }" @touchend.window="dragging = false">
+
+            <!-- Close Button (Top Right of Container) -->
             <button @click="lightboxOpen = false"
-                class="absolute -top-12 -right-4 md:-top-16 md:-right-8 bg-[var(--green)] text-pm-dark w-12 h-12 md:w-16 md:h-16 border-4 border-pm-dark hover:bg-[var(--green-dark)] transition-colors z-50 flex items-center justify-center cursor-pointer neo-brutal-sm">
+                class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-[var(--green)] text-pm-dark w-12 h-12 md:w-16 md:h-16 rounded-xl border-4 border-pm-dark hover:scale-110 hover:rotate-3 transition-transform z-50 flex items-center justify-center cursor-pointer shadow-[4px_4px_0px_0px_#191B32]">
                 <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
             </button>
 
-            <!-- Lightbox Content Window -->
-            <div
-                class="neo-brutal bg-pm-dark w-full h-full overflow-hidden flex flex-col relative border-4 border-pm-dark">
+            <!-- Image Area (Strict 16/9) -->
+            <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black relative border-4 border-pm-dark"
+                x-ref="compareContainer">
 
-                <!-- Main Image Area -->
-                <div class="relative w-full h-full bg-black flex items-center justify-center overflow-hidden">
-                    <!-- Essential Image -->
-                    <template x-if="!isPro">
-                        <img :src="activeImg" class="w-full h-full object-contain" alt="Gallery Zoom">
-                    </template>
+                <!-- Essential View -->
+                <template x-if="!isPro">
+                    <img :src="activeImg" class="w-full h-full object-cover">
+                </template>
 
-                    <!-- Pro Image (Switchable) -->
-                    <template x-if="isPro">
-                        <div class="w-full h-full relative">
-                            <img x-show="viewMode === 'final'" :src="activeImg.final"
-                                class="w-full h-full object-contain absolute inset-0 transition-opacity duration-300"
-                                alt="Final Result">
-                            <img x-show="viewMode === 'sketch'" :src="activeImg.sketch"
-                                class="w-full h-full object-contain absolute inset-0 transition-opacity duration-300"
-                                alt="Blender Sketch">
-                        </div>
-                    </template>
-                </div>
-
-                <!-- Pro Controls (Bottom Bar) -->
+                <!-- Pro View System -->
                 <template x-if="isPro">
-                    <div class="w-full bg-white border-t-4 border-pm-dark p-4 flex justify-center gap-4">
-                        <button @click="viewMode = 'final'"
-                            class="px-6 py-2 rounded-xl font-black uppercase border-2 border-pm-dark transition-all neo-brutal-sm"
-                            :class="viewMode === 'final' ? 'bg-[var(--green)] text-pm-dark' : 'bg-slate-200 text-slate-500 hover:bg-slate-300'">
-                            Final
-                        </button>
-                        <button @click="viewMode = 'sketch'"
-                            class="px-6 py-2 rounded-xl font-black uppercase border-2 border-pm-dark transition-all neo-brutal-sm"
-                            :class="viewMode === 'sketch' ? 'bg-[var(--purple)] text-white' : 'bg-slate-200 text-slate-500 hover:bg-slate-300'">
-                            Sketch
-                        </button>
+                    <div class="w-full h-full relative group cursor-crosshair">
+
+                        <!-- 1. Final Only -->
+                        <img x-show="viewMode === 'final'" :src="activeImg.final"
+                            class="w-full h-full object-cover absolute inset-0" x-transition.opacity>
+
+                        <!-- 2. Sketch Only -->
+                        <img x-show="viewMode === 'sketch'" :src="activeImg.sketch"
+                            class="w-full h-full object-cover absolute inset-0" x-transition.opacity>
+
+                        <!-- 3. Comparison Mode -->
+                        <div x-show="viewMode === 'compare'" class="w-full h-full relative" @mousedown="dragging = true"
+                            @touchstart="dragging = true">
+                            <!-- Background: Sketch -->
+                            <img :src="activeImg.sketch" class="w-full h-full object-cover absolute inset-0">
+
+                            <!-- Foreground: Final (Clipped) -->
+                            <div class="absolute inset-0 w-full h-full overflow-hidden"
+                                :style="`width: ${sliderPosition}%`">
+                                <img :src="activeImg.final" class="w-full h-full object-cover max-w-none"
+                                    :style="`width: ${$refs.compareContainer?.offsetWidth}px`">
+                            </div>
+
+                            <!-- Slider Handle -->
+                            <div class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                                :style="`left: ${sliderPosition}%`">
+                                <div
+                                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-[var(--green)] border-4 border-white rounded-full flex items-center justify-center shadow-lg">
+                                    <i data-lucide="chevrons-left-right" class="w-4 h-4 text-pm-dark"></i>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </template>
             </div>
+
+            <!-- Controls (Pro Only) -->
+            <template x-if="isPro">
+                <div class="flex items-center justify-center gap-0 w-full pt-2 pb-2 select-none">
+
+                    <!-- Final Node -->
+                    <button @click="viewMode = 'final'"
+                        class="px-6 py-2 rounded-full font-black uppercase border-2 transition-all text-sm md:text-base z-10"
+                        :class="viewMode === 'final' ? 'bg-[var(--green)] text-pm-dark border-pm-dark scale-110 shadow-[4px_4px_0px_0px_#191B32]' : 'bg-slate-200 text-slate-500 border-transparent hover:bg-slate-300'">
+                        Final
+                    </button>
+
+                    <!-- Dash Line L -->
+                    <div class="h-1 w-12 md:w-24 border-t-4 border-dashed border-slate-300 -mx-1"></div>
+
+                    <!-- Comparison Node (Center) -->
+                    <button @click="viewMode = 'compare'; sliderPosition = 50"
+                        class="w-14 h-14 md:w-16 md:h-16 rounded-full border-4 flex items-center justify-center transition-all z-20 hover:scale-110 active:scale-95"
+                        :class="viewMode === 'compare' ? 'bg-pm-dark border-[var(--green)]' : 'bg-white border-slate-300 text-slate-400 hover:border-pm-dark hover:text-pm-dark'">
+
+                        <div class="w-4 h-4 md:w-6 md:h-6 rounded-full border-2"
+                            :class="viewMode === 'compare' ? 'bg-[var(--green)] border-[var(--green)]' : 'border-current'">
+                        </div>
+                    </button>
+
+                    <!-- Dash Line R -->
+                    <div class="h-1 w-12 md:w-24 border-t-4 border-dashed border-slate-300 -mx-1"></div>
+
+                    <!-- Sketch Node -->
+                    <button @click="viewMode = 'sketch'"
+                        class="px-6 py-2 rounded-full font-black uppercase border-2 transition-all text-sm md:text-base z-10"
+                        :class="viewMode === 'sketch' ? 'bg-[var(--purple)] text-white border-pm-dark scale-110 shadow-[4px_4px_0px_0px_#191B32]' : 'bg-slate-200 text-slate-500 border-transparent hover:bg-slate-300'">
+                        Sketch
+                    </button>
+
+                </div>
+            </template>
         </div>
     </div>
 

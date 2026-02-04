@@ -326,7 +326,8 @@ Alpine.data('app', () => ({
     lightboxOpen: false,
     activeImg: '',
     isPro: false,
-    viewMode: 'final', // 'final' or 'sketch'
+    viewMode: 'final', // 'final', 'sketch', 'compare'
+    sliderPosition: 50,
     inquiry: '',
     openKontigo(amountUsd, planName) {
         const slug = 'ee782fe5-2c70-4744-a0ed-43467de5468a';
