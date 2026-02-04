@@ -33,10 +33,12 @@
                 <!-- Dropdown Language (Visible always, toggle on click for mobile) -->
                 <div class="relative group block" x-data="{ open: false }" @click.away="open = false">
                     <button @click="open = !open"
-                        class="hover:scale-110 transition-transform bg-transparent p-1 flex items-center gap-1"
+                        class="group hover:scale-110 transition-transform bg-transparent p-1 flex items-center gap-1"
                         aria-label="Switch Language">
-                        <i data-lucide="globe" class="w-5 h-5 transition-colors text-slate-400 hover:text-pm-dark"></i>
-                        <span class="text-xs font-bold uppercase transition-colors text-slate-500"
+                        <i data-lucide="globe"
+                            class="w-5 h-5 transition-colors text-slate-400 group-hover:text-pm-dark"></i>
+                        <span
+                            class="text-xs font-bold uppercase transition-colors text-slate-500 group-hover:text-pm-dark"
                             x-text="$store.lang.current"></span>
                     </button>
                     <!-- Language Dropdown -->
@@ -63,7 +65,7 @@
 
                 <!-- Hamburger Button (Mobile & Tablet) -->
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
-                    class="xl:hidden p-2 relative z-50 hover:bg-white/10 rounded-2xl transition-colors text-pm-dark">
+                    class="xl:hidden p-2 relative z-50 hover:bg-white/10 rounded-2xl transition-colors btn-press-anim text-pm-dark">
                     <i data-lucide="menu" x-show="!mobileMenuOpen" class="w-8 h-8 transition-transform"></i>
                     <i data-lucide="x" x-show="mobileMenuOpen" class="w-8 h-8 transition-transform" x-cloak></i>
                 </button>
@@ -328,14 +330,14 @@
                 <!-- Load More -->
                 <button x-show="limit < essentialImages.length"
                     @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); lucide.createIcons(); })"
-                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32]">
+                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
                     <i data-lucide="arrow-down" class="w-10 h-10"></i>
                 </button>
 
                 <!-- Collapse -->
                 <button x-show="limit >= essentialImages.length && limit > 9"
                     @click="limit = 9; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32]">
+                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
                     <i data-lucide="arrow-up" class="w-10 h-10"></i>
                 </button>
             </div>
@@ -440,7 +442,7 @@
         </div>
         <div class="flex justify-center mt-12">
             <button @click="document.getElementById('essential-plans').scrollIntoView({behavior: 'smooth'})"
-                class="bg-[var(--green)] text-pm-dark px-8 py-4 rounded-xl font-black uppercase neo-brutal-sm hover:bg-[var(--green-dark)] transition-colors flex items-center gap-2"
+                class="bg-[var(--green)] text-pm-dark px-8 py-4 rounded-xl font-black uppercase neo-brutal-sm hover:bg-[var(--green-dark)] transition-colors flex items-center gap-2 btn-press-anim"
                 x-text="$store.lang.t('btn_choose_plan')">
                 Choose a Plan <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </button>
@@ -467,7 +469,7 @@
                     </h2>
                     <button
                         @click="galleryTab = 'essential'; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                        class="block whitespace-nowrap px-6 py-3 border-4 border-pm-dark font-black uppercase hover:bg-[var(--green)] transition-colors rounded-[1.5rem] text-sm neo-brutal-sm"
+                        class="block whitespace-nowrap px-6 py-3 border-4 border-pm-dark font-black uppercase hover:bg-[var(--green)] transition-colors rounded-[1.5rem] text-sm neo-brutal-sm btn-press-anim"
                         x-text="$store.lang.t('btn_gallery')">
                         See Gallery
                     </button>
@@ -497,7 +499,7 @@
                             </template>
                         </ul>
                         <button @click="setInquiry('Essential Starter')"
-                            class="w-full py-4 neo-brutal-sm font-black uppercase bg-white border-2 border-pm-dark hover:bg-[var(--green)] transition-all text-pm-dark rounded-xl"
+                            class="w-full py-4 neo-brutal-sm font-black uppercase bg-white border-2 border-pm-dark hover:bg-[var(--green)] transition-all text-pm-dark rounded-xl btn-press-anim"
                             x-text="$store.lang.t('select_plan')">Select Plan</button>
                     </div>
 
@@ -529,7 +531,7 @@
                                     </template>
                                 </ul>
                                 <button @click="setInquiry('Master')"
-                                    class="w-full py-4 bg-[var(--green)] text-pm-dark neo-brutal-sm font-black uppercase hover:bg-[var(--green-dark)] transition-all rounded-2xl shadow-[4px_4px_0px_0px_#191B32]"
+                                    class="w-full py-4 bg-[var(--green)] text-pm-dark neo-brutal-sm font-black uppercase hover:bg-[var(--green-dark)] transition-all rounded-2xl shadow-[4px_4px_0px_0px_#191B32] btn-press-anim"
                                     x-text="$store.lang.t('select_plan')">Select Plan</button>
                             </div>
                         </div>
@@ -560,7 +562,7 @@
                             </template>
                         </ul>
                         <button @click="setInquiry('Growth')"
-                            class="w-full py-4 neo-brutal-sm font-black uppercase bg-white border-2 border-pm-dark hover:bg-[var(--green)] transition-all text-pm-dark rounded-2xl"
+                            class="w-full py-4 neo-brutal-sm font-black uppercase bg-white border-2 border-pm-dark hover:bg-[var(--green)] transition-all text-pm-dark rounded-2xl btn-press-anim"
                             x-text="$store.lang.t('select_plan')">Select Plan</button>
                     </div>
                 </div>
@@ -579,7 +581,7 @@
                     </h2>
                     <button
                         @click="galleryTab = 'pro'; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                        class="block whitespace-nowrap px-6 py-3 border-2 border-white text-white font-black uppercase hover:bg-[var(--purple-dark)] transition-colors rounded-[1.5rem] text-sm neo-brutal-sm-white"
+                        class="block whitespace-nowrap px-6 py-3 border-2 border-white text-white font-black uppercase hover:bg-[var(--purple-dark)] transition-colors rounded-[1.5rem] text-sm neo-brutal-sm-white btn-press-anim"
                         x-text="$store.lang.t('btn_gallery')">
                         See Gallery
                     </button>
@@ -607,7 +609,7 @@
                             </template>
                         </ul>
                         <button @click="setInquiry('APEX')"
-                            class="w-full py-4 bg-white text-pm-dark neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green)] rounded-2xl"
+                            class="w-full py-4 bg-white text-pm-dark neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green)] rounded-2xl btn-press-anim"
                             x-text="$store.lang.t('select_plan')">Select Plan</button>
                     </div>
 
@@ -642,6 +644,7 @@
                                 </template>
                             </ul>
                             <button @click="setInquiry('EMPIRE')"
+                                class="w-full py-4 bg-[var(--green)] text-pm-dark neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green-dark)] rounded-2xl btn-press-anim"
                                 class="w-full py-4 bg-[var(--green)] text-pm-dark neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green-dark)] rounded-2xl"
                                 x-text="$store.lang.t('select_plan')">Select Plan</button>
                         </div>
@@ -875,7 +878,7 @@
                         required
                         class="w-full p-3 md:p-4 bg-white/80 focus:bg-white neo-brutal-sm rounded-2xl font-bold outline-none border-transparent focus:border-[var(--green)] transition-all"></textarea>
                     <button type="submit"
-                        class="w-full py-4 md:py-6 bg-[var(--green)] neo-brutal-sm text-[var(--dark)] font-black text-xl md:text-2xl uppercase hover:bg-[var(--green-dark)] transition-all shadow-[4px_4px_0px_0px_#191B32]">Send
+                        class="w-full py-4 md:py-6 bg-[var(--green)] neo-brutal-sm text-[var(--dark)] font-black text-xl md:text-2xl uppercase hover:bg-[var(--green-dark)] transition-all shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">Send
                         Inquiry</button>
                 </form>
             </div>
@@ -1013,19 +1016,19 @@
         <div class="mt-auto mb-12 flex flex-col md:flex-row gap-4">
             <!-- Get in Touch (Styled exactly like Desktop) -->
             <a href="#contact" @click="mobileMenuOpen = false"
-                class="w-full py-4 bg-[var(--green)] text-pm-dark rounded-lg flex items-center justify-center gap-2 font-black text-xl neo-brutal-sm hover:bg-[var(--green-dark)] transition-colors active:scale-95 uppercase">
+                class="w-full py-4 bg-[var(--green)] text-pm-dark rounded-lg flex items-center justify-center gap-2 font-black text-xl neo-brutal-sm hover:bg-[var(--green-dark)] transition-colors btn-press-anim uppercase">
                 <span x-text="$store.lang.t('nav_contact')"></span>
             </a>
 
             <!-- Other Hero Buttons -->
             <button
                 @click="mobileMenuOpen = false; document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})"
-                class="w-full py-4 bg-[var(--purple)] text-white rounded-2xl flex items-center justify-center gap-2 font-black text-xl neo-brutal hover:bg-[var(--purple-dark)] transition-all active:scale-95">
+                class="w-full py-4 bg-[var(--purple)] text-white rounded-2xl flex items-center justify-center gap-2 font-black text-xl neo-brutal hover:bg-[var(--purple-dark)] btn-press-anim">
                 <span x-text="$store.lang.t('btn_pricing')"></span>
             </button>
             <button
                 @click="mobileMenuOpen = false; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                class="w-full py-4 bg-white text-pm-dark rounded-2xl flex items-center justify-center gap-2 font-black text-xl neo-brutal hover:bg-[var(--green)] transition-all active:scale-95">
+                class="w-full py-4 bg-white text-pm-dark rounded-2xl flex items-center justify-center gap-2 font-black text-xl neo-brutal hover:bg-[var(--green)] btn-press-anim">
                 <span x-text="$store.lang.t('btn_gallery')"></span>
             </button>
         </div>
