@@ -316,7 +316,7 @@
                             class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                             alt="Pro Thumbnail">
                         <div
-                            class="absolute bottom-2 right-2 bg-[var(--green)] text-pm-dark px-2 py-1 text-xs font-black uppercase rounded">
+                            class="absolute bottom-2 right-2 bg-[var(--green)] text-pm-dark px-3 py-1 text-xs font-black uppercase rounded-xl">
                             PRO</div>
                     </div>
                 </template>
@@ -1077,12 +1077,9 @@
                             <!-- Background: Sketch -->
                             <img :src="activeImg.sketch" class="w-full h-full object-cover absolute inset-0">
 
-                            <!-- Foreground: Final (Clipped) -->
-                            <div class="absolute inset-0 w-full h-full overflow-hidden"
-                                :style="`width: ${sliderPosition}%`">
-                                <img :src="activeImg.final" class="w-full h-full object-cover max-w-none"
-                                    :style="`width: ${$refs.compareContainer?.offsetWidth}px`">
-                            </div>
+                            <!-- Foreground: Final (Clipped via clip-path) -->
+                            <img :src="activeImg.final" class="w-full h-full object-cover absolute inset-0 max-w-none"
+                                :style="`clip-path: inset(0 calc(100% - ${sliderPosition}%) 0 0);`">
 
                             <!-- Slider Handle -->
                             <div class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
