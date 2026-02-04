@@ -94,7 +94,7 @@
                 </p>
                 <!-- Buttons must be interactable -->
                 <div
-                    class="reveal-blur delay-400 flex flex-col sm:flex-row flex-wrap justify-center gap-6 pointer-events-auto w-full md:w-auto">
+                    class="reveal-blur delay-400 flex flex-col sm:flex-row flex-wrap justify-center gap-3 pointer-events-auto w-full md:w-auto">
                     <button @click="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})"
                         class="w-full sm:w-auto bg-[var(--purple)] text-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-[var(--purple-dark)] transition-all"
                         x-text="$store.lang.t('btn_pricing')">VIEW
@@ -352,7 +352,7 @@
 
             <!-- Button moved below grid -->
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
 
                 <!-- Item 1: Choose Plan -->
                 <div
@@ -503,7 +503,7 @@
                                 x-text="$store.lang.t('save_160')">SAVE $160</div>
                         </div>
                         <div class="glow-border-inset h-full">
-                            <div class="h-full bg-[var(--purple)] p-6 md:p-8 flex flex-col relative z-10"
+                            <div class="h-full bg-[var(--purple)] p-6 md:p-4 flex flex-col relative z-10"
                                 style="border-radius: 1.2rem;">
                                 <h3 class="font-black text-2xl mb-1 text-[var(--green)]"
                                     x-text="$store.lang.t('master_title')">Master</h3>
@@ -621,7 +621,7 @@
                             <p class="text-sm font-bold text-purple-200 mb-6" x-text="$store.lang.t('empire_credits')">4
                                 PRO thumbnail credits</p>
                             <div class="text-4xl md:text-6xl font-black mb-8 text-white">$600 <span
-                                    class="text-base md:text-xl text-slate-500">USD</span></div>
+                                    class="text-base md:text-xl text-[var(--cream)]">USD</span></div>
                             <ul class="space-y-4 mb-10 text-sm font-bold flex-grow text-white">
                                 <template x-for="feature in $store.lang.t('empire_features')">
                                     <li class="flex items-start gap-2">
