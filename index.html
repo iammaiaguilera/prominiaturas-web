@@ -31,8 +31,7 @@
 
             <div class="flex items-center gap-3">
                 <!-- Dropdown Language (Visible always, toggle on click for mobile) -->
-                <div class="relative group block" x-data="{ open: false }" @mouseenter="open = true"
-                    @mouseleave="open = false" @click.away="open = false">
+                <div class="relative group block" x-data="{ open: false }" @click.away="open = false">
                     <button @click="open = !open"
                         class="hover:scale-110 transition-transform bg-transparent p-1 flex items-center gap-1"
                         aria-label="Switch Language">
@@ -87,7 +86,7 @@
                         x-text="$store.lang.t('hero_title_2')">GET THE
                         CLICK.</span>
                 </h1>
-                <p class="reveal-blur delay-200 max-w-3xl mx-auto text-xl font-semibold text-slate-600 mb-12"
+                <p class="reveal-blur delay-200 max-w-3xl mx-auto text-base md:text-xl font-semibold text-slate-600 mb-12"
                     x-text="$store.lang.t('hero_desc')">
                     We design thumbnails that bypass logic and target the viewer's instinct. High-end visual engineering
                     for
@@ -202,7 +201,7 @@
                     We
                     engineer points of
                     interest that force a click through data-backed design patterns.</p>
-                <div class="bg-purple-100 p-6 rounded-[10px] border-2 border-purple-200 italic font-semibold text-purple-700"
+                <div class="bg-purple-100 p-6 rounded-[10px] border-2 border-purple-200 italic font-semibold text-base md:text-lg text-purple-700"
                     x-text="$store.lang.t('why_us_quote')">
                     "A thumbnail is 90% of your success. We handle that 90% with mastery."
                 </div>
@@ -255,7 +254,7 @@
         :class="galleryTab === 'pro' ? 'showroom-pro' : 'showroom-essential'">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col gap-6 md:flex-row justify-between items-center md:items-end mb-12 md:mb-16">
-                <div class="w-full md:w-auto text-center md:text-left">
+                <div class="w-full md:w-auto text-center md:text-left mx-auto md:mx-0">
                     <h2 class="reveal-blur text-4xl md:text-5xl font-black uppercase"
                         x-text="$store.lang.t('nav_showroom')">Showroom</h2>
                     <p x-show="galleryTab === 'pro'"
@@ -299,7 +298,7 @@
                     <div x-show="galleryTab === 'essential'" x-transition:enter="transition ease-out duration-700"
                         x-transition:enter-start="opacity-0 blur-sm translate-y-10"
                         x-transition:enter-end="opacity-100 blur-0 translate-y-0"
-                        class="reveal-blur aspect-video neo-brutal bg-slate-200 cursor-zoom-in group hover:scale-[1.02] transition-transform overflow-hidden relative"
+                        class="reveal-blur aspect-video neo-brutal bg-slate-200 cursor-zoom-in group md:hover:scale-[1.02] transition-transform overflow-hidden relative"
                         @click="lightboxOpen = true; activeImg = img">
                         <img :src="img" class="w-full h-full object-cover" loading="lazy" alt="Thumbnail">
                     </div>
@@ -310,7 +309,7 @@
                     <div x-show="galleryTab === 'pro'" x-transition:enter="transition ease-out duration-700"
                         x-transition:enter-start="opacity-0 blur-sm translate-y-10"
                         x-transition:enter-end="opacity-100 blur-0 translate-y-0"
-                        class="reveal-blur aspect-video neo-brutal bg-slate-900 flex items-center justify-center cursor-zoom-in group hover:scale-[1.02] transition-transform"
+                        class="reveal-blur aspect-video neo-brutal bg-slate-900 flex items-center justify-center cursor-zoom-in group md:hover:scale-[1.02] transition-transform"
                         @click="lightboxOpen = true">
                         <span
                             class="font-black text-3xl text-slate-700 select-none group-hover:text-slate-600 transition-colors">PRO
@@ -346,7 +345,7 @@
                     <span x-text="$store.lang.t('workflow_title')">The </span>
                     <span class="text-purple-600" x-text="$store.lang.t('workflow_word')">Workflow</span>
                 </h2>
-                <p class="text-slate-500 font-bold text-lg md:text-xl max-w-2xl mx-auto leading-tight mt-2"
+                <p class="text-slate-500 font-bold text-base md:text-xl max-w-2xl mx-auto leading-tight mt-2"
                     x-text="$store.lang.t('workflow_desc')"></p>
             </div>
 
@@ -470,10 +469,10 @@
                 </div>
 
                 <!-- ESSENTIAL GRID -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch px-4 md:px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-8 items-stretch px-4 md:px-6">
                     <!-- Starter -->
                     <div
-                        class="bg-white neo-brutal p-6 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300">
+                        class="bg-white neo-brutal p-6 flex flex-col h-full md:hover:scale-[1.02] transition-transform duration-300">
                         <h3 class="font-black text-2xl mb-1 text-pm-dark" x-text="$store.lang.t('starter_title')">
                             Starter
                         </h3>
@@ -496,7 +495,8 @@
                     </div>
 
                     <!-- Master -->
-                    <div class="relative h-full hover:scale-[1.02] transition-transform duration-300 md:-translate-y-4">
+                    <div
+                        class="relative h-full md:hover:scale-[1.02] transition-transform duration-300 md:-translate-y-4">
                         <div class="absolute -top-3 right-6 z-20">
                             <div class="bg-[var(--green)] text-pm-dark px-4 py-1 rounded-full text-xs font-black border-[0.2rem] border-pm-dark"
                                 x-text="$store.lang.t('save_160')">SAVE $160</div>
@@ -530,7 +530,7 @@
 
                     <!-- Growth -->
                     <div
-                        class="bg-white neo-brutal p-6 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300 relative">
+                        class="bg-white neo-brutal p-6 flex flex-col h-full md:hover:scale-[1.02] transition-transform duration-300 relative">
                         <div class="absolute -top-3 right-6 z-20">
                             <div class="bg-pm-dark text-white px-4 py-1 rounded-full text-xs font-black border-2 border-pm-dark"
                                 x-text="$store.lang.t('save_60')">SAVE $60</div>
@@ -577,7 +577,7 @@
                 </div>
 
                 <!-- PRO GRID -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pb-12 px-4 md:px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 lg:gap-12 pb-12 px-4 md:px-6">
                     <!-- APEX -->
                     <div
                         class="bg-white/5 backdrop-blur-sm border-2 border-white/10 p-6 md:p-10 flex flex-col h-full rounded-2xl hover:bg-white/10 transition-colors">
@@ -608,7 +608,7 @@
                         <div
                             class="relative bg-[#3b0764] border-2 border-[var(--green)] p-6 md:p-10 flex flex-col h-full rounded-2xl">
                             <div
-                                class="absolute top-0 right-10 bg-[var(--green)] text-pm-dark px-6 py-2 rounded-b-xl text-xs md:text-sm font-black flex items-center gap-2">
+                                class="absolute top-0 left-1/2 -translate-x-1/2 bg-[var(--green)] text-pm-dark px-4 py-1 rounded-b-xl text-xs md:text-sm font-black flex items-center gap-2">
                                 <i data-lucide="crown" class="w-4 h-4 text-pm-dark fill-pm-dark"></i>
                                 <span x-text="$store.lang.t('best_value')">BEST VALUE</span>
                             </div>
@@ -669,7 +669,7 @@
                 <h2 class="reveal-blur text-4xl md:text-5xl lg:text-7xl font-black mb-6 uppercase break-words"
                     x-text="$store.lang.t('faq_title')">Get All Your Questions
                     Solved</h2>
-                <div class="reveal-blur delay-100 text-lg md:text-xl font-bold text-slate-500 mb-12 max-w-md mx-auto lg:mx-0"
+                <div class="reveal-blur delay-100 text-base md:text-xl font-bold text-slate-500 mb-12 max-w-md mx-auto lg:mx-0"
                     x-html="$store.lang.t('faq_desc')">
                 </div>
             </div>
@@ -680,13 +680,15 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-xl font-semibold" x-text="$store.lang.t('q1')">What information do I need to
+                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q1')">What information
+                            do I need to
                             provide you to create a
                             thumbnail?</span>
                         <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
-                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600"
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base text-slate-600"
                         x-text="$store.lang.t('a1')">
                         Video topic, quick sum-up, and some questions replied.
                     </div>
@@ -696,12 +698,14 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-xl font-semibold" x-text="$store.lang.t('q2')">Do you help me brainstorm a
+                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q2')">Do you help me
+                            brainstorm a
                             thumbnail concept?</span>
                         <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
-                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600"
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base text-slate-600"
                         x-text="$store.lang.t('a2')">
                         Yep, that's exactly what we're here for you, you don't waste your time by how to create a
                         functional design, that all is on us.
@@ -712,13 +716,15 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-xl font-semibold" x-text="$store.lang.t('q3')">Do you work with YouTube
+                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q3')">Do you work with
+                            YouTube
                             clients
                             of all sizes?</span>
                         <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
-                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600"
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base text-slate-600"
                         x-text="$store.lang.t('a3')">
                         Even the greatest channels started with zero subscribers… Of course we will work with you and we
                         will love it. :)
@@ -729,11 +735,13 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-xl font-semibold" x-text="$store.lang.t('q4')">How do I pay?</span>
+                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q4')">How do I
+                            pay?</span>
                         <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
-                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600">
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base text-slate-600">
                         <p class="mb-2" x-text="$store.lang.t('a4_1')">Main ones: Payoneer, Kontigo, PayPal. (in
                             that order)</p>
                         <p x-text="$store.lang.t('a4_2')">Secondary: Zinli, Meru, Binance Pay, AirTM,
@@ -745,12 +753,14 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-xl font-semibold" x-text="$store.lang.t('q5')">What is a 3D blender
+                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q5')">What is a 3D
+                            blender
                             sketch?</span>
                         <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
-                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600"
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base text-slate-600"
                         x-text="$store.lang.t('a5')">
                         For PRO thumbnails to ensure we match the realism needed we work on realistic environments
                         created on Blender with custom 3D models, so that you get an accurate idea for the thumbnail.
@@ -761,11 +771,13 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-xl font-semibold" x-text="$store.lang.t('q6')">Can I get a free trial?</span>
+                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q6')">Can I get a free
+                            trial?</span>
                         <i data-lucide="chevron-down" class="transition-transform duration-300 transform"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
-                    <div x-show="open" x-collapse class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-slate-600">
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base text-slate-600">
                         <p class="mb-2" x-text="$store.lang.t('a6_p1')">Yes! If you meet these requirements:</p>
                         <ol class="list-decimal list-inside">
                             <li x-text="$store.lang.t('a6_l1')">+100k subscribers.</li>
@@ -787,7 +799,7 @@
                     <span x-text="$store.lang.t('ready_takeoff')">Ready for </span>
                     <span class="text-[var(--green)]" x-text="$store.lang.t('takeoff_word')">Takeoff?</span>
                 </h2>
-                <p class="reveal-blur delay-100 text-xl md:text-2xl font-bold text-slate-300 mb-6 md:mb-8"
+                <p class="reveal-blur delay-100 text-base md:text-2xl font-bold text-slate-300 mb-6 md:mb-8"
                     x-text="$store.lang.t('fill_form')">Fill the form and let's work on
                     your next thumbnail
                 </p>
