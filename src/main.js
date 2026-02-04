@@ -325,6 +325,8 @@ Alpine.data('app', () => ({
     mobileMenuOpen: false,
     lightboxOpen: false,
     activeImg: '',
+    isPro: false,
+    viewMode: 'final', // 'final' or 'sketch'
     inquiry: '',
     openKontigo(amountUsd, planName) {
         const slug = 'ee782fe5-2c70-4744-a0ed-43467de5468a';
@@ -423,6 +425,12 @@ Alpine.data('app', () => ({
         '/thumbnails/essential-36.jpg',
         '/thumbnails/essential-37.jpg',
         '/thumbnails/essential-39.jpg'
+    ],
+    proImages: [
+        {
+            final: '/thumbnails/pro-1.jpg',
+            sketch: '/thumbnails/pro-1-sketch.png'
+        }
     ],
     testimonials: [
         {

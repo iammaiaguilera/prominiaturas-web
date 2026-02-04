@@ -300,21 +300,24 @@
                         x-transition:enter-start="opacity-0 blur-sm translate-y-10"
                         x-transition:enter-end="opacity-100 blur-0 translate-y-0"
                         class="reveal-blur aspect-video neo-brutal bg-slate-200 cursor-zoom-in group md:hover:scale-[1.02] transition-transform overflow-hidden relative"
-                        @click="lightboxOpen = true; activeImg = img">
+                        @click="lightboxOpen = true; activeImg = img; isPro = false">
                         <img :src="img" class="w-full h-full object-cover" loading="lazy" alt="Thumbnail">
                     </div>
                 </template>
 
-                <!-- Pro Placeholders -->
-                <template x-for="i in 3" :key="i">
+                <!-- Pro Images -->
+                <template x-for="(item, index) in proImages" :key="'pro-' + index">
                     <div x-show="galleryTab === 'pro'" x-transition:enter="transition ease-out duration-700"
                         x-transition:enter-start="opacity-0 blur-sm translate-y-10"
                         x-transition:enter-end="opacity-100 blur-0 translate-y-0"
-                        class="reveal-blur aspect-video neo-brutal bg-slate-900 flex items-center justify-center cursor-zoom-in group md:hover:scale-[1.02] transition-transform"
-                        @click="lightboxOpen = true">
-                        <span
-                            class="font-black text-3xl text-slate-700 select-none group-hover:text-slate-600 transition-colors">PRO
-                            (Soon)</span>
+                        class="reveal-blur aspect-video neo-brutal bg-slate-900 cursor-zoom-in group md:hover:scale-[1.02] transition-transform relative overflow-hidden"
+                        @click="lightboxOpen = true; activeImg = item; isPro = true; viewMode = 'final'">
+                        <img :src="item.final"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                            alt="Pro Thumbnail">
+                        <div
+                            class="absolute bottom-2 right-2 bg-[var(--green)] text-pm-dark px-2 py-1 text-xs font-black uppercase rounded">
+                            PRO</div>
                     </div>
                 </template>
             </div>
@@ -1027,22 +1030,51 @@
     <div x-show="lightboxOpen" x-transition.opacity x-cloak
         class="fixed inset-0 z-[100] bg-pm-dark/90 backdrop-blur-sm flex items-center justify-center p-6"
         @click.self="lightboxOpen = false">
-        <div class="relative max-w-6xl w-full aspect-video flex items-center justify-center">
-            <!-- Close Button -->
+        <div class="relative max-w-6xl w-full aspect-video flex items-center justify-center p-4">
+            <!-- Close Button (Square) -->
             <button @click="lightboxOpen = false"
-                class="absolute -top-8 -right-4 md:-right-8 bg-[var(--green)] text-pm-dark font-black w-12 h-12 rounded-full border-4 border-pm-dark text-xl hover:scale-110 transition-transform z-50 flex items-center justify-center cursor-pointer">
-                <i data-lucide="x" class="w-6 h-6"></i>
+                class="absolute -top-12 -right-4 md:-top-16 md:-right-8 bg-[var(--green)] text-pm-dark w-12 h-12 md:w-16 md:h-16 border-4 border-pm-dark hover:bg-[var(--green-dark)] transition-colors z-50 flex items-center justify-center cursor-pointer neo-brutal-sm">
+                <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
             </button>
 
-            <div class="neo-brutal bg-pm-dark w-full h-full overflow-hidden flex items-center justify-center relative">
-                <!-- Image for Essential -->
-                <template x-if="galleryTab === 'essential'">
-                    <img :src="activeImg" class="w-full h-full object-contain" alt="Gallery Zoom">
-                </template>
+            <!-- Lightbox Content Window -->
+            <div
+                class="neo-brutal bg-pm-dark w-full h-full overflow-hidden flex flex-col relative border-4 border-pm-dark">
 
-                <!-- Placeholder for Pro -->
-                <template x-if="galleryTab === 'pro'">
-                    <span class="font-black text-6xl md:text-8xl text-slate-700 select-none">PRO (Soon)</span>
+                <!-- Main Image Area -->
+                <div class="relative w-full h-full bg-black flex items-center justify-center overflow-hidden">
+                    <!-- Essential Image -->
+                    <template x-if="!isPro">
+                        <img :src="activeImg" class="w-full h-full object-contain" alt="Gallery Zoom">
+                    </template>
+
+                    <!-- Pro Image (Switchable) -->
+                    <template x-if="isPro">
+                        <div class="w-full h-full relative">
+                            <img x-show="viewMode === 'final'" :src="activeImg.final"
+                                class="w-full h-full object-contain absolute inset-0 transition-opacity duration-300"
+                                alt="Final Result">
+                            <img x-show="viewMode === 'sketch'" :src="activeImg.sketch"
+                                class="w-full h-full object-contain absolute inset-0 transition-opacity duration-300"
+                                alt="Blender Sketch">
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Pro Controls (Bottom Bar) -->
+                <template x-if="isPro">
+                    <div class="w-full bg-white border-t-4 border-pm-dark p-4 flex justify-center gap-4">
+                        <button @click="viewMode = 'final'"
+                            class="px-6 py-2 rounded-xl font-black uppercase border-2 border-pm-dark transition-all neo-brutal-sm"
+                            :class="viewMode === 'final' ? 'bg-[var(--green)] text-pm-dark' : 'bg-slate-200 text-slate-500 hover:bg-slate-300'">
+                            Final
+                        </button>
+                        <button @click="viewMode = 'sketch'"
+                            class="px-6 py-2 rounded-xl font-black uppercase border-2 border-pm-dark transition-all neo-brutal-sm"
+                            :class="viewMode === 'sketch' ? 'bg-[var(--purple)] text-white' : 'bg-slate-200 text-slate-500 hover:bg-slate-300'">
+                            Sketch
+                        </button>
+                    </div>
                 </template>
             </div>
         </div>
