@@ -14,7 +14,7 @@
 
     <!-- NAVIGATION -->
     <!-- NAVIGATION -->
-    <nav class="fixed top-0 w-full z-50 px-4 md:px-6 py-2 transition-all duration-300">
+    <nav class="fixed top-2 w-full z-50 px-4 md:px-6 py-2 transition-all duration-300">
         <div
             class="max-w-7xl mx-auto w-full flex justify-between items-center transition-all duration-300 p-2 md:p-4 relative z-50 bg-white/90 backdrop-blur-md neo-brutal-sm">
             <a href="#" class="block">
@@ -93,13 +93,14 @@
                     creators who don't settle for "average".
                 </p>
                 <!-- Buttons must be interactable -->
-                <div class="reveal-blur delay-400 flex flex-wrap justify-center gap-6 pointer-events-auto">
+                <div
+                    class="reveal-blur delay-400 flex flex-col sm:flex-row flex-wrap justify-center gap-6 pointer-events-auto w-full md:w-auto">
                     <button @click="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})"
-                        class="bg-[var(--purple)] text-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-[var(--purple-dark)] transition-all"
+                        class="w-full sm:w-auto bg-[var(--purple)] text-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-[var(--purple-dark)] transition-all"
                         x-text="$store.lang.t('btn_pricing')">VIEW
                         PRICING</button>
                     <button @click="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                        class="bg-white px-10 py-5 rounded-[1.5rem] text-xl font-black neo-brutal hover:bg-[var(--green)] !transition-none !duration-0"
+                        class="w-full sm:w-auto bg-white px-10 py-5 rounded-[1.5rem] text-xl font-black neo-brutal hover:bg-[var(--green)] !transition-none !duration-0"
                         x-text="$store.lang.t('btn_gallery')">SEE
                         GALLERY</button>
                 </div>
@@ -206,7 +207,7 @@
                     "A thumbnail is 90% of your success. We handle that 90% with mastery."
                 </div>
             </div>
-            <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-10 sm:grid-cols-1 gap-5">
                 <div class="reveal-blur delay-200 p-8 bg-[var(--green)] neo-brutal">
                     <i data-lucide="zap" class="mb-4"></i>
                     <h3 class="heading font-bold text-xl mb-2" x-text="$store.lang.t('delivery_title')">24H DELIVERY
@@ -292,7 +293,7 @@
             </div>
 
             <!-- Gallery Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Essential Images -->
                 <template x-for="(img, index) in essentialImages.slice(0, limit)" :key="index">
                     <div x-show="galleryTab === 'essential'" x-transition:enter="transition ease-out duration-700"
@@ -472,7 +473,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-8 items-stretch px-4 md:px-6">
                     <!-- Starter -->
                     <div
-                        class="bg-white neo-brutal p-6 flex flex-col h-full md:hover:scale-[1.02] transition-transform duration-300">
+                        class="bg-white neo-brutal p-6 md:p-4 lg:p-6 flex flex-col h-full md:hover:scale-[1.02] transition-transform duration-300">
                         <h3 class="font-black text-2xl mb-1 text-pm-dark" x-text="$store.lang.t('starter_title')">
                             Starter
                         </h3>
@@ -530,7 +531,7 @@
 
                     <!-- Growth -->
                     <div
-                        class="bg-white neo-brutal p-6 flex flex-col h-full md:hover:scale-[1.02] transition-transform duration-300 relative">
+                        class="bg-white neo-brutal p-6 md:p-4 lg:p-6 flex flex-col h-full md:hover:scale-[1.02] transition-transform duration-300 relative">
                         <div class="absolute -top-3 right-6 z-20">
                             <div class="bg-pm-dark text-white px-4 py-1 rounded-full text-xs font-black border-2 border-pm-dark"
                                 x-text="$store.lang.t('save_60')">SAVE $60</div>
@@ -608,7 +609,7 @@
                         <div
                             class="relative bg-[#3b0764] border-2 border-[var(--green)] p-6 md:p-10 flex flex-col h-full rounded-2xl">
                             <div
-                                class="absolute top-0 left-1/2 -translate-x-1/2 bg-[var(--green)] text-pm-dark px-4 py-1 rounded-b-xl text-xs md:text-sm font-black flex items-center gap-2">
+                                class="absolute top-0 right-0 md:right-10 bg-[var(--green)] text-pm-dark px-4 md:px-6 py-1 md:py-2 rounded-bl-xl rounded-tr-xl md:rounded-t-none md:rounded-b-xl text-xs md:text-sm font-black flex items-center gap-2">
                                 <i data-lucide="crown" class="w-4 h-4 text-pm-dark fill-pm-dark"></i>
                                 <span x-text="$store.lang.t('best_value')">BEST VALUE</span>
                             </div>
@@ -979,22 +980,22 @@
         <!-- Menu List -->
         <div class="flex flex-col gap-0 text-pm-dark font-medium text-xl md:text-2xl uppercase tracking-widest mt-4">
             <a href="#why-us" @click="mobileMenuOpen = false"
-                class="flex justify-between items-center group py-4 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
+                class="flex justify-between items-center group py-3 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
                 <span x-text="$store.lang.t('nav_why')"></span>
                 <i data-lucide="chevron-right" class="text-pm-dark group-hover:translate-x-2 transition-transform"></i>
             </a>
             <a href="#gallery" @click="mobileMenuOpen = false"
-                class="flex justify-between items-center group py-4 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
+                class="flex justify-between items-center group py-3 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
                 <span x-text="$store.lang.t('nav_showroom')"></span>
                 <i data-lucide="chevron-right" class="text-pm-dark group-hover:translate-x-2 transition-transform"></i>
             </a>
             <a href="#pricing" @click="mobileMenuOpen = false"
-                class="flex justify-between items-center group py-4 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
+                class="flex justify-between items-center group py-3 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
                 <span x-text="$store.lang.t('nav_pricing')"></span>
                 <i data-lucide="chevron-right" class="text-pm-dark group-hover:translate-x-2 transition-transform"></i>
             </a>
             <a href="#faq" @click="mobileMenuOpen = false"
-                class="flex justify-between items-center group py-4 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
+                class="flex justify-between items-center group py-3 border-b border-pm-dark hover:bg-black/5 px-2 transition-colors">
                 <span x-text="$store.lang.t('nav_faq')"></span>
                 <i data-lucide="chevron-right" class="text-pm-dark group-hover:translate-x-2 transition-transform"></i>
             </a>
