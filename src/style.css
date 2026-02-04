@@ -667,3 +667,13 @@ h3,
 .hero-grid-cell.active {
     animation: flashDim 0.4s forwards;
 }
+
+/* --- BUTTON PRESS ANIMATION --- */
+.btn-press-anim {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-press-anim:active {
+    transform: translate(4px, 4px) !important;
+    box-shadow: 0 0 0 0 transparent !important;
+}
