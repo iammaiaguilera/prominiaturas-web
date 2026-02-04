@@ -14,7 +14,7 @@
 
     <!-- NAVIGATION -->
     <!-- NAVIGATION -->
-    <nav class="fixed top-2 w-full z-50 px-4 md:px-6 py-2 transition-all duration-300">
+    <nav class="fixed top-2 w-full z-50 px-4 md:px-6 py-2 transition-all duration-300 border-b-0">
         <div
             class="max-w-7xl mx-auto w-full flex justify-between items-center transition-all duration-300 p-2 md:p-4 relative z-50 bg-white/90 backdrop-blur-md neo-brutal-sm">
             <a href="#" class="block">
@@ -251,7 +251,8 @@
     </section>
 
     <!-- SHOWROOM -->
-    <section id="gallery" class="py-16 md:py-24 px-4 md:px-6 transition-colors duration-500 relative"
+    <section id="gallery"
+        class="py-16 md:py-24 px-4 md:px-6 transition-colors duration-500 relative border-b-4 border-pm-dark"
         :class="galleryTab === 'pro' ? 'showroom-pro' : 'showroom-essential'">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col gap-6 md:flex-row justify-between items-center md:items-end mb-12 md:mb-16">
@@ -489,7 +490,7 @@
                                 <li class="flex items-start gap-2">
                                     <div
                                         class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-white stroke-[3]"></i>
+                                        <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[3]"></i>
                                     </div>
                                     <span x-text="feature.replace('✓', '').trim()"></span>
                                 </li>
@@ -508,7 +509,7 @@
                                 x-text="$store.lang.t('save_160')">SAVE $160</div>
                         </div>
                         <div class="glow-border-inset h-full">
-                            <div class="h-full bg-[var(--purple)] p-6 md:p-4 flex flex-col relative z-10"
+                            <div class="h-full bg-pm-dark p-6 md:p-4 flex flex-col relative z-10"
                                 style="border-radius: 1.2rem;">
                                 <h3 class="font-black text-2xl mb-1 text-[var(--green)]"
                                     x-text="$store.lang.t('master_title')">Master</h3>
@@ -521,7 +522,7 @@
                                         <li class="flex items-start gap-2">
                                             <div
                                                 class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                                <i data-lucide="check" class="w-3 h-3 text-white stroke-[3]"></i>
+                                                <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[3]"></i>
                                             </div>
                                             <span x-text="feature.replace('✓', '').trim()"></span>
                                         </li>
@@ -552,7 +553,7 @@
                                 <li class="flex items-start gap-2">
                                     <div
                                         class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-white stroke-[3]"></i>
+                                        <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[3]"></i>
                                     </div>
                                     <span x-text="feature.replace('✓', '').trim()"></span>
                                 </li>
@@ -599,7 +600,7 @@
                                 <li class="flex items-start gap-2">
                                     <div
                                         class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-white stroke-[3]"></i>
+                                        <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[3]"></i>
                                     </div>
                                     <span x-text="feature.replace('✓', '').trim()"></span>
                                 </li>
@@ -634,7 +635,7 @@
                                     <li class="flex items-start gap-2">
                                         <div
                                             class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                            <i data-lucide="check" class="w-3 h-3 text-white stroke-[4]"></i>
+                                            <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[4]"></i>
                                         </div>
                                         <span x-text="feature.replace('✓', '').trim()"></span>
                                     </li>
@@ -1120,7 +1121,15 @@
 
                         <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-0 flex items-center justify-center"
                             :class="viewMode === 'compare' ? 'bg-[var(--green)] text-pm-dark' : 'bg-transparent text-current'">
-                            <i data-lucide="arrow-left-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+                            <!-- SVG Directly Inlined to ensure visibility -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-5 h-5 md:w-6 md:h-6">
+                                <path d="M8 3 4 7l4 4" />
+                                <path d="M4 7h16" />
+                                <path d="m16 21 4-4-4-4" />
+                                <path d="M20 17H4" />
+                            </svg>
                         </div>
                     </button>
 
