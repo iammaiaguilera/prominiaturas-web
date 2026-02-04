@@ -1,4 +1,4 @@
-import { createIcons, Zap, RefreshCw, ShieldCheck, Target, Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp, Instagram, Facebook, Clapperboard, Globe, Music2, Menu, Crown, Check } from 'lucide';
+import { createIcons, Zap, RefreshCw, ShieldCheck, Target, Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp, Instagram, Facebook, Clapperboard, Globe, Music2, Menu, Crown, Check, ChevronRight, ChevronsLeftRight } from 'lucide';
 import Alpine from 'alpinejs';
 import intersect from '@alpinejs/intersect';
 import collapse from '@alpinejs/collapse';
@@ -486,7 +486,9 @@ createIcons({
         Music2,
         Menu,
         Crown,
-        Check
+        Check,
+        ChevronRight,
+        ChevronsLeftRight
     }
 });
 
