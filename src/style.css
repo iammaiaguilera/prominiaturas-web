@@ -72,7 +72,7 @@ h3,
 
 .animate-gradient-radial {
     background-color: #191B32;
-    background-image: radial-gradient(circle at center top, #191B32 20%, #581c87 70%, #3b0764 100%);
+    background-image: radial-gradient(circle at center top, #191B32 40%, #2e1065 80%, #191B32 100%);
     background-size: 120% 120%;
     animation: moveGradient 8s ease-in-out infinite alternate;
     background-repeat: no-repeat;
