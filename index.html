@@ -152,12 +152,17 @@
         </div>
         <div class="max-w-7xl mx-auto relative z-10 pointer-events-none mb-12">
 
-            <!-- ... (Skipping unaffected lines for brevity in command, but in actual execution I will target the specific sections via multi-replace or careful single replace. Since I need to touch multiple dispersed areas, I will use multi_replace for index.html as well to be safer and cleaner) ... -->
             <!-- pointer-events-none on wrapper so mouse reaches grid -->
             <div>
-                <h1 class="reveal-blur text-4xl md:text-5xl lg:text-8xl font-black mb-6 md:mb-8 leading-none uppercase">
+                <h1
+                    class="reveal-blur text-[3.5rem] leading-[0.9] md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 uppercase">
                     <span x-text="$store.lang.t('hero_title_1')">STOP THE SCROLL.</span> <br>
-                    <span class="text-white bg-[var(--dark)] px-4 md:px-6 rounded-2xl inline-block -rotate-1 italic"
+                    <span class="inline-block -rotate-1 italic transition-all duration-300
+                                 text-white bg-transparent
+                                 font-black tracking-wide
+                                 [paint-order:stroke_fill]
+                                 [-webkit-text-stroke:6px_#191B32] [filter:drop-shadow(6px_6px_0_#191B32)]
+                                 md:[-webkit-text-stroke:9px_#191B32] md:[filter:drop-shadow(8px_8px_0_#191B32)]"
                         x-text="$store.lang.t('hero_title_2')">GET THE
                         CLICK.</span>
                 </h1>
