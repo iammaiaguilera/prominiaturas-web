@@ -84,7 +84,7 @@ document.addEventListener('alpine:init', () => {
                 nav_contact: "Get in touch!",
                 hero_title_1: "STOP THE SCROLL.",
                 hero_title_2: "GET THE CLICK.",
-                hero_desc: "We design thumbnails that bypass logic and target the viewer's instinct. High-end visual engineering for creators who don't settle for \"average\".",
+                hero_desc: "We design thumbnails that bypass logic and target the viewer's instinct.",
                 btn_pricing: "VIEW PRICING",
                 btn_gallery: "SEE GALLERY",
                 trusted_by: "TRUSTED BY",
@@ -540,13 +540,6 @@ function initHeroGrid() {
     if (!gridContainer) return;
 
     function createGrid() {
-        // RADICAL FIX: Do not create grid on screens <= 1280px (Mobile/Tablet/Small Laptop)
-        if (window.innerWidth <= 1280) {
-            gridContainer.innerHTML = ''; // Ensure it's empty
-            gridContainer.style.display = 'none'; // Double safety
-            return;
-        }
-
         gridContainer.style.display = 'grid'; // Restore if desktop
         gridContainer.innerHTML = '';
         const width = gridContainer.offsetWidth;
@@ -582,9 +575,6 @@ function initHeroGrid() {
     const cellTimeouts = new Map();
 
     window.addEventListener('mousemove', (e) => {
-        // Optimization: Don't run logic if grid is hidden/empty
-        if (window.innerWidth <= 1280) return;
-
         const gridContainer = document.getElementById('desktop-only-grid');
         if (!gridContainer) return;
 

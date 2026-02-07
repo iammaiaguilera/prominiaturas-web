@@ -11,13 +11,9 @@
 </head>
 
 <body x-data="app" class="bg-[var(--cream)] overflow-x-hidden" :class="mobileMenuOpen ? 'overflow-hidden' : ''">
-    <!-- FORCE HIDE HERO GRID ON < 1280px -->
+    <!-- CAROUSEL VISIBILITY CSS -->
     <style>
         @media (max-width: 1280px) {
-            #desktop-only-grid {
-                display: none !important;
-            }
-
             .mobile-hero-carousel {
                 display: flex !important;
             }
@@ -114,7 +110,7 @@
         class="pt-32 md:pt-40 pb-0 px-4 md:px-6 text-center bg-[var(--green-dark)] relative overflow-hidden flex flex-col justify-between min-h-[90vh] max-h-[900px]">
         <!-- Hero Grid (Visible ONLY above 1280px - XL) - RENAMED ID TO PREVENT GHOSTING -->
         <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
-            <div id="desktop-only-grid" class="hidden xl:grid"></div>
+            <div id="desktop-only-grid"></div>
         </div>
 
         <!-- Mobile Thumbnail Carousel (Visible <= 1280px) -->
@@ -165,11 +161,9 @@
                         x-text="$store.lang.t('hero_title_2')">GET THE
                         CLICK.</span>
                 </h1>
-                <p class="reveal-blur delay-200 max-w-3xl mx-auto text-base md:text-xl font-semibold text-slate-600 mb-12"
+                <p class="reveal-blur delay-200 max-w-3xl mx-auto text-base md:text-xl font-semibold text-slate-700 mb-8 px-6 py-4 bg-white/40 backdrop-blur-md rounded-2xl border border-white/30 shadow-sm"
                     x-text="$store.lang.t('hero_desc')">
-                    We design thumbnails that bypass logic and target the viewer's instinct. High-end visual engineering
-                    for
-                    creators who don't settle for "average".
+                    We design thumbnails that bypass logic and target the viewer's instinct.
                 </p>
                 <!-- Buttons must be interactable -->
                 <div
@@ -1250,15 +1244,10 @@
             const heroGrid = document.getElementById('desktop-only-grid');
             const carousel = document.querySelector('.mobile-hero-carousel');
 
-            // STRICT CUTOFF AT 1280px
+            // STRICT CUTOFF AT 1280px for CAROUSEL ONLY
             if (width <= 1280) {
-                if (heroGrid) {
-                    heroGrid.style.display = 'none';
-                    heroGrid.innerHTML = ''; // KILL CONTENT
-                }
                 if (carousel) carousel.style.display = 'flex';
             } else {
-                if (heroGrid) heroGrid.style.display = 'grid';
                 if (carousel) carousel.style.display = 'none';
             }
         }
