@@ -28,506 +28,499 @@
         }
     </style>
 
-    <!-- WRAPPER TO PREVENT HORIZONTAL SCROLL -->
-    <div class="w-full overflow-x-hidden relative">
+    <!-- NAVIGATION -->
+    <!-- NAVIGATION -->
+    <nav class="fixed top-2 w-full z-50 px-4 md:px-6 py-2 transition-all duration-300 border-b-0">
+        <div
+            class="max-w-7xl mx-auto w-full flex justify-between items-center transition-all duration-300 p-2 md:p-4 relative z-50 bg-white/90 backdrop-blur-md neo-brutal-sm">
+            <a href="#" class="block">
+                <img src="/logo.png?v=3" alt="PRO MINIATURAS" class="h-4 md:h-5 w-auto object-contain transition-all">
+            </a>
 
-        <!-- NAVIGATION -->
-        <!-- NAVIGATION -->
-        <nav class="fixed top-2 w-full z-50 px-4 md:px-6 py-2 transition-all duration-300 border-b-0">
-            <div
-                class="max-w-7xl mx-auto w-full flex justify-between items-center transition-all duration-300 p-2 md:p-4 relative z-50 bg-white/90 backdrop-blur-md neo-brutal-sm">
-                <a href="#" class="block">
-                    <img src="/logo.png?v=3" alt="PRO MINIATURAS"
-                        class="h-4 md:h-5 w-auto object-contain transition-all">
-                </a>
+            <!-- Desktop Menu (Hidden on Tablet/Mobile) -->
+            <div class="hidden lg:flex items-center gap-8 font-bold text-xs uppercase tracking-widest">
+                <a href="#why-us" class="hover:text-purple-600" x-text="$store.lang.t('nav_why')">Why us?</a>
+                <a href="#gallery" class="hover:text-purple-600" x-text="$store.lang.t('nav_showroom')">Showroom</a>
+                <a href="#pricing" class="hover:text-purple-600" x-text="$store.lang.t('nav_pricing')">Pricing</a>
+                <a href="#faq" class="hover:text-purple-600" x-text="$store.lang.t('nav_faq')">FAQ</a>
+            </div>
 
-                <!-- Desktop Menu (Hidden on Tablet/Mobile) -->
-                <div class="hidden lg:flex items-center gap-8 font-bold text-xs uppercase tracking-widest">
-                    <a href="#why-us" class="hover:text-purple-600" x-text="$store.lang.t('nav_why')">Why us?</a>
-                    <a href="#gallery" class="hover:text-purple-600" x-text="$store.lang.t('nav_showroom')">Showroom</a>
-                    <a href="#pricing" class="hover:text-purple-600" x-text="$store.lang.t('nav_pricing')">Pricing</a>
-                    <a href="#faq" class="hover:text-purple-600" x-text="$store.lang.t('nav_faq')">FAQ</a>
-                </div>
-
-                <div class="flex items-center gap-3">
-                    <!-- Dropdown Language (Visible always, toggle on click for mobile) -->
-                    <div class="relative group block" x-data="{ open: false }" @click.away="open = false">
-                        <button @click="open = !open"
-                            class="group hover:scale-110 transition-transform bg-transparent p-1 flex items-center gap-1"
-                            aria-label="Switch Language">
-                            <i data-lucide="globe"
-                                class="w-5 h-5 transition-colors text-slate-400 group-hover:text-pm-dark"></i>
-                            <span
-                                class="text-xs font-bold uppercase transition-colors text-slate-500 group-hover:text-pm-dark"
-                                x-text="$store.lang.current"></span>
-                        </button>
-                        <!-- Language Dropdown -->
-                        <div x-show="open" x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="opacity-0 translate-y-2"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            x-transition:leave="transition ease-in duration-150"
-                            x-transition:leave-start="opacity-100 translate-y-0"
-                            x-transition:leave-end="opacity-0 translate-y-2"
-                            class="absolute right-0 top-full pt-2 w-32 origin-top-right z-50 pointer-events-none group-hover:pointer-events-auto">
-                            <div
-                                class="bg-white/90 backdrop-blur-md neo-brutal-sm overflow-hidden border-2 border-pm-dark">
-                                <a href="#" @click.prevent="$store.lang.set('en')"
-                                    class="block px-4 py-2 hover:bg-[var(--green)] font-bold text-xs uppercase transition-colors text-center text-pm-dark">English</a>
-                                <a href="#" @click.prevent="$store.lang.set('es')"
-                                    class="block px-4 py-2 hover:bg-[var(--green)] font-bold text-xs uppercase transition-colors text-center text-pm-dark">Español</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Button (Desktop > lg) -->
-                    <a href="#contact"
-                        class="hidden lg:block bg-[var(--green)] neo-brutal-sm px-6 py-2 font-black text-xs uppercase hover:bg-[var(--green-dark)] transition-colors btn-press-anim text-pm-dark rounded-2xl"
-                        x-text="$store.lang.t('nav_contact')">Get in touch!</a>
-
-                    <!-- Hamburger Button (Mobile & Tablet) -->
-                    <button @click="mobileMenuOpen = !mobileMenuOpen"
-                        class="lg:hidden p-2 relative z-50 hover:bg-white/10 rounded-2xl transition-colors btn-press-anim text-pm-dark w-12 h-12 flex items-center justify-center overflow-hidden">
-                        <div class="relative w-8 h-8">
-                            <div x-show="!mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="opacity-0 rotate-90 scale-50"
-                                x-transition:enter-end="opacity-100 rotate-0 scale-100"
-                                x-transition:leave="transition ease-in duration-300"
-                                x-transition:leave-start="opacity-100 rotate-0 scale-100"
-                                x-transition:leave-end="opacity-0 -rotate-90 scale-50"
-                                class="absolute inset-0 flex items-center justify-center origin-center">
-                                <i data-lucide="menu" class="w-8 h-8"></i>
-                            </div>
-                            <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="opacity-0 -rotate-90 scale-50"
-                                x-transition:enter-end="opacity-100 rotate-0 scale-100"
-                                x-transition:leave="transition ease-in duration-300"
-                                x-transition:leave-start="opacity-100 rotate-0 scale-100"
-                                x-transition:leave-end="opacity-0 rotate-90 scale-50"
-                                class="absolute inset-0 flex items-center justify-center origin-center" x-cloak>
-                                <i data-lucide="x" class="w-8 h-8"></i>
-                            </div>
-                        </div>
+            <div class="flex items-center gap-3">
+                <!-- Dropdown Language (Visible always, toggle on click for mobile) -->
+                <div class="relative group block" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open"
+                        class="group hover:scale-110 transition-transform bg-transparent p-1 flex items-center gap-1"
+                        aria-label="Switch Language">
+                        <i data-lucide="globe"
+                            class="w-5 h-5 transition-colors text-slate-400 group-hover:text-pm-dark"></i>
+                        <span
+                            class="text-xs font-bold uppercase transition-colors text-slate-500 group-hover:text-pm-dark"
+                            x-text="$store.lang.current"></span>
                     </button>
-                </div>
-            </div>
-        </nav>
-
-        <!-- HERO -->
-        <header
-            class="pt-32 md:pt-40 pb-16 md:pb-24 px-4 md:px-6 text-center bg-[var(--green-dark)] relative flex flex-col justify-between min-h-[90vh] max-h-[900px]">
-            <!-- Hero Grid (Visible ONLY above 1280px - XL) - RENAMED ID TO PREVENT GHOSTING -->
-            <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
-                <div id="desktop-only-grid"></div>
-            </div>
-
-            <!-- Mobile Thumbnail Carousel (Visible <= 1280px) -->
-            <div
-                class="mobile-hero-carousel absolute bottom-[-45px] md:bottom-[-70px] xl:bottom-[-85px] left-0 w-full h-auto z-40 flex flex-col justify-end gap-2 opacity-100 pointer-events-none overflow-hidden select-none pb-0">
-                <!-- Single Bottom Row -->
-                <div
-                    class="relative w-full overflow-hidden py-4 rotate-[-2deg] scale-105 translate-y-4 origin-bottom-left">
-                    <div class="flex gap-6 animate-marquee-reverse whitespace-nowrap w-max">
-                        <!-- Duplicated Sets for Seamless Loop -->
-                        <template x-for="i in 4">
-                            <div class="flex gap-6">
-                                <template x-for="img in essentialImages">
-                                    <div
-                                        class="w-40 h-24 md:w-64 md:h-36 xl:w-80 xl:h-44 rounded-xl overflow-hidden flex-shrink-0 border-4 border-pm-dark shadow-none bg-white transform transition-transform hover:scale-105">
-                                        <img :src="img" class="w-full h-full object-cover">
-                                    </div>
-                                </template>
-                            </div>
-                        </template>
+                    <!-- Language Dropdown -->
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-2"
+                        class="absolute right-0 top-full pt-2 w-32 origin-top-right z-50 pointer-events-none group-hover:pointer-events-auto">
+                        <div class="bg-white/90 backdrop-blur-md neo-brutal-sm overflow-hidden border-2 border-pm-dark">
+                            <a href="#" @click.prevent="$store.lang.set('en')"
+                                class="block px-4 py-2 hover:bg-[var(--green)] font-bold text-xs uppercase transition-colors text-center text-pm-dark">English</a>
+                            <a href="#" @click.prevent="$store.lang.set('es')"
+                                class="block px-4 py-2 hover:bg-[var(--green)] font-bold text-xs uppercase transition-colors text-center text-pm-dark">Español</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="max-w-7xl mx-auto relative z-10 pointer-events-none mb-12">
 
-                <!-- pointer-events-none on wrapper so mouse reaches grid -->
-                <div>
-                    <h1
-                        class="reveal-blur text-5xl sm:text-[3.5rem] leading-[0.9] md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 uppercase">
-                        <span x-text="$store.lang.t('hero_title_1')">STOP THE SCROLL.</span> <br>
-                        <span class="inline-block -rotate-1 italic transition-all duration-300
+                <!-- Contact Button (Desktop > lg) -->
+                <a href="#contact"
+                    class="hidden lg:block bg-[var(--green)] neo-brutal-sm px-6 py-2 font-black text-xs uppercase hover:bg-[var(--green-dark)] transition-colors btn-press-anim text-pm-dark rounded-2xl"
+                    x-text="$store.lang.t('nav_contact')">Get in touch!</a>
+
+                <!-- Hamburger Button (Mobile & Tablet) -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen"
+                    class="lg:hidden p-2 relative z-50 hover:bg-white/10 rounded-2xl transition-colors btn-press-anim text-pm-dark w-12 h-12 flex items-center justify-center overflow-hidden">
+                    <div class="relative w-8 h-8">
+                        <div x-show="!mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 rotate-90 scale-50"
+                            x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 rotate-0 scale-100"
+                            x-transition:leave-end="opacity-0 -rotate-90 scale-50"
+                            class="absolute inset-0 flex items-center justify-center origin-center">
+                            <i data-lucide="menu" class="w-8 h-8"></i>
+                        </div>
+                        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 -rotate-90 scale-50"
+                            x-transition:enter-end="opacity-100 rotate-0 scale-100"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 rotate-0 scale-100"
+                            x-transition:leave-end="opacity-0 rotate-90 scale-50"
+                            class="absolute inset-0 flex items-center justify-center origin-center" x-cloak>
+                            <i data-lucide="x" class="w-8 h-8"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header
+        class="pt-32 md:pt-40 pb-16 md:pb-24 px-4 md:px-6 text-center bg-[var(--green-dark)] relative flex flex-col justify-between min-h-[90vh] max-h-[900px]">
+        <!-- Hero Grid (Visible ONLY above 1280px - XL) - RENAMED ID TO PREVENT GHOSTING -->
+        <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
+            <div id="desktop-only-grid"></div>
+        </div>
+
+        <!-- Mobile Thumbnail Carousel (Visible <= 1280px) -->
+        <div
+            class="mobile-hero-carousel absolute bottom-[-45px] md:bottom-[-70px] xl:bottom-[-85px] left-0 w-full h-auto z-40 flex flex-col justify-end gap-2 opacity-100 pointer-events-none overflow-hidden select-none pb-0">
+            <!-- Single Bottom Row -->
+            <div class="relative w-full overflow-hidden py-4 rotate-[-2deg] scale-105 translate-y-4 origin-bottom-left">
+                <div class="flex gap-6 animate-marquee-reverse whitespace-nowrap w-max">
+                    <!-- Duplicated Sets for Seamless Loop -->
+                    <template x-for="i in 4">
+                        <div class="flex gap-6">
+                            <template x-for="img in essentialImages">
+                                <div
+                                    class="w-40 h-24 md:w-64 md:h-36 xl:w-80 xl:h-44 rounded-xl overflow-hidden flex-shrink-0 border-4 border-pm-dark shadow-none bg-white transform transition-transform hover:scale-105">
+                                    <img :src="img" class="w-full h-full object-cover">
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto relative z-10 pointer-events-none mb-12">
+
+            <!-- pointer-events-none on wrapper so mouse reaches grid -->
+            <div>
+                <h1
+                    class="reveal-blur text-5xl sm:text-[3.5rem] leading-[0.9] md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 uppercase">
+                    <span x-text="$store.lang.t('hero_title_1')">STOP THE SCROLL.</span> <br>
+                    <span class="inline-block -rotate-1 italic transition-all duration-300
                                  text-white bg-transparent
                                  font-black tracking-wide
                                  [paint-order:stroke_fill]
                                  [-webkit-text-stroke:6px_#191B32] [filter:drop-shadow(6px_6px_0_#191B32)]
                                  md:[-webkit-text-stroke:9px_#191B32] md:[filter:drop-shadow(8px_8px_0_#191B32)]"
-                            x-text="$store.lang.t('hero_title_2')">GET THE
-                            CLICK.</span>
-                    </h1>
-                    <p class="reveal-blur delay-200 max-w-3xl mx-auto text-base md:text-xl font-semibold text-slate-700 mb-8 px-6 py-4 bg-white/40 backdrop-blur-md rounded-2xl border border-white/30 shadow-sm"
-                        x-text="$store.lang.t('hero_desc')">
-                        We design thumbnails that bypass logic and target the viewer's instinct.
-                    </p>
-                    <!-- Buttons must be interactable -->
-                    <div
-                        class="reveal-blur delay-400 flex flex-col sm:flex-row flex-wrap justify-center gap-3 pointer-events-auto w-full md:w-auto lg: gap-8">
-                        <button @click="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})"
-                            class="w-full sm:w-auto bg-[var(--purple)] text-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-[var(--purple-dark)] btn-press-anim"
-                            x-text="$store.lang.t('btn_pricing')">VIEW
-                            PRICING</button>
-                        <button @click="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                            class="w-full sm:w-auto bg-white px-10 py-5 rounded-[1.5rem] text-xl font-black neo-brutal hover:bg-[var(--green)] btn-press-anim"
-                            x-text="$store.lang.t('btn_gallery')">SEE
-                            GALLERY</button>
-                    </div>
+                        x-text="$store.lang.t('hero_title_2')">GET THE
+                        CLICK.</span>
+                </h1>
+                <p class="reveal-blur delay-200 max-w-3xl mx-auto text-base md:text-xl font-semibold text-slate-700 mb-8 px-6 py-4 bg-white/40 backdrop-blur-md rounded-2xl border border-white/30 shadow-sm"
+                    x-text="$store.lang.t('hero_desc')">
+                    We design thumbnails that bypass logic and target the viewer's instinct.
+                </p>
+                <!-- Buttons must be interactable -->
+                <div
+                    class="reveal-blur delay-400 flex flex-col sm:flex-row flex-wrap justify-center gap-3 pointer-events-auto w-full md:w-auto lg: gap-8">
+                    <button @click="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})"
+                        class="w-full sm:w-auto bg-[var(--purple)] text-white px-10 py-5 rounded-2xl text-xl font-black neo-brutal hover:bg-[var(--purple-dark)] btn-press-anim"
+                        x-text="$store.lang.t('btn_pricing')">VIEW
+                        PRICING</button>
+                    <button @click="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
+                        class="w-full sm:w-auto bg-white px-10 py-5 rounded-[1.5rem] text-xl font-black neo-brutal hover:bg-[var(--green)] btn-press-anim"
+                        x-text="$store.lang.t('btn_gallery')">SEE
+                        GALLERY</button>
                 </div>
             </div>
+        </div>
 
-            <!-- 3D SLIDER CONTAINER (Desktop Only > 1280px) -->
-            <div id="hero-slider-container" class="hidden xl:block relative z-20 pointer-events-auto w-full mt-auto">
-                <div id="hero-slider-track">
-                    <!-- Javascript will populate this -->
-                </div>
-                <!-- Fade overlay left/right -->
-                <div
-                    class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--green-dark)] to-transparent pointer-events-none z-30">
-                </div>
-                <div
-                    class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--green-dark)] to-transparent pointer-events-none z-30">
-                </div>
+        <!-- 3D SLIDER CONTAINER (Desktop Only > 1280px) -->
+        <div id="hero-slider-container" class="hidden xl:block relative z-20 pointer-events-auto w-full mt-auto">
+            <div id="hero-slider-track">
+                <!-- Javascript will populate this -->
             </div>
+            <!-- Fade overlay left/right -->
+            <div
+                class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--green-dark)] to-transparent pointer-events-none z-30">
+            </div>
+            <div
+                class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--green-dark)] to-transparent pointer-events-none z-30">
+            </div>
+        </div>
 
-        </header>
+    </header>
 
-        <!-- TESTIMONIALS (REDESIGNED) -->
-        <section
-            class="py-12 md:py-16 px-4 md:px-6 bg-[var(--dark)] border-b-4 border-pm-dark overflow-hidden relative">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-                <!-- Left: The Content -->
-                <div class="relative z-10 order-2 lg:order-1">
-                    <!-- Decorative Quote Icon -->
-                    <div class="text-[var(--green)] mb-4 md:mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
-                            fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-quote opacity-50">
-                            <path
-                                d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-                            <path
-                                d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-                        </svg>
-                    </div>
-
-                    <div class="h-auto min-h-[180px] relative flex flex-col justify-center">
-                        <!-- Text Transition -->
-                        <p class="text-base md:text-lg font-medium leading-snug text-white" x-key="activeTestimonial"
-                            x-transition:enter="transition ease-out duration-500"
-                            x-transition:enter-start="opacity-0 translate-y-4"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            x-transition:leave="transition ease-in duration-150"
-                            x-transition:leave-start="opacity-100 translate-y-0"
-                            x-transition:leave-end="opacity-0 translate-y-2"
-                            x-text="`&quot;` + $store.lang.t(testimonials[activeTestimonial].key + '_text') + `&quot;`">
-                        </p>
-                    </div>
-
-                    <div class="mt-8 md:mt-12 flex items-center gap-4">
-                        <!-- Active Author Info -->
-                        <div>
-                            <h4 class="text-xl font-black uppercase text-[var(--green)]"
-                                x-text="$store.lang.t(testimonials[activeTestimonial].key + '_author')"></h4>
-                            <p class="text-sm font-bold text-slate-400 uppercase tracking-widest"
-                                x-text="$store.lang.t(testimonials[activeTestimonial].key + '_role')"></p>
-                        </div>
-                    </div>
+    <!-- TESTIMONIALS (REDESIGNED) -->
+    <section class="py-12 md:py-16 px-4 md:px-6 bg-[var(--dark)] border-b-4 border-pm-dark overflow-hidden relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+            <!-- Left: The Content -->
+            <div class="relative z-10 order-2 lg:order-1">
+                <!-- Decorative Quote Icon -->
+                <div class="text-[var(--green)] mb-4 md:mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                        fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-quote opacity-50">
+                        <path
+                            d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                        <path
+                            d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                    </svg>
                 </div>
 
-                <!-- Right: The Header & Avatars -->
-                <div
-                    class="relative z-10 order-1 lg:order-2 flex flex-col items-center lg:items-end text-center lg:text-right">
-                    <h2 class="text-4xl md:text-5xl font-black uppercase italic text-white leading-none mb-8 md:mb-12">
-                        <span x-text="$store.lang.t('trusted_by')">TRUSTED BY</span> <br>
-                        <span
-                            class="text-transparent bg-clip-text bg-gradient-to-br from-[var(--green)] to-emerald-600 leading-[1.2] lg:pr-1"
-                            x-text="$store.lang.t('creators')">CREATORS</span>
-                    </h2>
-
-                    <!-- Avatar Grid -->
-                    <div class="flex flex-wrap gap-4 justify-center lg:justify-end">
-                        <template x-for="(t, index) in testimonials" :key="index">
-                            <button @click="activeTestimonial = index; stopTestimonialLoop();"
-                                class="relative w-12 h-12 md:w-16 md:h-16 rounded-full border-4 transition-all duration-300 overflow-hidden"
-                                :class="activeTestimonial === index ? 'border-[var(--green)] scale-110 grayscale-0 ring-4 ring-[var(--green)]/20' : 'border-slate-800 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 hover:border-slate-600'">
-                                <img :src="t.image" class="w-full h-full object-cover">
-                            </button>
-                        </template>
-                    </div>
-
-                    <p class="mt-6 text-slate-500 font-bold text-xs uppercase tracking-widest"
-                        x-text="$store.lang.t('real_results')">
-                        Real results from real channels
+                <div class="h-auto min-h-[180px] relative flex flex-col justify-center">
+                    <!-- Text Transition -->
+                    <p class="text-base md:text-lg font-medium leading-snug text-white" x-key="activeTestimonial"
+                        x-transition:enter="transition ease-out duration-500"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-2"
+                        x-text="`&quot;` + $store.lang.t(testimonials[activeTestimonial].key + '_text') + `&quot;`">
                     </p>
                 </div>
-            </div>
-        </section>
 
-        <!-- WHY US -->
-        <section id="why-us" class="py-16 md:py-24 px-4 md:px-6 bg-[var(--cream)] border-b-4 border-pm-dark">
-            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
-                <div class="lg:w-1/3">
-                    <h2 class="reveal-blur text-4xl md:text-5xl font-black uppercase mb-6 leading-none"
-                        x-text="$store.lang.t('why_us_title')">Why us?</h2>
-                    <p class="reveal-blur delay-100 text-base md:text-xl font-semibold text-slate-500 mb-8"
-                        x-text="$store.lang.t('why_us_desc')">We don't just "make images".
-                        We
-                        engineer points of
-                        interest that force a click through data-backed design patterns.</p>
-                    <div class="bg-purple-100 p-6 rounded-[10px] border-2 border-purple-200 italic font-semibold text-base md:text-lg text-purple-700"
-                        x-text="$store.lang.t('why_us_quote')">
-                        "A thumbnail is 90% of your success. We handle that 90% with mastery."
-                    </div>
-                </div>
-                <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-                    <div class="reveal-blur delay-200 p-8 bg-[var(--green)] neo-brutal">
-                        <i data-lucide="zap" class="mb-4"></i>
-                        <h3 class="heading font-bold text-xl mb-2" x-text="$store.lang.t('delivery_title')">24H DELIVERY
-                        </h3>
-                        <p class="font-semibold text-sm" x-text="$store.lang.t('delivery_desc')">Your upload schedule is
-                            sacred. We deliver high-quality drafts
-                            within
-                            24-48 hours, guaranteed.</p>
-                    </div>
-                    <div class="reveal-blur delay-300 p-8 bg-white neo-brutal">
-                        <i data-lucide="refresh-cw" class="mb-4 text-purple-600"></i>
-                        <h3 class="heading font-bold text-xl mb-2" x-text="$store.lang.t('edits_title')">UNLIMITED EDITS
-                        </h3>
-                        <p class="font-semibold text-sm" x-text="$store.lang.t('edits_desc')">We iterate until it hits
-                            your
-                            exact vision. No extra charges, no
-                            friction. Just results.</p>
-                    </div>
-                    <!-- MONEY WARRANTY (Moved Up) -->
-                    <div class="reveal-blur delay-400 glow-border-inset">
-                        <div class="p-8 bg-white h-full relative z-10" style="border-radius: calc(1.2rem - 4px);">
-                            <i data-lucide="shield-check" class="mb-4 text-[var(--green)]"></i>
-                            <h3 class="heading font-bold text-xl mb-2" x-text="$store.lang.t('warranty_title')">MONEY
-                                WARRANTY</h3>
-                            <p class="font-semibold text-sm opacity-80" x-text="$store.lang.t('warranty_desc')">Not
-                                feeling
-                                the draft? We offer a total refund. We
-                                believe in our quality that much.</p>
-                        </div>
-                    </div>
-                    <!-- CTR PSYCHOLOGY (Moved Down & White) -->
-                    <div class="reveal-blur delay-500 p-8 bg-white neo-brutal">
-                        <i data-lucide="target" class="mb-4 text-purple-600"></i>
-                        <h3 class="heading font-bold text-xl mb-2 uppercase" x-text="$store.lang.t('ctr_title')">CTR
-                            PSYCHOLOGY</h3>
-                        <p class="font-semibold text-sm" x-text="$store.lang.t('ctr_desc')">Applying color theory,
-                            facial
-                            expression analysis, and elite
-                            framing to
-                            stop the scroll.</p>
+                <div class="mt-8 md:mt-12 flex items-center gap-4">
+                    <!-- Active Author Info -->
+                    <div>
+                        <h4 class="text-xl font-black uppercase text-[var(--green)]"
+                            x-text="$store.lang.t(testimonials[activeTestimonial].key + '_author')"></h4>
+                        <p class="text-sm font-bold text-slate-400 uppercase tracking-widest"
+                            x-text="$store.lang.t(testimonials[activeTestimonial].key + '_role')"></p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- SHOWROOM -->
-        <section id="gallery"
-            class="py-16 md:py-24 px-4 md:px-6 transition-colors duration-500 relative border-b-4 border-pm-dark"
-            :class="galleryTab === 'pro' ? 'showroom-pro' : 'showroom-essential'">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col gap-6 md:flex-row justify-between items-center md:items-end mb-12 md:mb-16">
-                    <div class="w-full md:w-auto text-center md:text-left mx-auto md:mx-0">
-                        <h2 class="reveal-blur text-4xl md:text-5xl font-black uppercase"
-                            x-text="$store.lang.t('nav_showroom')">Showroom</h2>
-                        <p x-show="galleryTab === 'pro'"
-                            class="reveal-blur delay-100 font-bold text-slate-500 mt-2 text-sm md:text-base"
-                            x-text="$store.lang.t('showroom_pro')">For
-                            enthusiast videos with a
-                            top-notch mastery thumbnail... designed for high-budget storytelling and extreme complexity.
-                        </p>
-                        <p x-show="galleryTab === 'essential'"
-                            class="reveal-blur delay-100 font-bold text-slate-500 mt-2 text-sm md:text-base"
-                            x-text="$store.lang.t('showroom_essential')">
-                            For channels who look
-                            for functional thumbnails and manage many uploads per month without sacrificing quality.</p>
-                    </div>
+            <!-- Right: The Header & Avatars -->
+            <div
+                class="relative z-10 order-1 lg:order-2 flex flex-col items-center lg:items-end text-center lg:text-right">
+                <h2 class="text-4xl md:text-5xl font-black uppercase italic text-white leading-none mb-8 md:mb-12">
+                    <span x-text="$store.lang.t('trusted_by')">TRUSTED BY</span> <br>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-br from-[var(--green)] to-emerald-600 leading-[1.2] lg:pr-1"
+                        x-text="$store.lang.t('creators')">CREATORS</span>
+                </h2>
 
-                    <!-- Toggle with Sliding Animation (Moved Below Text on Mobile) -->
-                    <div class="reveal-blur delay-200 flex justify-center md:justify-start w-full md:w-auto">
-                        <div class="relative bg-white neo-brutal-sm p-1 flex w-full md:w-auto mx-auto md:mx-0">
-                            <!-- Sliding Indicator -->
-                            <div class="absolute top-1 bottom-1 bg-pm-dark rounded-2xl transition-all duration-300 ease-out z-0 w-[calc(50%-4px)]"
-                                :class="galleryTab === 'essential' ? 'left-1' : 'left-[50%]'"></div>
-
-                            <!-- Buttons -->
-                            <button @click="galleryTab = 'essential'"
-                                class="relative z-10 flex-1 md:flex-none md:w-32 py-3 font-black text-xs md:text-sm rounded-2xl transition-colors duration-300 uppercase select-none active:scale-95"
-                                :class="galleryTab === 'essential' ? 'text-white' : 'text-slate-400 hover:text-pm-dark'">
-                                Essential
-                            </button>
-                            <button @click="galleryTab = 'pro'"
-                                class="relative z-10 flex-1 md:flex-none md:w-32 py-3 font-black text-xs md:text-sm rounded-2xl transition-colors duration-300 uppercase select-none active:scale-95"
-                                :class="galleryTab === 'pro' ? 'text-white' : 'text-slate-400 hover:text-pm-dark'">
-                                Pro
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Essential Images -->
-                    <template x-for="(img, index) in essentialImages.slice(0, limit)" :key="index">
-                        <div x-show="galleryTab === 'essential'" x-transition:enter="transition ease-out duration-700"
-                            x-transition:enter-start="opacity-0 blur-sm translate-y-10"
-                            x-transition:enter-end="opacity-100 blur-0 translate-y-0"
-                            class="reveal-blur aspect-video neo-brutal bg-slate-200 cursor-zoom-in group md:hover:scale-[1.02] transition-transform overflow-hidden relative"
-                            @click="lightboxOpen = true; activeImg = img; isPro = false">
-                            <img :src="img" class="w-full h-full object-cover" loading="lazy" alt="Thumbnail">
-                        </div>
+                <!-- Avatar Grid -->
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-end">
+                    <template x-for="(t, index) in testimonials" :key="index">
+                        <button @click="activeTestimonial = index; stopTestimonialLoop();"
+                            class="relative w-12 h-12 md:w-16 md:h-16 rounded-full border-4 transition-all duration-300 overflow-hidden"
+                            :class="activeTestimonial === index ? 'border-[var(--green)] scale-110 grayscale-0 ring-4 ring-[var(--green)]/20' : 'border-slate-800 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 hover:border-slate-600'">
+                            <img :src="t.image" class="w-full h-full object-cover">
+                        </button>
                     </template>
+                </div>
 
-                    <!-- Pro Images -->
-                    <template x-for="(item, index) in proImages" :key="'pro-' + index">
-                        <div x-show="galleryTab === 'pro'" x-transition:enter="transition ease-out duration-700"
-                            x-transition:enter-start="opacity-0 blur-sm translate-y-10"
-                            x-transition:enter-end="opacity-100 blur-0 translate-y-0"
-                            class="reveal-blur aspect-video neo-brutal bg-slate-900 cursor-zoom-in group md:hover:scale-[1.02] transition-transform relative overflow-hidden"
-                            @click="lightboxOpen = true; activeImg = item; isPro = true; viewMode = 'final'">
-                            <img :src="item.final"
-                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                                alt="Pro Thumbnail">
+                <p class="mt-6 text-slate-500 font-bold text-xs uppercase tracking-widest"
+                    x-text="$store.lang.t('real_results')">
+                    Real results from real channels
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="why-us" class="py-16 md:py-24 px-4 md:px-6 bg-[var(--cream)] border-b-4 border-pm-dark">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
+            <div class="lg:w-1/3">
+                <h2 class="reveal-blur text-4xl md:text-5xl font-black uppercase mb-6 leading-none"
+                    x-text="$store.lang.t('why_us_title')">Why us?</h2>
+                <p class="reveal-blur delay-100 text-base md:text-xl font-semibold text-slate-500 mb-8"
+                    x-text="$store.lang.t('why_us_desc')">We don't just "make images".
+                    We
+                    engineer points of
+                    interest that force a click through data-backed design patterns.</p>
+                <div class="bg-purple-100 p-6 rounded-[10px] border-2 border-purple-200 italic font-semibold text-base md:text-lg text-purple-700"
+                    x-text="$store.lang.t('why_us_quote')">
+                    "A thumbnail is 90% of your success. We handle that 90% with mastery."
+                </div>
+            </div>
+            <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+                <div class="reveal-blur delay-200 p-8 bg-[var(--green)] neo-brutal">
+                    <i data-lucide="zap" class="mb-4"></i>
+                    <h3 class="heading font-bold text-xl mb-2" x-text="$store.lang.t('delivery_title')">24H DELIVERY
+                    </h3>
+                    <p class="font-semibold text-sm" x-text="$store.lang.t('delivery_desc')">Your upload schedule is
+                        sacred. We deliver high-quality drafts
+                        within
+                        24-48 hours, guaranteed.</p>
+                </div>
+                <div class="reveal-blur delay-300 p-8 bg-white neo-brutal">
+                    <i data-lucide="refresh-cw" class="mb-4 text-purple-600"></i>
+                    <h3 class="heading font-bold text-xl mb-2" x-text="$store.lang.t('edits_title')">UNLIMITED EDITS
+                    </h3>
+                    <p class="font-semibold text-sm" x-text="$store.lang.t('edits_desc')">We iterate until it hits
+                        your
+                        exact vision. No extra charges, no
+                        friction. Just results.</p>
+                </div>
+                <!-- MONEY WARRANTY (Moved Up) -->
+                <div class="reveal-blur delay-400 glow-border-inset">
+                    <div class="p-8 bg-white h-full relative z-10" style="border-radius: calc(1.2rem - 4px);">
+                        <i data-lucide="shield-check" class="mb-4 text-[var(--green)]"></i>
+                        <h3 class="heading font-bold text-xl mb-2" x-text="$store.lang.t('warranty_title')">MONEY
+                            WARRANTY</h3>
+                        <p class="font-semibold text-sm opacity-80" x-text="$store.lang.t('warranty_desc')">Not
+                            feeling
+                            the draft? We offer a total refund. We
+                            believe in our quality that much.</p>
+                    </div>
+                </div>
+                <!-- CTR PSYCHOLOGY (Moved Down & White) -->
+                <div class="reveal-blur delay-500 p-8 bg-white neo-brutal">
+                    <i data-lucide="target" class="mb-4 text-purple-600"></i>
+                    <h3 class="heading font-bold text-xl mb-2 uppercase" x-text="$store.lang.t('ctr_title')">CTR
+                        PSYCHOLOGY</h3>
+                    <p class="font-semibold text-sm" x-text="$store.lang.t('ctr_desc')">Applying color theory,
+                        facial
+                        expression analysis, and elite
+                        framing to
+                        stop the scroll.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOWROOM -->
+    <section id="gallery"
+        class="py-16 md:py-24 px-4 md:px-6 transition-colors duration-500 relative border-b-4 border-pm-dark"
+        :class="galleryTab === 'pro' ? 'showroom-pro' : 'showroom-essential'">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col gap-6 md:flex-row justify-between items-center md:items-end mb-12 md:mb-16">
+                <div class="w-full md:w-auto text-center md:text-left mx-auto md:mx-0">
+                    <h2 class="reveal-blur text-4xl md:text-5xl font-black uppercase"
+                        x-text="$store.lang.t('nav_showroom')">Showroom</h2>
+                    <p x-show="galleryTab === 'pro'"
+                        class="reveal-blur delay-100 font-bold text-slate-500 mt-2 text-sm md:text-base"
+                        x-text="$store.lang.t('showroom_pro')">For
+                        enthusiast videos with a
+                        top-notch mastery thumbnail... designed for high-budget storytelling and extreme complexity.
+                    </p>
+                    <p x-show="galleryTab === 'essential'"
+                        class="reveal-blur delay-100 font-bold text-slate-500 mt-2 text-sm md:text-base"
+                        x-text="$store.lang.t('showroom_essential')">
+                        For channels who look
+                        for functional thumbnails and manage many uploads per month without sacrificing quality.</p>
+                </div>
+
+                <!-- Toggle with Sliding Animation (Moved Below Text on Mobile) -->
+                <div class="reveal-blur delay-200 flex justify-center md:justify-start w-full md:w-auto">
+                    <div class="relative bg-white neo-brutal-sm p-1 flex w-full md:w-auto mx-auto md:mx-0">
+                        <!-- Sliding Indicator -->
+                        <div class="absolute top-1 bottom-1 bg-pm-dark rounded-2xl transition-all duration-300 ease-out z-0 w-[calc(50%-4px)]"
+                            :class="galleryTab === 'essential' ? 'left-1' : 'left-[50%]'"></div>
+
+                        <!-- Buttons -->
+                        <button @click="galleryTab = 'essential'"
+                            class="relative z-10 flex-1 md:flex-none md:w-32 py-3 font-black text-xs md:text-sm rounded-2xl transition-colors duration-300 uppercase select-none active:scale-95"
+                            :class="galleryTab === 'essential' ? 'text-white' : 'text-slate-400 hover:text-pm-dark'">
+                            Essential
+                        </button>
+                        <button @click="galleryTab = 'pro'"
+                            class="relative z-10 flex-1 md:flex-none md:w-32 py-3 font-black text-xs md:text-sm rounded-2xl transition-colors duration-300 uppercase select-none active:scale-95"
+                            :class="galleryTab === 'pro' ? 'text-white' : 'text-slate-400 hover:text-pm-dark'">
+                            Pro
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Essential Images -->
+                <template x-for="(img, index) in essentialImages.slice(0, limit)" :key="index">
+                    <div x-show="galleryTab === 'essential'" x-transition:enter="transition ease-out duration-700"
+                        x-transition:enter-start="opacity-0 blur-sm translate-y-10"
+                        x-transition:enter-end="opacity-100 blur-0 translate-y-0"
+                        class="reveal-blur aspect-video neo-brutal bg-slate-200 cursor-zoom-in group md:hover:scale-[1.02] transition-transform overflow-hidden relative"
+                        @click="lightboxOpen = true; activeImg = img; isPro = false">
+                        <img :src="img" class="w-full h-full object-cover" loading="lazy" alt="Thumbnail">
+                    </div>
+                </template>
+
+                <!-- Pro Images -->
+                <template x-for="(item, index) in proImages" :key="'pro-' + index">
+                    <div x-show="galleryTab === 'pro'" x-transition:enter="transition ease-out duration-700"
+                        x-transition:enter-start="opacity-0 blur-sm translate-y-10"
+                        x-transition:enter-end="opacity-100 blur-0 translate-y-0"
+                        class="reveal-blur aspect-video neo-brutal bg-slate-900 cursor-zoom-in group md:hover:scale-[1.02] transition-transform relative overflow-hidden"
+                        @click="lightboxOpen = true; activeImg = item; isPro = true; viewMode = 'final'">
+                        <img :src="item.final"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                            alt="Pro Thumbnail">
+                        <div
+                            class="absolute bottom-2 right-2 bg-[var(--green)] text-pm-dark px-3 py-1 text-xs font-black uppercase rounded-xl">
+                            PRO</div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Load More / Collapse Buttons -->
+            <div class="flex justify-center mt-12" x-show="galleryTab === 'essential'">
+                <!-- Load More -->
+                <button x-show="limit < essentialImages.length"
+                    @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); lucide.createIcons(); })"
+                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
+                    <i data-lucide="arrow-down" class="w-10 h-10"></i>
+                </button>
+
+                <!-- Collapse -->
+                <button x-show="limit >= essentialImages.length && limit > 9"
+                    @click="limit = 9; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
+                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
+                    <i data-lucide="arrow-up" class="w-10 h-10"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW (BENTO GRID) -->
+    <section id="how-it-works" class="py-16 md:py-24 px-4 md:px-6 bg-[var(--cream)] border-b-4 border-pm-dark">
+        <div class="max-w-7xl mx-auto relative z-20">
+            <div class="text-center mb-16 md:mb-24 flex flex-col items-center gap-4">
+                <h2 class="text-4xl md:text-5xl lg:text-7xl font-black uppercase leading-none">
+                    <span x-text="$store.lang.t('workflow_title')">The </span>
+                    <span class="text-purple-600" x-text="$store.lang.t('workflow_word')">Workflow</span>
+                </h2>
+                <p class="text-slate-500 font-bold text-base md:text-xl max-w-2xl mx-auto leading-tight mt-2"
+                    x-text="$store.lang.t('workflow_desc')"></p>
+            </div>
+
+            <!-- Button moved below grid -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+
+                <!-- Item 1: Choose Plan -->
+                <div
+                    class="reveal-blur bento-card p-10 flex flex-col justify-start gap-8 h-full shadow-[4px_4px_0px_0px_#191B32]">
+                    <div
+                        class="w-16 h-16 bg-[var(--purple)] text-white rounded-full flex items-center justify-center text-2xl font-black mb-6 border-4 border-pm-dark">
+                        01</div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase" x-text="$store.lang.t('step1_title')">Choose
+                            a
+                            Plan</h3>
+                        <p class="font-medium text-slate-500" x-text="$store.lang.t('step1_desc')">Select the tier
+                            that
+                            fits your content strategy and goals.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Secure Pay -->
+                <div
+                    class="reveal-blur delay-100 bento-card p-10 flex flex-col justify-start gap-8 h-full shadow-[4px_4px_0px_0px_#191B32]">
+                    <div
+                        class="w-16 h-16 bg-white text-pm-dark border-4 border-pm-dark rounded-full flex items-center justify-center text-2xl font-black mb-6">
+                        02</div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase" x-text="$store.lang.t('step2_title')">Secure
+                            Pay
+                        </h3>
+                        <p class="font-medium text-slate-500 italic" x-text="$store.lang.t('step2_desc')">Fast and
+                            secure payments via Payoneer, PayPal or
+                            Kontigo invoices.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Brief -->
+                <div
+                    class="reveal-blur delay-200 bento-card p-10 flex flex-col justify-start gap-8 h-full shadow-[4px_4px_0px_0px_#191B32]">
+                    <div
+                        class="w-16 h-16 bg-white text-pm-dark border-4 border-pm-dark rounded-full flex items-center justify-center text-2xl font-black mb-6">
+                        03</div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase" x-text="$store.lang.t('step3_title')">Send
+                            the
+                            Brief</h3>
+                        <p class="font-medium text-slate-500" x-text="$store.lang.t('step3_desc')">Provide details
+                            for
+                            your first thumbnail.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4: Revise (Large/Small) -->
+                <div class="col-span-1 md:col-span-1 lg:col-span-2 relative reveal-blur delay-300">
+                    <div class="glow-border-inset h-full">
+                        <div class="p-10 bg-white relative z-10 h-full flex flex-col justify-start gap-8"
+                            style="border-radius: calc(1.2rem - 4px);">
                             <div
-                                class="absolute bottom-2 right-2 bg-[var(--green)] text-pm-dark px-3 py-1 text-xs font-black uppercase rounded-xl">
-                                PRO</div>
-                        </div>
-                    </template>
-                </div>
-
-                <!-- Load More / Collapse Buttons -->
-                <div class="flex justify-center mt-12" x-show="galleryTab === 'essential'">
-                    <!-- Load More -->
-                    <button x-show="limit < essentialImages.length"
-                        @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); lucide.createIcons(); })"
-                        class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
-                        <i data-lucide="arrow-down" class="w-10 h-10"></i>
-                    </button>
-
-                    <!-- Collapse -->
-                    <button x-show="limit >= essentialImages.length && limit > 9"
-                        @click="limit = 9; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                        class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
-                        <i data-lucide="arrow-up" class="w-10 h-10"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- WORKFLOW (BENTO GRID) -->
-        <section id="how-it-works" class="py-16 md:py-24 px-4 md:px-6 bg-[var(--cream)] border-b-4 border-pm-dark">
-            <div class="max-w-7xl mx-auto relative z-20">
-                <div class="text-center mb-16 md:mb-24 flex flex-col items-center gap-4">
-                    <h2 class="text-4xl md:text-5xl lg:text-7xl font-black uppercase leading-none">
-                        <span x-text="$store.lang.t('workflow_title')">The </span>
-                        <span class="text-purple-600" x-text="$store.lang.t('workflow_word')">Workflow</span>
-                    </h2>
-                    <p class="text-slate-500 font-bold text-base md:text-xl max-w-2xl mx-auto leading-tight mt-2"
-                        x-text="$store.lang.t('workflow_desc')"></p>
-                </div>
-
-                <!-- Button moved below grid -->
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-
-                    <!-- Item 1: Choose Plan -->
-                    <div
-                        class="reveal-blur bento-card p-10 flex flex-col justify-start gap-8 h-full shadow-[4px_4px_0px_0px_#191B32]">
-                        <div
-                            class="w-16 h-16 bg-[var(--purple)] text-white rounded-full flex items-center justify-center text-2xl font-black mb-6 border-4 border-pm-dark">
-                            01</div>
-                        <div>
-                            <h3 class="text-2xl font-black mb-4 uppercase" x-text="$store.lang.t('step1_title')">Choose
-                                a
-                                Plan</h3>
-                            <p class="font-medium text-slate-500" x-text="$store.lang.t('step1_desc')">Select the tier
-                                that
-                                fits your content strategy and goals.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2: Secure Pay -->
-                    <div
-                        class="reveal-blur delay-100 bento-card p-10 flex flex-col justify-start gap-8 h-full shadow-[4px_4px_0px_0px_#191B32]">
-                        <div
-                            class="w-16 h-16 bg-white text-pm-dark border-4 border-pm-dark rounded-full flex items-center justify-center text-2xl font-black mb-6">
-                            02</div>
-                        <div>
-                            <h3 class="text-2xl font-black mb-4 uppercase" x-text="$store.lang.t('step2_title')">Secure
-                                Pay
-                            </h3>
-                            <p class="font-medium text-slate-500 italic" x-text="$store.lang.t('step2_desc')">Fast and
-                                secure payments via Payoneer, PayPal or
-                                Kontigo invoices.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3: Brief -->
-                    <div
-                        class="reveal-blur delay-200 bento-card p-10 flex flex-col justify-start gap-8 h-full shadow-[4px_4px_0px_0px_#191B32]">
-                        <div
-                            class="w-16 h-16 bg-white text-pm-dark border-4 border-pm-dark rounded-full flex items-center justify-center text-2xl font-black mb-6">
-                            03</div>
-                        <div>
-                            <h3 class="text-2xl font-black mb-4 uppercase" x-text="$store.lang.t('step3_title')">Send
-                                the
-                                Brief</h3>
-                            <p class="font-medium text-slate-500" x-text="$store.lang.t('step3_desc')">Provide details
-                                for
-                                your first thumbnail.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 4: Revise (Large/Small) -->
-                    <div class="col-span-1 md:col-span-1 lg:col-span-2 relative reveal-blur delay-300">
-                        <div class="glow-border-inset h-full">
-                            <div class="p-10 bg-white relative z-10 h-full flex flex-col justify-start gap-8"
-                                style="border-radius: calc(1.2rem - 4px);">
-                                <div
-                                    class="w-16 h-16 bg-[var(--dark)] text-white border-4 border-pm-dark rounded-full flex items-center justify-center text-2xl font-black mb-6">
-                                    04</div>
-                                <div>
-                                    <h3 class="text-2xl font-black mb-4 uppercase text-purple-600"
-                                        x-text="$store.lang.t('step4_title')">Revise</h3>
-                                    <p class="font-bold text-slate-800 text-base md:text-lg"
-                                        x-text="$store.lang.t('step4_desc')">You get
-                                        the draft in less than 48h. We tweak
-                                        every detail until it’s a verified click-magnet.</p>
-                                </div>
+                                class="w-16 h-16 bg-[var(--dark)] text-white border-4 border-pm-dark rounded-full flex items-center justify-center text-2xl font-black mb-6">
+                                04</div>
+                            <div>
+                                <h3 class="text-2xl font-black mb-4 uppercase text-purple-600"
+                                    x-text="$store.lang.t('step4_title')">Revise</h3>
+                                <p class="font-bold text-slate-800 text-base md:text-lg"
+                                    x-text="$store.lang.t('step4_desc')">You get
+                                    the draft in less than 48h. We tweak
+                                    every detail until it’s a verified click-magnet.</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Item 5: Done! (Long on iPad) -->
-                    <div
-                        class="reveal-blur delay-400 bento-card p-10 bg-[var(--green)] flex flex-col justify-start gap-8 h-full shadow-[4px_4px_0px_0px_#191B32] col-span-1 md:col-span-2 lg:col-span-1">
-                        <div
-                            class="w-16 h-16 bg-white text-pm-dark border-4 border-pm-dark rounded-full flex items-center justify-center text-2xl font-black mb-6">
-                            05</div>
-                        <div>
-                            <h3 class="text-2xl font-black mb-4 uppercase" x-text="$store.lang.t('step5_title')">Done!
-                            </h3>
-                            <p class="font-black text-slate-900 italic" x-text="$store.lang.t('step5_desc')">Final files
-                                delivered in ultra-high resolution.
-                                Ready to scale.</p>
-                        </div>
-                    </div>
-
                 </div>
+
+                <!-- Item 5: Done! (Long on iPad) -->
+                <div
+                    class="reveal-blur delay-400 bento-card p-10 bg-[var(--green)] flex flex-col justify-start gap-8 h-full shadow-[4px_4px_0px_0px_#191B32] col-span-1 md:col-span-2 lg:col-span-1">
+                    <div
+                        class="w-16 h-16 bg-white text-pm-dark border-4 border-pm-dark rounded-full flex items-center justify-center text-2xl font-black mb-6">
+                        05</div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase" x-text="$store.lang.t('step5_title')">Done!
+                        </h3>
+                        <p class="font-black text-slate-900 italic" x-text="$store.lang.t('step5_desc')">Final files
+                            delivered in ultra-high resolution.
+                            Ready to scale.</p>
+                    </div>
+                </div>
+
             </div>
-            <div class="flex justify-center mt-12">
-                <button @click="document.getElementById('essential-plans').scrollIntoView({behavior: 'smooth'})"
-                    class="bg-[var(--green)] text-pm-dark px-8 py-4 rounded-xl font-black uppercase neo-brutal-sm hover:bg-[var(--green-dark)] transition-colors flex items-center gap-2 btn-press-anim"
-                    x-text="$store.lang.t('btn_choose_plan')">
-                    Choose a Plan <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </button>
-            </div>
-    </div>
+        </div>
+        <div class="flex justify-center mt-12">
+            <button @click="document.getElementById('essential-plans').scrollIntoView({behavior: 'smooth'})"
+                class="bg-[var(--green)] text-pm-dark px-8 py-4 rounded-xl font-black uppercase neo-brutal-sm hover:bg-[var(--green-dark)] transition-colors flex items-center gap-2 btn-press-anim"
+                x-text="$store.lang.t('btn_choose_plan')">
+                Choose a Plan <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+        </div>
+        </div>
     </section>
 
     <!-- PRICING -->
@@ -1245,7 +1238,7 @@
         </div>
     </div>
 
-    </div> <!-- END WRAPPER -->
+
     <script type="module" src="/src/main.js"></script>
     <!-- VISIBILITY ENFORCEMENT SCRIPT -->
     <script>
