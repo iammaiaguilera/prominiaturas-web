@@ -687,17 +687,19 @@
                 </div>
             </div>
 
-            <div class="w-full lg:w-[45%] flex-shrink-0 space-y-6">
+            <div class="w-full lg:w-1/2 space-y-6">
                 <!-- Question 1 -->
                 <div class="reveal-blur border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
                     x-data="{ open: false }">
                     <button @click="open = !open"
-                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q1')">What information
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q1')">What
+                            information
                             do I need to
                             provide you to create a
                             thumbnail?</span>
-                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-collapse
@@ -710,11 +712,12 @@
                 <div class="reveal-blur delay-100 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
                     x-data="{ open: false }">
                     <button @click="open = !open"
-                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q2')">Do you help me
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q2')">Do you help me
                             brainstorm a
                             thumbnail concept?</span>
-                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-collapse
@@ -728,12 +731,14 @@
                 <div class="reveal-blur delay-200 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
                     x-data="{ open: false }">
                     <button @click="open = !open"
-                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q3')">Do you work with
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q3')">Do you work
+                            with
                             YouTube
                             clients
                             of all sizes?</span>
-                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-collapse
@@ -747,10 +752,11 @@
                 <div class="reveal-blur delay-300 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
                     x-data="{ open: false }">
                     <button @click="open = !open"
-                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q4')">How do I
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q4')">How do I
                             pay?</span>
-                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-collapse
@@ -765,11 +771,12 @@
                 <div class="reveal-blur delay-400 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
                     x-data="{ open: false }">
                     <button @click="open = !open"
-                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q5')">What is a 3D
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q5')">What is a 3D
                             blender
                             sketch?</span>
-                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform flex-shrink-0"
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-collapse
@@ -783,10 +790,12 @@
                 <div class="reveal-blur delay-500 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
                     x-data="{ open: false }">
                     <button @click="open = !open"
-                        class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-slate-50 transition-colors">
-                        <span class="text-base md:text-xl font-semibold" x-text="$store.lang.t('q6')">Can I get a free
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q6')">Can I get a
+                            free
                             trial?</span>
-                        <i data-lucide="chevron-down" class="transition-transform duration-300 transform"
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-collapse
