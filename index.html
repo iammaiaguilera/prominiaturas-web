@@ -101,9 +101,9 @@
 
         <!-- Mobile Thumbnail Carousel (Mobile/Tablet Only) -->
         <div
-            class="xl:hidden absolute inset-0 w-full h-full z-0 flex flex-col justify-center gap-6 opacity-30 pointer-events-none overflow-hidden select-none">
+            class="xl:hidden absolute inset-0 w-full h-full z-0 flex flex-col justify-end gap-4 opacity-30 pointer-events-none overflow-hidden select-none pb-32">
             <!-- Row 1: Left to Right (Slow) -->
-            <div class="relative w-full overflow-hidden py-2 rotate-[-6deg] scale-110 translate-y-[-20%]">
+            <div class="relative w-full overflow-hidden py-2 rotate-[-6deg] scale-110">
                 <div class="flex gap-4 animate-marquee whitespace-nowrap w-max">
                     <!-- Duplicated Sets for Seamless Loop -->
                     <template x-for="i in 2">
@@ -120,7 +120,7 @@
             </div>
 
             <!-- Row 2: Right to Left (Slow) -->
-            <div class="relative w-full overflow-hidden py-2 rotate-[-6deg] scale-110 translate-y-[20%]">
+            <div class="relative w-full overflow-hidden py-2 rotate-[-6deg] scale-110">
                 <div class="flex gap-4 animate-marquee-reverse whitespace-nowrap w-max">
                     <!-- Duplicated Sets -->
                     <template x-for="i in 2">
