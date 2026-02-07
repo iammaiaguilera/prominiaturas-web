@@ -404,11 +404,11 @@ h3,
     margin-top: 0;
     /* Closer to buttons */
     height: 350px;
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: grab;
     z-index: 20;
     perspective: 1000px;
-    mask-image: linear-gradient(to right, transparent, #191B32 15%, #191B32 85%, transparent);
+    /* mask-image: linear-gradient(to right, transparent, #191B32 15%, #191B32 85%, transparent); */
     user-select: none;
     -webkit-user-select: none;
 }

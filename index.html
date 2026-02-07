@@ -114,7 +114,7 @@
 
         <!-- HERO -->
         <header
-            class="pt-32 md:pt-40 pb-16 md:pb-24 px-4 md:px-6 text-center bg-[var(--green-dark)] relative flex flex-col justify-between min-h-[90vh] max-h-[900px]">
+            class="pt-32 md:pt-32 pb-16 md:pb-24 px-4 md:px-6 text-center bg-[var(--green-dark)] relative flex flex-col justify-between min-h-[750px] max-h-[1000px]">
             <!-- Hero Grid (Visible ONLY above 1280px - XL) - RENAMED ID TO PREVENT GHOSTING -->
             <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
                 <div id="desktop-only-grid"></div>
@@ -181,20 +181,13 @@
                 <div id="hero-slider-track">
                     <!-- Javascript will populate this -->
                 </div>
-                <!-- Fade overlay left/right -->
-                <div
-                    class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--green-dark)] to-transparent pointer-events-none z-30">
-                </div>
-                <div
-                    class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--green-dark)] to-transparent pointer-events-none z-30">
-                </div>
             </div>
 
         </header>
 
         <!-- TESTIMONIALS (REDESIGNED) -->
         <section
-            class="py-12 md:py-16 px-4 md:px-6 bg-[var(--dark)] border-b-4 border-pm-dark overflow-hidden relative">
+            class="py-12 md:py-16 px-4 md:px-6 bg-[var(--dark)] border-b-4 border-pm-dark overflow-hidden relative z-30">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
                 <!-- Left: The Content -->
                 <div class="relative z-10 order-2 lg:order-1">
