@@ -11,6 +11,24 @@
 </head>
 
 <body x-data="app" class="bg-[var(--cream)] overflow-x-hidden" :class="mobileMenuOpen ? 'overflow-hidden' : ''">
+    <!-- FORCE HIDE HERO GRID ON < 1280px -->
+    <style>
+        @media (max-width: 1280px) {
+            #hero-grid {
+                display: none !important;
+            }
+
+            .mobile-hero-carousel {
+                display: flex !important;
+            }
+        }
+
+        @media (min-width: 1281px) {
+            .mobile-hero-carousel {
+                display: none !important;
+            }
+        }
+    </style>
 
     <!-- NAVIGATION -->
     <!-- NAVIGATION -->
@@ -95,13 +113,13 @@
     <header
         class="pt-32 md:pt-40 pb-0 px-4 md:px-6 text-center bg-[var(--green-dark)] relative overflow-hidden flex flex-col justify-between min-h-[90vh] max-h-[900px]">
         <!-- Hero Grid (Visible ONLY above 1280px - XL) -->
-        <div class="hidden xl:block absolute inset-0 w-full h-full z-0 pointer-events-none">
+        <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
             <div id="hero-grid"></div>
         </div>
 
         <!-- Mobile Thumbnail Carousel (Visible below 1280px - covers 1024px Tablet/Laptop) -->
         <div
-            class="xl:hidden absolute bottom-0 left-0 w-full h-auto z-0 flex flex-col justify-end gap-2 opacity-100 pointer-events-none overflow-hidden select-none pb-0">
+            class="mobile-hero-carousel absolute bottom-0 left-0 w-full h-auto z-0 flex flex-col justify-end gap-2 opacity-100 pointer-events-none overflow-hidden select-none pb-0">
             <!-- Row 1: Left to Right -->
             <div class="relative w-full overflow-hidden py-2 rotate-[-3deg] scale-105 translate-y-4">
                 <div class="flex gap-4 animate-marquee whitespace-nowrap w-max">
