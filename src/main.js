@@ -534,11 +534,20 @@ function initRevealAnimations() {
 window.initRevealAnimations = initRevealAnimations;
 
 // --- HERO GRID ANIMATION (RESTORED) ---
+// --- HERO GRID ANIMATION (RESTORED) ---
 function initHeroGrid() {
-    const gridContainer = document.getElementById('hero-grid');
+    const gridContainer = document.getElementById('desktop-only-grid');
     if (!gridContainer) return;
 
     function createGrid() {
+        // RADICAL FIX: Do not create grid on screens <= 1280px (Mobile/Tablet/Small Laptop)
+        if (window.innerWidth <= 1280) {
+            gridContainer.innerHTML = ''; // Ensure it's empty
+            gridContainer.style.display = 'none'; // Double safety
+            return;
+        }
+
+        gridContainer.style.display = 'grid'; // Restore if desktop
         gridContainer.innerHTML = '';
         const width = gridContainer.offsetWidth;
         const height = gridContainer.offsetHeight;
@@ -558,13 +567,25 @@ function initHeroGrid() {
         }
     }
 
-    // NEW: Global mouse track to bypass overlay issues
+    // Initial create
+    createGrid();
+
+    // Re-create on resize (debounced slightly or direct)
+    window.addEventListener('resize', () => {
+        createGrid();
+        // Also ensure visibility logic for carousel runs
+        if (typeof enforceHeroVisibility === 'function') enforceHeroVisibility();
+    });
+
     // NEW: Global mouse track to bypass overlay issues
     let lastIndex = -1;
     const cellTimeouts = new Map();
 
     window.addEventListener('mousemove', (e) => {
-        const gridContainer = document.getElementById('hero-grid');
+        // Optimization: Don't run logic if grid is hidden/empty
+        if (window.innerWidth <= 1280) return;
+
+        const gridContainer = document.getElementById('desktop-only-grid');
         if (!gridContainer) return;
 
         const rect = gridContainer.getBoundingClientRect();

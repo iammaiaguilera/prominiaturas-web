@@ -631,8 +631,8 @@ h3,
     opacity: 0.7;
 }
 
-/* --- HERO GRID CSS --- */
-#hero-grid {
+/* --- HERO GRID CSS (RENAMED) --- */
+#desktop-only-grid {
     position: absolute;
     top: 0;
     left: 0;
@@ -680,13 +680,23 @@ h3,
 
 /* --- MARQUEE ANIMATIONS (MOBILE HERO) --- */
 @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 @keyframes marquee-reverse {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
 .animate-marquee {
