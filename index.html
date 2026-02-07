@@ -22,7 +22,7 @@
             </a>
 
             <!-- Desktop Menu (Hidden on Tablet/Mobile) -->
-            <div class="hidden xl:flex items-center gap-8 font-bold text-xs uppercase tracking-widest">
+            <div class="hidden lg:flex items-center gap-8 font-bold text-xs uppercase tracking-widest">
                 <a href="#why-us" class="hover:text-purple-600" x-text="$store.lang.t('nav_why')">Why us?</a>
                 <a href="#gallery" class="hover:text-purple-600" x-text="$store.lang.t('nav_showroom')">Showroom</a>
                 <a href="#pricing" class="hover:text-purple-600" x-text="$store.lang.t('nav_pricing')">Pricing</a>
@@ -60,12 +60,12 @@
 
                 <!-- Contact Button (Desktop > lg) -->
                 <a href="#contact"
-                    class="hidden xl:block bg-[var(--green)] neo-brutal-sm px-6 py-2 font-black text-xs uppercase hover:bg-[var(--green-dark)] transition-colors btn-press-anim text-pm-dark rounded-2xl"
+                    class="hidden lg:block bg-[var(--green)] neo-brutal-sm px-6 py-2 font-black text-xs uppercase hover:bg-[var(--green-dark)] transition-colors btn-press-anim text-pm-dark rounded-2xl"
                     x-text="$store.lang.t('nav_contact')">Get in touch!</a>
 
                 <!-- Hamburger Button (Mobile & Tablet) -->
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
-                    class="xl:hidden p-2 relative z-50 hover:bg-white/10 rounded-2xl transition-colors btn-press-anim text-pm-dark">
+                    class="lg:hidden p-2 relative z-50 hover:bg-white/10 rounded-2xl transition-colors btn-press-anim text-pm-dark">
                     <i data-lucide="menu" x-show="!mobileMenuOpen" class="w-8 h-8 transition-transform"></i>
                     <i data-lucide="x" x-show="mobileMenuOpen" class="w-8 h-8 transition-transform" x-cloak></i>
                 </button>
