@@ -94,24 +94,24 @@
     <!-- HERO -->
     <header
         class="pt-32 md:pt-40 pb-0 px-4 md:px-6 text-center bg-[var(--green-dark)] relative overflow-hidden flex flex-col justify-between min-h-[90vh] max-h-[900px]">
-        <!-- Hero Grid (Desktop Only) -->
+        <!-- Hero Grid (Visible ONLY above 1280px - XL) -->
         <div class="hidden xl:block absolute inset-0 w-full h-full z-0 pointer-events-none">
             <div id="hero-grid"></div>
         </div>
 
-        <!-- Mobile Thumbnail Carousel (Mobile/Tablet Only) -->
+        <!-- Mobile Thumbnail Carousel (Visible below 1280px - covers 1024px Tablet/Laptop) -->
         <div
-            class="xl:hidden absolute inset-0 w-full h-full z-0 flex flex-col justify-end gap-4 opacity-30 pointer-events-none overflow-hidden select-none pb-32">
-            <!-- Row 1: Left to Right (Slow) -->
-            <div class="relative w-full overflow-hidden py-2 rotate-[-6deg] scale-110">
+            class="xl:hidden absolute bottom-0 left-0 w-full h-auto z-0 flex flex-col justify-end gap-2 opacity-100 pointer-events-none overflow-hidden select-none pb-0">
+            <!-- Row 1: Left to Right -->
+            <div class="relative w-full overflow-hidden py-2 rotate-[-3deg] scale-105 translate-y-4">
                 <div class="flex gap-4 animate-marquee whitespace-nowrap w-max">
                     <!-- Duplicated Sets for Seamless Loop -->
                     <template x-for="i in 2">
                         <div class="flex gap-4">
                             <template x-for="img in essentialImages.slice(0, 10)">
                                 <div
-                                    class="w-32 h-20 md:w-48 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border border-white/20 shadow-lg">
-                                    <img :src="img" class="w-full h-full object-cover opacity-80 mix-blend-luminosity">
+                                    class="w-32 h-20 md:w-48 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border-2 border-pm-dark shadow-[4px_4px_0px_0px_#191B32] bg-white">
+                                    <img :src="img" class="w-full h-full object-cover">
                                 </div>
                             </template>
                         </div>
@@ -119,16 +119,16 @@
                 </div>
             </div>
 
-            <!-- Row 2: Right to Left (Slow) -->
-            <div class="relative w-full overflow-hidden py-2 rotate-[-6deg] scale-110">
+            <!-- Row 2: Right to Left -->
+            <div class="relative w-full overflow-hidden py-2 rotate-[-3deg] scale-105 translate-y-8">
                 <div class="flex gap-4 animate-marquee-reverse whitespace-nowrap w-max">
                     <!-- Duplicated Sets -->
                     <template x-for="i in 2">
                         <div class="flex gap-4">
                             <template x-for="img in essentialImages.slice(10, 20)">
                                 <div
-                                    class="w-32 h-20 md:w-48 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border border-white/20 shadow-lg">
-                                    <img :src="img" class="w-full h-full object-cover opacity-80 mix-blend-luminosity">
+                                    class="w-32 h-20 md:w-48 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border-2 border-pm-dark shadow-[4px_4px_0px_0px_#191B32] bg-white">
+                                    <img :src="img" class="w-full h-full object-cover">
                                 </div>
                             </template>
                         </div>
