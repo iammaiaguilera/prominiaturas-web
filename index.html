@@ -109,7 +109,7 @@
 
     <!-- HERO -->
     <header
-        class="pt-32 md:pt-40 pb-16 md:pb-24 px-4 md:px-6 text-center bg-[var(--green-dark)] relative flex flex-col justify-between min-h-[650px] md:min-h-[700px] lg:min-h-[800px] max-h-[900px] 2xl:max-h-none 2xl:min-h-[85vh] overflow-hidden">
+        class="pt-32 md:pt-40 pb-16 md:pb-24 px-4 md:px-6 text-center bg-[var(--green-dark)] relative z-10 flex flex-col justify-between min-h-[650px] md:min-h-[700px] lg:min-h-[800px] max-h-[900px] min-[2000px]:max-h-none min-[2000px]:min-h-[85vh]">
         <!-- Hero Grid (Visible ONLY above 1280px - XL) - RENAMED ID TO PREVENT GHOSTING -->
         <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
             <div id="desktop-only-grid"></div>
@@ -140,7 +140,7 @@
             <!-- pointer-events-none on wrapper so mouse reaches grid -->
             <div>
                 <h1
-                    class="reveal-blur text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl 2xl:text-[9rem] font-black mb-6 md:mb-8 uppercase">
+                    class="reveal-blur text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl min-[2000px]:text-[9rem] font-black mb-6 md:mb-8 uppercase">
                     <span x-text="$store.lang.t('hero_title_1')">STOP THE SCROLL.</span> <br>
                     <span class="inline-block -rotate-1 italic transition-all duration-300
                                  text-white bg-transparent
@@ -175,19 +175,13 @@
             <div id="hero-slider-track">
                 <!-- Javascript will populate this -->
             </div>
-            <!-- Fade overlay left/right -->
-            <div
-                class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--green-dark)] to-transparent pointer-events-none z-30">
-            </div>
-            <div
-                class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[var(--green-dark)] to-transparent pointer-events-none z-30">
-            </div>
         </div>
 
     </header>
 
     <!-- TESTIMONIALS (REDESIGNED) -->
-    <section class="py-12 md:py-16 px-4 md:px-6 bg-[var(--dark)] border-b-4 border-pm-dark overflow-hidden relative">
+    <section
+        class="py-12 md:py-16 px-4 md:px-6 bg-[var(--dark)] border-b-4 border-pm-dark overflow-hidden relative z-30">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <!-- Left: The Content -->
             <div class="relative z-10 order-2 lg:order-1">

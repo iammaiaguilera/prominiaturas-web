@@ -12,12 +12,19 @@
     --kontigo: #FF7400;
 }
 
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     font-family: 'Unbounded', sans-serif;
     background-color: var(--cream);
     color: var(--dark);
     overflow-x: hidden;
     scroll-behavior: smooth;
+    width: 100%;
+    position: relative;
 }
 
 h1,
@@ -404,11 +411,11 @@ h3,
     margin-top: 0;
     /* Closer to buttons */
     height: 350px;
-    overflow: hidden;
+    overflow: visible !important;
     cursor: grab;
-    z-index: 20;
+    z-index: 10;
     perspective: 1000px;
-    mask-image: linear-gradient(to right, transparent, #191B32 15%, #191B32 85%, transparent);
+    /* mask-image removed to stop clipping */
     user-select: none;
     -webkit-user-select: none;
 }
@@ -433,8 +440,8 @@ h3,
     /* 16:9 ratio approx */
     margin-left: -220px;
     /* Center horizontally */
-    margin-top: -123px;
-    /* Center vertically */
+    margin-top: -50px;
+    /* CHANGE THIS: More negative (-150px) = UP, Less negative (-100px) = DOWN */
     border-radius: 16px;
     overflow: hidden;
     background: #000;
