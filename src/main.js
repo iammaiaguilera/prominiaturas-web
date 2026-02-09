@@ -204,7 +204,7 @@ document.addEventListener('alpine:init', () => {
                 nav_contact: "¡Contáctanos!",
                 hero_title_1: "DETÉN EL SCROLL.",
                 hero_title_2: "TEN EL CLICK.",
-                hero_desc: "Diseñamos miniaturas que evaden la lógica y apuntan al instinto del espectador. Ingeniería visual de alta gama para creadores que no se conforman con el \"promedio\".",
+                hero_desc: "Diseñamos miniaturas que evaden la lógica y apuntan al instinto del espectador.",
                 btn_pricing: "VER PRECIOS",
                 btn_gallery: "VER GALERÍA",
                 trusted_by: "CONFIADO POR",
