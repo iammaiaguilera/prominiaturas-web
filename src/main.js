@@ -341,6 +341,51 @@ Alpine.data('app', () => ({
         this.inquiry = `${start} ${plan} ${end}`;
         document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     },
+    // LIGHTBOX NAVIGATION LOGIC
+    currentImageIndex: 0,
+    currentList: 'essential', // 'essential' or 'pro'
+
+    openLightbox(index, type) {
+        this.currentList = type;
+        this.currentImageIndex = index;
+        this.lightboxOpen = true;
+
+        if (type === 'essential') {
+            this.activeImg = this.essentialImages[index];
+            this.isPro = false;
+        } else {
+            this.activeImg = this.proImages[index];
+            this.isPro = true;
+            this.viewMode = 'final'; // Reset view mode
+            this.sliderPosition = 50;
+        }
+    },
+
+    nextImage() {
+        let list = this.currentList === 'essential' ? this.essentialImages : this.proImages;
+        this.currentImageIndex = (this.currentImageIndex + 1) % list.length;
+
+        if (this.currentList === 'essential') {
+            this.activeImg = list[this.currentImageIndex];
+        } else {
+            this.activeImg = list[this.currentImageIndex];
+            // Keep viewMode or reset? Usually keep context.
+            // this.viewMode = 'final'; 
+        }
+    },
+
+    prevImage() {
+        let list = this.currentList === 'essential' ? this.essentialImages : this.proImages;
+
+        // Handle negative modulo correctly in JS
+        this.currentImageIndex = (this.currentImageIndex - 1 + list.length) % list.length;
+
+        if (this.currentList === 'essential') {
+            this.activeImg = list[this.currentImageIndex];
+        } else {
+            this.activeImg = list[this.currentImageIndex];
+        }
+    },
     formSuccess: false,
     async submitForm(e) {
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxwdg2d1ePxuDUB2AsDA-AuhmsWCLW3j574BV7UXg2NCWC_V0g6woOy4wc0AWYHy1N_/exec';
