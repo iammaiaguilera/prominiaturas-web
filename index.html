@@ -958,6 +958,12 @@
                     <textarea rows="4" name="inquiry" x-model="inquiry" placeholder="tell us about your channel..."
                         required
                         class="w-full p-3 md:p-4 bg-white/80 focus:bg-white neo-brutal-sm rounded-2xl font-bold outline-none border-transparent focus:border-[var(--green)] transition-all"></textarea>
+
+                    <!-- HONEYPOT TRAP (Hidden from humans, visible to bots) -->
+                    <div class="hidden" aria-hidden="true">
+                        <label>Don't fill this field: <input type="text" name="confirm_email" x-model="botField"
+                                tabindex="-1" autocomplete="off"></label>
+                    </div>
                     <button type="submit"
                         class="w-full py-4 md:py-6 bg-[var(--green)] neo-brutal-sm text-[var(--dark)] font-black text-xl md:text-2xl uppercase hover:bg-[var(--green-dark)] transition-all shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">Send
                         Inquiry</button>

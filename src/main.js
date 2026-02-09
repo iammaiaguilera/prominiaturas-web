@@ -124,7 +124,7 @@ document.addEventListener('alpine:init', () => {
                 starter_features: ["✓ 1 Functional Design", "✓ 24h Delivery", "✓ 2 Revision rounds", "✓ Money Warranty"],
                 master_title: "Master",
                 master_credits: "8 thumbnail credits",
-                master_features: ["✓ 8 Functional Designs", "✓ Priority Allocation", "✓ Unlimited Revisions", "✓ Access to ZAP by Prominiatura (soon)", "✓ Money Warranty"],
+                master_features: ["✓ 8 Functional Designs", "✓ Priority Allocation", "✓ Unlimited Revisions", "✓ Access to ZAP by Pro Miniaturas (soon)", "✓ Money Warranty"],
                 growth_title: "Growth",
                 growth_credits: "4 thumbnail credits",
                 growth_features: ["✓ 4 Functional Designs", "✓ Strategy Insight", "✓ 4 Revision Rounds", "✓ Money Warranty"],
@@ -138,7 +138,7 @@ document.addEventListener('alpine:init', () => {
                 apex_credits: "1 PRO thumbnail credit",
                 apex_features: ["✓ 3D Blender Sketch", "✓ Top notch AI", "✓ Dedicated Designer", "✓ Custom Asset Creation", "✓ 2 Revision rounds", "✓ Money Warranty"],
                 empire_credits: "4 PRO thumbnail credits",
-                empire_features: ["✓ 4 Elite Masterpieces", "✓ 3D Blender Sketch", "✓ Top notch AI", "✓ Dedicated Designer", "✓ Strategic Consultation", "✓ Unlimited Revisions", "✓ Access to ZAP by Prominiatura (soon)", "✓ Money Warranty"],
+                empire_features: ["✓ 4 Elite Masterpieces", "✓ 3D Blender Sketch", "✓ Top notch AI", "✓ Dedicated Designer", "✓ Strategic Consultation", "✓ Unlimited Revisions", "✓ Access to ZAP by Pro Miniaturas (soon)", "✓ Money Warranty"],
                 best_value: "BEST VALUE",
                 faq_title: "Questions? Answers:",
                 faq_desc: "Can't find the answer you're looking for? Reach out to our team directly via our <a href='#contact' class='text-[var(--purple-dark)] underline hover:text-[var(--purple)] transition-colors'>contact form</a>.",
@@ -244,7 +244,7 @@ document.addEventListener('alpine:init', () => {
                 starter_features: ["✓ 1 Diseño Funcional", "✓ Entrega 24h", "✓ 2 Rondas de revisión", "✓ Garantía de Reembolso"],
                 master_title: "Master",
                 master_credits: "8 créditos de miniatura",
-                master_features: ["✓ 8 Diseños Funcionales", "✓ Asignación Prioritaria", "✓ Revisiones Ilimitadas", "✓ Acceso a ZAP by Prominiatura (pronto)", "✓ Garantía de Reembolso"],
+                master_features: ["✓ 8 Diseños Funcionales", "✓ Asignación Prioritaria", "✓ Revisiones Ilimitadas", "✓ Acceso a ZAP by Pro Miniaturas (pronto)", "✓ Garantía de Reembolso"],
                 growth_title: "Growth",
                 growth_credits: "4 créditos de miniatura",
                 growth_features: ["✓ 4 Diseños Funcionales", "✓ Insight de Estrategia", "✓ 4 Rondas de revisión", "✓ Garantía de Reembolso"],
@@ -258,7 +258,7 @@ document.addEventListener('alpine:init', () => {
                 apex_credits: "1 crédito de miniatura PRO",
                 apex_features: ["✓ Boceto 3D Blender", "✓ Top notch AI", "✓ Diseñador dedicado", "✓ Creación de Activos Custom", "✓ 2 rondas de revisión", "✓ Garantía de Reembolso"],
                 empire_credits: "4 créditos de miniatura PRO",
-                empire_features: ["✓ 4 Obras Maestras Elite", "✓ Boceto 3D Blender", "✓ Top notch AI", "✓ Diseñador dedicado", "✓ Consultoría Estratégica", "✓ Revisiones Ilimitadas", "✓ Acceso a ZAP by Prominiatura (pronto)", "✓ Garantía de Reembolso"],
+                empire_features: ["✓ 4 Obras Maestras Elite", "✓ Boceto 3D Blender", "✓ Top notch AI", "✓ Diseñador dedicado", "✓ Consultoría Estratégica", "✓ Revisiones Ilimitadas", "✓ Acceso a ZAP by Pro Miniaturas (pronto)", "✓ Garantía de Reembolso"],
                 best_value: "MEJOR VALOR",
                 faq_title: "¿Preguntas? Respuestas:",
                 faq_desc: "¿No encuentras la respuesta que buscas? Contacta directamente a nuestro equipo a través del <a href='#contact' class='text-[var(--purple-dark)] underline hover:text-[var(--purple)] transition-colors'>formulario de contacto</a>.",
@@ -386,8 +386,30 @@ Alpine.data('app', () => ({
             this.activeImg = list[this.currentImageIndex];
         }
     },
+    prevImage() {
+        let list = this.currentList === 'essential' ? this.essentialImages : this.proImages;
+
+        // Handle negative modulo correctly in JS
+        this.currentImageIndex = (this.currentImageIndex - 1 + list.length) % list.length;
+
+        if (this.currentList === 'essential') {
+            this.activeImg = list[this.currentImageIndex];
+        } else {
+            this.activeImg = list[this.currentImageIndex];
+        }
+    },
     formSuccess: false,
+    botField: '', // HONEYPOT TRAP 🍯
     async submitForm(e) {
+        // ANTISPAM CHECK: If botField has value, it's a bot.
+        if (this.botField) {
+            console.log('Bot detected. Submission blocked.');
+            this.formSuccess = true; // Fake success to confuse bot
+            this.resetForm();
+            setTimeout(() => this.formSuccess = false, 5000);
+            return;
+        }
+
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxwdg2d1ePxuDUB2AsDA-AuhmsWCLW3j574BV7UXg2NCWC_V0g6woOy4wc0AWYHy1N_/exec';
         const form = e.target;
         const btn = form.querySelector('button');
