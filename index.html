@@ -593,12 +593,47 @@
                                         class="text-lg opacity-80">USD</span></div>
                                 <ul class="space-y-3 mb-8 text-sm font-bold flex-grow text-pm-dark">
                                     <template x-for="feature in $store.lang.t('master_features')">
-                                        <li class="flex items-start gap-2">
-                                            <div
-                                                class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                                <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[3]"></i>
-                                            </div>
-                                            <span x-text="feature.replace('✓', '').trim()"></span>
+                                        <li class="flex items-start gap-2"
+                                            :class="feature.includes('ZAP') ? 'w-full' : ''">
+                                            <!-- Standard Feature -->
+                                            <template x-if="!feature.includes('ZAP')">
+                                                <div class="contents">
+                                                    <div
+                                                        class="w-5 h-5 mt-0.5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
+                                                        <i data-lucide="check"
+                                                            class="w-3 h-3 text-pm-dark stroke-[3]"></i>
+                                                    </div>
+                                                    <span x-text="feature.replace('✓', '').trim()"></span>
+                                                </div>
+                                            </template>
+
+                                            <!-- ZAP Badge Feature -->
+                                            <template x-if="feature.includes('ZAP')">
+                                                <div
+                                                    class="w-full mt-1 bg-pm-dark rounded-xl p-3 border border-[var(--green)]/30 flex items-center justify-between gap-3 shadow-sm group cursor-help relative overflow-hidden">
+                                                    <!-- Glow effect -->
+                                                    <div
+                                                        class="absolute inset-0 bg-[var(--green)]/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 relative z-10">
+                                                        <div class="bg-[var(--green)]/20 p-1 rounded-md">
+                                                            <i data-lucide="zap"
+                                                                class="w-4 h-4 text-[var(--green)] fill-[var(--green)]"></i>
+                                                        </div>
+                                                        <div class="flex flex-col leading-none">
+                                                            <span
+                                                                class="text-[var(--green)] font-black text-xs uppercase tracking-wider">Access
+                                                                to ZAP</span>
+                                                            <span
+                                                                class="text-[10px] text-gray-400 font-bold uppercase">By
+                                                                Pro Miniaturas</span>
+                                                        </div>
+                                                    </div>
+                                                    <span
+                                                        class="relative z-10 bg-[var(--green)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide">Soon</span>
+                                                </div>
+                                            </template>
                                         </li>
                                     </template>
                                 </ul>
@@ -706,12 +741,44 @@
                                     class="text-base md:text-xl text-[var(--cream)]">USD</span></div>
                             <ul class="space-y-4 mb-10 text-sm font-bold flex-grow text-white">
                                 <template x-for="feature in $store.lang.t('empire_features')">
-                                    <li class="flex items-start gap-2">
-                                        <div
-                                            class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                            <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[4]"></i>
-                                        </div>
-                                        <span x-text="feature.replace('✓', '').trim()"></span>
+                                    <li class="flex items-start gap-2" :class="feature.includes('ZAP') ? 'w-full' : ''">
+                                        <!-- Standard Feature -->
+                                        <template x-if="!feature.includes('ZAP')">
+                                            <div class="contents">
+                                                <div
+                                                    class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
+                                                    <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[4]"></i>
+                                                </div>
+                                                <span x-text="feature.replace('✓', '').trim()"></span>
+                                            </div>
+                                        </template>
+
+                                        <!-- ZAP Badge Feature -->
+                                        <template x-if="feature.includes('ZAP')">
+                                            <div
+                                                class="w-full mt-1 bg-black/40 rounded-xl p-3 border border-[var(--green)]/30 flex items-center justify-between gap-3 shadow-sm group cursor-help relative overflow-hidden backdrop-blur-sm">
+                                                <!-- Glow effect -->
+                                                <div
+                                                    class="absolute inset-0 bg-[var(--green)]/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                </div>
+
+                                                <div class="flex items-center gap-2 relative z-10">
+                                                    <div class="bg-[var(--green)]/20 p-1 rounded-md">
+                                                        <i data-lucide="zap"
+                                                            class="w-4 h-4 text-[var(--green)] fill-[var(--green)]"></i>
+                                                    </div>
+                                                    <div class="flex flex-col leading-none">
+                                                        <span
+                                                            class="text-[var(--green)] font-black text-xs uppercase tracking-wider">Access
+                                                            to ZAP</span>
+                                                        <span class="text-[10px] text-white/60 font-bold uppercase">By
+                                                            Pro Miniaturas</span>
+                                                    </div>
+                                                </div>
+                                                <span
+                                                    class="relative z-10 bg-[var(--green)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide">Soon</span>
+                                            </div>
+                                        </template>
                                     </li>
                                 </template>
                             </ul>
