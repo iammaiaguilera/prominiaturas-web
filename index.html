@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRO Miniaturas | Authority Thumbnails</title>
+    <title>PRO Miniaturas | Premium Thumbnail Design Agency</title>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/src/style.css">
@@ -199,7 +199,6 @@
                         <path
                             d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
                     </svg>
-
                 </div>
 
                 <div class="h-auto min-h-[180px] relative flex flex-col justify-center">
@@ -369,7 +368,7 @@
                         x-transition:enter-start="opacity-0 blur-sm translate-y-10"
                         x-transition:enter-end="opacity-100 blur-0 translate-y-0"
                         class="reveal-blur aspect-video neo-brutal bg-slate-200 cursor-zoom-in group md:hover:scale-[1.02] transition-transform overflow-hidden relative"
-                        @click="lightboxOpen = true; activeImg = img; isPro = false">
+                        @click="openLightbox(index, 'essential')">
                         <img :src="img" class="w-full h-full object-cover" loading="lazy" alt="Thumbnail">
                     </div>
                 </template>
@@ -380,7 +379,7 @@
                         x-transition:enter-start="opacity-0 blur-sm translate-y-10"
                         x-transition:enter-end="opacity-100 blur-0 translate-y-0"
                         class="reveal-blur aspect-video neo-brutal bg-slate-900 cursor-zoom-in group md:hover:scale-[1.02] transition-transform relative overflow-hidden"
-                        @click="lightboxOpen = true; activeImg = item; isPro = true; viewMode = 'final'">
+                        @click="openLightbox(index, 'pro')">
                         <img :src="item.final"
                             class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                             alt="Pro Thumbnail">
@@ -959,6 +958,12 @@
                     <textarea rows="4" name="inquiry" x-model="inquiry" placeholder="tell us about your channel..."
                         required
                         class="w-full p-3 md:p-4 bg-white/80 focus:bg-white neo-brutal-sm rounded-2xl font-bold outline-none border-transparent focus:border-[var(--green)] transition-all"></textarea>
+
+                    <!-- HONEYPOT TRAP (Hidden from humans, visible to bots) -->
+                    <div class="hidden" aria-hidden="true">
+                        <label>Don't fill this field: <input type="text" name="confirm_email" x-model="botField"
+                                tabindex="-1" autocomplete="off"></label>
+                    </div>
                     <button type="submit"
                         class="w-full py-4 md:py-6 bg-[var(--green)] neo-brutal-sm text-[var(--dark)] font-black text-xl md:text-2xl uppercase hover:bg-[var(--green-dark)] transition-all shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">Send
                         Inquiry</button>
@@ -1020,7 +1025,7 @@
                             class="hover:text-white transition-colors">peteralliaguilera@outlook.com</a></li>
                 </ul>
                 <p class="text-xs text-slate-500 mt-4 mb-2 italic leading-relaxed"
-                    x-text="$store.lang.t('footer_business')">For business inquiries, please prefer
+                    x-text="$store.lang.t('footer_business')">For business inquiries, please prefer @prominiaturas.com
                     email or just fill the form.</p>
                 <div class="font-medium text-slate-400 text-sm">+58 424 357 3159</div>
             </div>
@@ -1119,7 +1124,9 @@
     <!-- LIGHTBOX -->
     <div x-show="lightboxOpen" x-transition.opacity x-cloak
         class="fixed inset-0 z-[100] bg-pm-dark/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
-        @click.self="lightboxOpen = false">
+        @click.self="lightboxOpen = false" @keydown.window.escape="lightboxOpen = false"
+        @keydown.window.arrow-left="if(lightboxOpen) prevImage()"
+        @keydown.window.arrow-right="if(lightboxOpen) nextImage()">
 
         <!-- Main Container Card (Holds Everything) -->
         <div class="relative w-full max-w-5xl bg-[var(--cream)] rounded-[2rem] p-3 md:p-4 shadow-2xl flex flex-col gap-6"
@@ -1140,6 +1147,22 @@
                 <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
             </button>
 
+            <!-- Desktop Navigation Arrows (Absolute Side - Visible only on Extra Large Screens) -->
+            <button @click.stop="prevImage()"
+                class="hidden xl:flex absolute top-1/2 -left-24 -translate-y-1/2 bg-white text-pm-dark w-16 h-16 rounded-full border-4 border-pm-dark hover:bg-[var(--green)] hover:scale-110 transition-all z-50 items-center justify-center shadow-[4px_4px_0px_0px_#191B32]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+            </button>
+            <button @click.stop="nextImage()"
+                class="hidden xl:flex absolute top-1/2 -right-24 -translate-y-1/2 bg-white text-pm-dark w-16 h-16 rounded-full border-4 border-pm-dark hover:bg-[var(--green)] hover:scale-110 transition-all z-50 items-center justify-center shadow-[4px_4px_0px_0px_#191B32]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
             <!-- Image Area (Strict 16/9) -->
             <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black relative border-4 border-pm-dark"
                 x-ref="compareContainer">
@@ -1155,15 +1178,15 @@
 
                         <!-- 1. Final Only -->
                         <img x-show="viewMode === 'final'" :src="activeImg.final"
-                            class="w-full h-full object-cover absolute inset-0" x-transition.opacity>
+                            class="w-full h-full object-cover absolute inset-0">
 
                         <!-- 2. Sketch Only -->
                         <img x-show="viewMode === 'sketch'" :src="activeImg.sketch"
-                            class="w-full h-full object-cover absolute inset-0" x-transition.opacity>
+                            class="w-full h-full object-cover absolute inset-0">
 
-                        <!-- 3. Comparison Mode -->
-                        <div x-show="viewMode === 'compare'" class="w-full h-full relative" @mousedown="dragging = true"
-                            @touchstart="dragging = true">
+                        <!-- 3. Comparison Mode - Touch Action None prevents scroll -->
+                        <div x-show="viewMode === 'compare'" class="w-full h-full relative touch-none"
+                            @mousedown="dragging = true" @touchstart="dragging = true">
                             <!-- Background: Sketch -->
                             <img :src="activeImg.sketch" class="w-full h-full object-cover absolute inset-0">
 
@@ -1189,6 +1212,24 @@
 
                     </div>
                 </template>
+            </div>
+
+            <!-- Mobile/Tablet Navigation Buttons (Below Image - Brand Color & XL Visibility) -->
+            <div class="grid grid-cols-2 gap-6 w-full xl:hidden pt-2">
+                <button @click.stop="prevImage()"
+                    class="bg-[var(--green)] border-4 border-pm-dark text-pm-dark py-5 rounded-2xl flex items-center justify-center hover:bg-[var(--green-dark)] btn-press-anim transition-colors shadow-[4px_4px_0px_0px_#191B32] active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+                <button @click.stop="nextImage()"
+                    class="bg-[var(--green)] border-4 border-pm-dark text-pm-dark py-5 rounded-2xl flex items-center justify-center hover:bg-[var(--green-dark)] btn-press-anim transition-colors shadow-[4px_4px_0px_0px_#191B32] active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
             </div>
 
             <!-- Controls (Pro Only) -->
