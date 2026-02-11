@@ -583,20 +583,21 @@
                                 x-text="$store.lang.t('save_160')">SAVE $160</div>
                         </div>
                         <div class="glow-border-inset h-full">
-                            <div class="h-full bg-gradient-to-br from-[var(--cream)] via-[var(--cream)] to-purple-200 p-6 md:p-4 flex flex-col relative z-10"
+                            <div class="h-full bg-gradient-to-br from-[var(--cream)] via-purple-100 to-purple-300 p-6 md:p-4 flex flex-col relative z-10"
                                 style="border-radius: 1.2rem;">
                                 <h3 class="font-black text-2xl mb-1 text-pm-dark"
                                     x-text="$store.lang.t('master_title')">Master</h3>
                                 <p class="text-sm font-bold text-slate-600 mb-6"
                                     x-text="$store.lang.t('master_credits')">8 thumbnail credits</p>
-                                <div class="text-4xl md:text-5xl font-black mb-6 text-pm-dark">$240 <span
+                                <div class="text-4xl md:text-5xl font-black mb-6 text-pm-dark">$280 <span
                                         class="text-lg opacity-80">USD</span></div>
                                 <ul class="space-y-3 mb-8 text-sm font-bold flex-grow text-pm-dark">
                                     <template x-for="feature in $store.lang.t('master_features')">
-                                        <li class="flex items-start gap-2"
-                                            :class="feature.includes('ZAP') ? 'w-full' : ''">
+                                        <li class="flex items-start gap-2 max-w-full"
+                                            :class="feature === 'EXCLUSIVE_MASTER_BUNDLE' ? 'w-full' : ''">
+
                                             <!-- Standard Feature -->
-                                            <template x-if="!feature.includes('ZAP')">
+                                            <template x-if="feature !== 'EXCLUSIVE_MASTER_BUNDLE'">
                                                 <div class="contents">
                                                     <div
                                                         class="w-5 h-5 mt-0.5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
@@ -607,33 +608,65 @@
                                                 </div>
                                             </template>
 
-                                            <!-- ZAP Badge Feature -->
-                                            <template x-if="feature.includes('ZAP')">
+                                            <!-- EXCLUSIVE BUNDLE BOX -->
+                                            <template x-if="feature === 'EXCLUSIVE_MASTER_BUNDLE'">
                                                 <div
-                                                    class="w-full mt-1 bg-pm-dark rounded-xl p-3 border border-[var(--green)]/30 flex items-center justify-between gap-3 shadow-sm group cursor-help relative overflow-hidden">
-                                                    <!-- Glow effect -->
+                                                    class="w-full mt-2 bg-pm-dark rounded-xl p-3 border border-[var(--green)]/30 overflow-hidden shadow-lg flex flex-col gap-1">
+
+                                                    <!-- Item 1: RUSH -->
                                                     <div
-                                                        class="absolute inset-0 bg-[var(--green)]/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        class="w-full p-2 ps-3 rounded-lg bg-white/5 flex items-center justify-between gap-3 group/item hover:bg-white/10 transition-colors">
+                                                        <div
+                                                            class="flex items-center gap-2 relative z-10 overflow-hidden">
+                                                            <div
+                                                                class="bg-[var(--green)]/20 p-1 rounded-md flex-shrink-0">
+                                                                <i data-lucide="timer"
+                                                                    class="w-4 h-4 text-[var(--green)] stroke-[3]"></i>
+                                                            </div>
+                                                            <div class="flex flex-col leading-none overflow-hidden">
+                                                                <span
+                                                                    class="text-[var(--green)] font-black text-xs uppercase tracking-wider truncate"
+                                                                    x-text="$store.lang.t('rush_title')">Exclusive Rush
+                                                                    Rate</span>
+                                                                <span
+                                                                    class="text-[10px] text-gray-400 font-bold uppercase truncate"
+                                                                    x-text="$store.lang.t('rush_desc')">10% OFF for rush
+                                                                    orders
+                                                                </span>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="flex items-center gap-2 relative z-10">
-                                                        <div class="bg-[var(--green)]/20 p-1 rounded-md">
-                                                            <i data-lucide="zap"
-                                                                class="w-4 h-4 text-[var(--green)] fill-[var(--green)]"></i>
+                                                    <!-- Separator -->
+                                                    <div class="h-px bg-[var(--green)]/20 mx-3"></div>
+
+                                                    <!-- Item 2: ZAP -->
+                                                    <div
+                                                        class="w-full p-2 ps-3 rounded-lg bg-white/5 flex items-center justify-between gap-3 group/item hover:bg-white/10 transition-colors">
+                                                        <div
+                                                            class="flex items-center gap-2 relative z-10 overflow-hidden">
+                                                            <div
+                                                                class="bg-[var(--green)]/20 p-1 rounded-md flex-shrink-0">
+                                                                <i data-lucide="zap"
+                                                                    class="w-4 h-4 text-[var(--green)] fill-[var(--green)]"></i>
+                                                            </div>
+                                                            <div class="flex flex-col leading-none overflow-hidden">
+                                                                <span
+                                                                    class="text-[var(--green)] font-black text-xs uppercase tracking-wider truncate"
+                                                                    x-text="$store.lang.t('access_zap')">Access to
+                                                                    ZAP</span>
+                                                                <span
+                                                                    class="text-[10px] text-gray-400 font-bold uppercase truncate"
+                                                                    x-text="$store.lang.t('by_prominiaturas')">By Pro
+                                                                    Miniaturas</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="flex flex-col leading-none">
-                                                            <span
-                                                                class="text-[var(--green)] font-black text-xs uppercase tracking-wider"
-                                                                x-text="$store.lang.t('access_zap')">Access
-                                                                to ZAP</span>
-                                                            <span class="text-[10px] text-gray-400 font-bold uppercase"
-                                                                x-text="$store.lang.t('by_prominiaturas')">By
-                                                                Pro Miniaturas</span>
+                                                        <div class="bg-[var(--green)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide shadow-sm flex-shrink-0"
+                                                            x-text="$store.lang.t('soon')">
+                                                            SOON
                                                         </div>
                                                     </div>
-                                                    <span
-                                                        class="relative z-10 bg-[var(--green)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide"
-                                                        x-text="$store.lang.t('soon')">Soon</span>
+
                                                 </div>
                                             </template>
                                         </li>
@@ -657,7 +690,7 @@
                         </h3>
                         <p class="text-sm font-bold text-slate-500 mb-6" x-text="$store.lang.t('growth_credits')">4
                             thumbnail credits</p>
-                        <div class="text-4xl md:text-5xl font-black mb-6 text-pm-dark">$140 <span
+                        <div class="text-4xl md:text-5xl font-black mb-6 text-pm-dark">$180 <span
                                 class="text-lg">USD</span></div>
                         <ul class="space-y-3 mb-8 text-sm font-bold flex-grow text-pm-dark">
                             <template x-for="feature in $store.lang.t('growth_features')">
@@ -743,9 +776,10 @@
                                     class="text-base md:text-xl text-[var(--cream)]">USD</span></div>
                             <ul class="space-y-4 mb-10 text-sm font-bold flex-grow text-white">
                                 <template x-for="feature in $store.lang.t('empire_features')">
-                                    <li class="flex items-start gap-2" :class="feature.includes('ZAP') ? 'w-full' : ''">
+                                    <li class="flex items-start gap-2 max-w-full"
+                                        :class="feature === 'EXCLUSIVE_EMPIRE_BUNDLE' ? 'w-full' : ''">
                                         <!-- Standard Feature -->
-                                        <template x-if="!feature.includes('ZAP')">
+                                        <template x-if="feature !== 'EXCLUSIVE_EMPIRE_BUNDLE'">
                                             <div class="contents">
                                                 <div
                                                     class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
@@ -755,33 +789,64 @@
                                             </div>
                                         </template>
 
-                                        <!-- ZAP Badge Feature -->
-                                        <template x-if="feature.includes('ZAP')">
+                                        <!-- EXCLUSIVE BUNDLE BOX (Empire Style) -->
+                                        <template x-if="feature === 'EXCLUSIVE_EMPIRE_BUNDLE'">
                                             <div
-                                                class="w-full mt-1 bg-black/40 rounded-xl p-3 border border-[var(--green)]/30 flex items-center justify-between gap-3 shadow-sm group cursor-help relative overflow-hidden backdrop-blur-sm">
-                                                <!-- Glow effect -->
+                                                class="w-full mt-2 bg-black/40 backdrop-blur-sm rounded-xl p-3 border border-[var(--green)]/30 overflow-hidden shadow-lg flex flex-col gap-1">
+
+                                                <!-- Item 1: RUSH -->
                                                 <div
-                                                    class="absolute inset-0 bg-[var(--green)]/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    class="w-full p-2 ps-3 rounded-lg bg-white/5 flex items-center justify-between gap-3 group/item hover:bg-white/10 transition-colors">
+                                                    <div class="flex items-center gap-2 relative z-10 overflow-hidden">
+                                                        <div class="bg-[var(--green)]/20 p-1 rounded-md flex-shrink-0">
+                                                            <i data-lucide="timer"
+                                                                class="w-4 h-4 text-[var(--green)] stroke-[3]"></i>
+                                                        </div>
+                                                        <div class="flex flex-col leading-none overflow-hidden">
+                                                            <span
+                                                                class="text-[var(--green)] font-black text-xs uppercase tracking-wider truncate"
+                                                                x-text="$store.lang.t('rush_title')">Priority Rush
+                                                                Rate</span>
+                                                            <span
+                                                                class="text-[10px] text-white/60 font-bold uppercase truncate"
+                                                                x-text="$store.lang.t('rush_desc')">Exclusive discount
+                                                                for urgent delivery</span>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-[var(--green)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide shadow-sm flex-shrink-0">
+                                                        -10%
+                                                    </div>
                                                 </div>
 
-                                                <div class="flex items-center gap-2 relative z-10">
-                                                    <div class="bg-[var(--green)]/20 p-1 rounded-md">
-                                                        <i data-lucide="zap"
-                                                            class="w-4 h-4 text-[var(--green)] fill-[var(--green)]"></i>
+                                                <!-- Separator -->
+                                                <div class="h-px bg-[var(--green)]/20 mx-3"></div>
+
+                                                <!-- Item 2: ZAP -->
+                                                <div
+                                                    class="w-full p-2 ps-3 bg-white/5 rounded-lg flex items-center justify-between gap-3 group/item hover:bg-white/10 transition-colors">
+                                                    <div class="flex items-center gap-2 relative z-10 overflow-hidden">
+                                                        <div class="bg-[var(--green)]/20 p-1 rounded-md flex-shrink-0">
+                                                            <i data-lucide="zap"
+                                                                class="w-4 h-4 text-[var(--green)] fill-[var(--green)]"></i>
+                                                        </div>
+                                                        <div class="flex flex-col leading-none overflow-hidden">
+                                                            <span
+                                                                class="text-[var(--green)] font-black text-xs uppercase tracking-wider truncate"
+                                                                x-text="$store.lang.t('access_zap')">Access to
+                                                                ZAP</span>
+                                                            <span
+                                                                class="text-[10px] text-white/60 font-bold uppercase truncate"
+                                                                x-text="$store.lang.t('by_prominiaturas')">By Pro
+                                                                Miniaturas</span>
+                                                        </div>
                                                     </div>
-                                                    <div class="flex flex-col leading-none">
-                                                        <span
-                                                            class="text-[var(--green)] font-black text-xs uppercase tracking-wider"
-                                                            x-text="$store.lang.t('access_zap')">Access
-                                                            to ZAP</span>
-                                                        <span class="text-[10px] text-white/60 font-bold uppercase"
-                                                            x-text="$store.lang.t('by_prominiaturas')">By
-                                                            Pro Miniaturas</span>
+                                                    <div class="bg-[var(--green)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide shadow-sm flex-shrink-0"
+                                                        x-text="$store.lang.t('soon')">
+                                                        SOON
                                                     </div>
                                                 </div>
-                                                <span
-                                                    class="relative z-10 bg-[var(--green)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide"
-                                                    x-text="$store.lang.t('soon')">Soon</span>
+
                                             </div>
                                         </template>
                                     </li>
