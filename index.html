@@ -1088,7 +1088,47 @@
                         x-text="$store.lang.t('a9')">
                     </div>
                 </div>
+                <!-- Question 10: What is Rush Fee? -->
+                <div class="reveal-blur delay-300 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="info" class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q10')">What is a Rush
+                                Fee?</span>
+                        </div>
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base md:text-xl text-slate-600"
+                        x-html="$store.lang.t('a10')">
+                    </div>
+                </div>
+
+                <!-- Question 11: How to Request? -->
+                <div class="reveal-blur delay-300 border-4 border-pm-purple bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="flame" class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q11')">Request Urgent
+                                Delivery</span>
+                        </div>
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base md:text-xl text-slate-600"
+                        x-html="$store.lang.t('a11')">
+                    </div>
+                </div>
             </div>
+        </div>
         </div>
     </section>
 

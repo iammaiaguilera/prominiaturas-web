@@ -1,4 +1,4 @@
-import { createIcons, Zap, RefreshCw, ShieldCheck, Target, Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp, Instagram, Facebook, Clapperboard, Globe, Music2, Menu, Crown, Check, ChevronRight, ArrowLeftRight, FileText, Lightbulb, TrendingUp, CreditCard, Cuboid, Gift, FileImage, Timer } from 'lucide';
+import { createIcons, Zap, RefreshCw, ShieldCheck, Target, Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp, Instagram, Facebook, Clapperboard, Globe, Music2, Menu, Crown, Check, ChevronRight, ArrowLeftRight, FileText, Lightbulb, TrendingUp, CreditCard, Cuboid, Gift, FileImage, Timer, Info, Flame } from 'lucide';
 import Alpine from 'alpinejs';
 import intersect from '@alpinejs/intersect';
 import collapse from '@alpinejs/collapse';
@@ -171,6 +171,10 @@ document.addEventListener('alpine:init', () => {
                 a8: "Adjustments to font, colors, lighting, or moving elements around within the same concept. Changing the entire idea/direction of the thumbnail counts as a new design credit.",
                 q9: "How fast are revisions delivered?",
                 a9: "Much faster than the first draft. We prioritize edits to typically deliver them within less than 1 hour.",
+                q10: "What is a Rush Fee?",
+                a10: "A Rush Fee is an optional surcharge for prioritized, urgent delivery.<br><br><strong>Standard Rate:</strong> +120% surcharge (e.g. $40 thumbnail + $48 fee).<br><br><strong>Master & Empire Rate:</strong> Reduced +110% surcharge (e.g. $40 thumbnail + $44 fee).",
+                q11: "How can I request an urgent delivery?",
+                a11: "<strong>Existing Clients:</strong> Just send a message on our communication platform.<br><br><strong>New Clients:</strong> Fill the form, mention your plan, and specify you need a rush delivery.",
                 ready_takeoff: "Ready for ",
                 takeoff_word: "Takeoff?",
                 fill_form: "Fill the form and let's work on your next thumbnail",
@@ -305,6 +309,10 @@ document.addEventListener('alpine:init', () => {
                 a8: "Ajustes de fuente, colores, iluminación o mover elementos dentro del mismo concepto. Cambiar la idea o dirección completa de la miniatura cuenta como un nuevo crédito de diseño.",
                 q9: "¿Qué tan rápido entregan las revisiones?",
                 a9: "Mucho más rápido que el primer borrador. Priorizamos las ediciones para entregártelas típicamente en menos de 1 hora.",
+                q10: "¿Qué es un Rush Fee?",
+                a10: "El Rush Fee es un cargo opcional por entrega prioritaria y urgente.<br><br><strong>Tarifa Estándar:</strong> Recargo de +120% (ej. miniatura de $40 + cargo de $48).<br><br><strong>Tarifa Master y Empire:</strong> Recargo reducido de +110% (ej. miniatura de $40 + cargo de $44).",
+                q11: "¿Cómo solicito una entrega urgente?",
+                a11: "<strong>Clientes Existentes:</strong> Envía un mensaje en nuestra plataforma de comunicación.<br><br><strong>Nuevos Clientes:</strong> Llena el formulario, menciona tu plan y especifica que necesitas entrega urgente.",
                 ready_takeoff: "¿Listo para el ",
                 takeoff_word: "Despegue?",
                 fill_form: "Llena el formulario y a trabajar en tu próxima miniatura",
@@ -592,7 +600,10 @@ createIcons({
         Cuboid,
         Gift,
         FileImage,
-        Timer
+
+        Timer,
+        Info,
+        Flame
     }
 });
 
