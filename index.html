@@ -831,11 +831,14 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
-                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q1')">What
-                            information
-                            do I need to
-                            provide you to create a
-                            thumbnail?</span>
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="file-text" class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q1')">What
+                                information
+                                do I need to
+                                provide you to create a
+                                thumbnail?</span>
+                        </div>
                         <i data-lucide="chevron-down"
                             class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
@@ -851,9 +854,12 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
-                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q2')">Do you help me
-                            brainstorm a
-                            thumbnail concept?</span>
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="lightbulb" class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q2')">Do you help me
+                                brainstorm a
+                                thumbnail concept?</span>
+                        </div>
                         <i data-lucide="chevron-down"
                             class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
@@ -870,18 +876,22 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
-                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q3')">Do you work
-                            with
-                            YouTube
-                            clients
-                            of all sizes?</span>
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="trending-up"
+                                class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q3')">Do you work
+                                with
+                                YouTube
+                                clients
+                                of all sizes?</span>
+                        </div>
                         <i data-lucide="chevron-down"
                             class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-collapse
                         class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base md:text-xl text-slate-600"
-                        x-text="$store.lang.t('a3')">
+                        x-html="$store.lang.t('a3')">
                         Even the greatest channels started with zero subscribers… Of course we will work with you and we
                         will love it. :)
                     </div>
@@ -891,18 +901,19 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
-                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q4')">How do I
-                            pay?</span>
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="credit-card"
+                                class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q4')">How do I
+                                pay?</span>
+                        </div>
                         <i data-lucide="chevron-down"
                             class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-collapse
-                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base md:text-xl text-slate-600">
-                        <p class="mb-2" x-text="$store.lang.t('a4_1')">Main ones: Payoneer, Kontigo, PayPal. (in
-                            that order)</p>
-                        <p x-text="$store.lang.t('a4_2')">Secondary: Zinli, Meru, Binance Pay, AirTM,
-                            Cryptos.</p>
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base md:text-xl text-slate-600"
+                        x-html="$store.lang.t('a4')">
                     </div>
                 </div>
                 <!-- Question 5 -->
@@ -910,9 +921,12 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
-                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q5')">What is a 3D
-                            blender
-                            sketch?</span>
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="cuboid" class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q5')">What is a 3D
+                                blender
+                                sketch?</span>
+                        </div>
                         <i data-lucide="chevron-down"
                             class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
@@ -929,9 +943,12 @@
                     x-data="{ open: false }">
                     <button @click="open = !open"
                         class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
-                        <span class="text-base md:text-xl font-bold flex-1" x-text="$store.lang.t('q6')">Can I get a
-                            free
-                            trial?</span>
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="gift" class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q6')">Can I get a
+                                free
+                                trial?</span>
+                        </div>
                         <i data-lucide="chevron-down"
                             class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
                             :class="open ? 'rotate-180' : ''"></i>
@@ -943,6 +960,62 @@
                             <li x-text="$store.lang.t('a6_l1')">+100k subscribers.</li>
                             <li x-text="$store.lang.t('a6_l2')">Consistency (posting at least once/week)</li>
                         </ol>
+                    </div>
+                </div>
+                <!-- Question 7 -->
+                <div class="reveal-blur delay-100 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="file-image"
+                                class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q7')">PSD?</span>
+                        </div>
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base md:text-xl text-slate-600"
+                        x-text="$store.lang.t('a7')">
+                    </div>
+                </div>
+                <!-- Question 8 -->
+                <div class="reveal-blur delay-200 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="refresh-cw"
+                                class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q8')">Revisions?</span>
+                        </div>
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base md:text-xl text-slate-600"
+                        x-text="$store.lang.t('a8')">
+                    </div>
+                </div>
+                <!-- Question 9 -->
+                <div class="reveal-blur delay-300 border-4 border-pm-dark bg-white rounded-[1.5rem] neo-brutal-sm overflow-hidden"
+                    x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="w-full p-6 text-left flex justify-between items-start md:items-center bg-white hover:bg-slate-50 transition-colors gap-4">
+                        <div class="flex items-start md:items-center gap-3 flex-1">
+                            <i data-lucide="timer" class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5 md:mt-0"></i>
+                            <span class="text-base md:text-xl font-bold" x-text="$store.lang.t('q9')">Speed?</span>
+                        </div>
+                        <i data-lucide="chevron-down"
+                            class="transition-transform duration-300 transform flex-shrink-0 mt-1 md:mt-0"
+                            :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-collapse
+                        class="p-6 pt-0 border-t-2 border-slate-100 font-bold text-base md:text-xl text-slate-600"
+                        x-text="$store.lang.t('a9')">
                     </div>
                 </div>
             </div>
