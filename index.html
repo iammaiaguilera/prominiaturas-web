@@ -1438,17 +1438,21 @@
                             class="w-full h-full object-cover absolute inset-0">
 
                         <!-- 3. Comparison Mode - Touch Action None prevents scroll -->
-                        <div x-show="viewMode === 'compare'" class="w-full h-full relative touch-none"
-                            @mousedown="dragging = true" @touchstart="dragging = true">
+                        <div x-show="viewMode === 'compare'" class="w-full h-full relative touch-none cursor-crosshair"
+                            x-ref="compareContainer" @mousedown="dragging = true" @touchstart="dragging = true"
+                            @click="const rect = $el.getBoundingClientRect(); const x = Math.max(0, Math.min($event.clientX - rect.left, rect.width)); sliderPosition = (x / rect.width) * 100;">
+
                             <!-- Background: Sketch -->
-                            <img :src="activeImg.sketch" class="w-full h-full object-cover absolute inset-0">
+                            <img :src="activeImg.sketch" draggable="false"
+                                class="w-full h-full object-cover absolute inset-0 select-none pointer-events-none">
 
                             <!-- Foreground: Final (Clipped via clip-path) -->
-                            <img :src="activeImg.final" class="w-full h-full object-cover absolute inset-0 max-w-none"
+                            <img :src="activeImg.final" draggable="false"
+                                class="w-full h-full object-cover absolute inset-0 max-w-none select-none pointer-events-none"
                                 :style="`clip-path: inset(0 calc(100% - ${sliderPosition}%) 0 0);`">
 
                             <!-- Slider Handle -->
-                            <div class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+                            <div class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)] pointer-events-none"
                                 :style="`left: ${sliderPosition}%`">
                                 <div
                                     class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-[var(--green)] border-4 border-white rounded-full flex items-center justify-center shadow-lg">
