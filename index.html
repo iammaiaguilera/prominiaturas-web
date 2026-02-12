@@ -49,14 +49,13 @@
                 <!-- Dropdown Language (Visible always, toggle on click for mobile) -->
                 <div class="relative group block" x-data="{ open: false }" @click.away="open = false"
                     @mouseenter="open = true" @mouseleave="open = false">
-                    <button @click="open = !open"
+                    <button @click="open = true"
                         class="group hover:scale-110 transition-transform bg-transparent p-1 flex items-center gap-1"
                         aria-label="Switch Language">
-                        <i data-lucide="globe"
-                            class="w-5 h-5 transition-colors text-slate-400 group-hover:text-pm-dark"></i>
-                        <span
-                            class="text-xs font-bold uppercase transition-colors text-slate-500 group-hover:text-pm-dark"
-                            x-text="$store.lang.current"></span>
+                        <i data-lucide="globe" class="w-5 h-5 transition-colors"
+                            :class="open ? 'text-pm-dark' : 'text-slate-400'"></i>
+                        <span class="text-xs font-bold uppercase transition-colors"
+                            :class="open ? 'text-pm-dark' : 'text-slate-500'" x-text="$store.lang.current"></span>
                     </button>
                     <!-- Language Dropdown -->
                     <div x-show="open" x-transition:enter="transition ease-out duration-200"
