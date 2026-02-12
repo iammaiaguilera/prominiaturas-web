@@ -395,14 +395,14 @@
                 <!-- Load More -->
                 <button x-show="limit < essentialImages.length"
                     @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); lucide.createIcons(); })"
-                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
+                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:bg-[var(--green-dark)] hover:scale-110 transition-all cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
                     <i data-lucide="arrow-down" class="w-10 h-10"></i>
                 </button>
 
                 <!-- Collapse -->
                 <button x-show="limit >= essentialImages.length && limit > 9"
                     @click="limit = 9; document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})"
-                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:scale-110 transition-transform cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
+                    class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:bg-[var(--green-dark)] hover:scale-110 transition-all cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
                     <i data-lucide="arrow-up" class="w-10 h-10"></i>
                 </button>
             </div>
@@ -1396,7 +1396,7 @@
 
             <!-- Close Button (Top Right of Container) -->
             <button @click="lightboxOpen = false"
-                class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-[var(--green)] text-pm-dark w-12 h-12 md:w-16 md:h-16 rounded-xl border-4 border-pm-dark hover:scale-110 hover:rotate-3 transition-transform z-50 flex items-center justify-center cursor-pointer shadow-[4px_4px_0px_0px_#191B32]">
+                class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-[var(--green)] text-pm-dark w-12 h-12 md:w-16 md:h-16 rounded-xl border-4 border-pm-dark hover:bg-[var(--green-dark)] hover:scale-110 hover:rotate-3 transition-all z-50 flex items-center justify-center cursor-pointer shadow-[4px_4px_0px_0px_#191B32]">
                 <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
             </button>
 
