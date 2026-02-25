@@ -394,7 +394,7 @@
             <div class="flex justify-center mt-12" x-show="galleryTab === 'essential'">
                 <!-- Load More -->
                 <button x-show="limit < essentialImages.length"
-                    @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); lucide.createIcons(); })"
+                    @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); window.initIcons(); })"
                     class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:bg-[var(--green-dark)] transition-all cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
                     <i data-lucide="arrow-down" class="w-10 h-10"></i>
                 </button>

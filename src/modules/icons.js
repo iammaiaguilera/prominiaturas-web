@@ -7,7 +7,7 @@
 import {
     createIcons,
     Zap, RefreshCw, ShieldCheck, Target,
-    Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp,
+    Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp, ArrowRight,
     Instagram, Facebook, Clapperboard, Globe, Music2,
     Menu, Crown, Check, ChevronRight, ArrowLeftRight,
     FileText, Lightbulb, TrendingUp, CreditCard, Cuboid,
@@ -18,7 +18,7 @@ export function initIcons() {
     createIcons({
         icons: {
             Zap, RefreshCw, ShieldCheck, Target,
-            Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp,
+            Mail, Phone, X, ChevronDown, ArrowDown, ArrowUp, ArrowRight,
             Instagram, Facebook, Clapperboard, Globe, Music2,
             Menu, Crown, Check, ChevronRight, ArrowLeftRight,
             FileText, Lightbulb, TrendingUp, CreditCard, Cuboid,

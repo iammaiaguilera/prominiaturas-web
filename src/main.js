@@ -37,6 +37,9 @@ window.Alpine = Alpine;
 Alpine.start();
 
 // ── Lucide icons ─────────────────────────────────────────────────────────────
+// Expose globally so inline Alpine handlers (e.g. "Load More") can re-scan
+window.initIcons = initIcons;
+
 // Run after Alpine.start() so dynamically rendered x-for icons are present
 document.addEventListener('alpine:initialized', () => {
     initIcons();
