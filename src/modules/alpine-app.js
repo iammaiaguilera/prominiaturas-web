@@ -105,7 +105,7 @@ export function registerAppData(Alpine) {
                 return;
             }
 
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznX7rAhi_sW3mZCMYRDPoAgwj4MS8GfYUbbuw96R42yPldhsFKj0KREotyPr0wOpON/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmGEyBnk_ld0l9IQo4t6WmTHqnhjofFC4yz8L-5T0RXDEY_h34MnvBYM12DgsxRAdJ/exec';
             const form = e.target;
             const btn = form.querySelector('button');
             const originalText = btn.innerText;
