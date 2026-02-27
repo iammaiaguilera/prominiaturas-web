@@ -373,28 +373,49 @@
                     </div>
                 </template>
 
-                <!-- Pro Images -->
-                <template x-for="(item, index) in proImages" :key="'pro-' + index">
-                    <div x-show="galleryTab === 'pro'" x-transition:enter="transition ease-out duration-700"
-                        x-transition:enter-start="opacity-0 blur-sm translate-y-10"
-                        x-transition:enter-end="opacity-100 blur-0 translate-y-0"
-                        class="reveal-blur aspect-video neo-brutal bg-slate-900 cursor-zoom-in group md:hover:scale-[1.02] transition-transform relative overflow-hidden"
-                        @click="openLightbox(index, 'pro')">
-                        <img :src="item.final"
-                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                            alt="Pro Thumbnail">
-                        <div
-                            class="absolute bottom-2 right-2 bg-[var(--green)] text-pm-dark px-3 py-1 text-xs font-black uppercase rounded-xl">
-                            PRO</div>
+                <!-- Pro Gallery Coming Soon -->
+                <div x-show="galleryTab === 'pro'" x-transition:enter="transition ease-out duration-700"
+                    x-transition:enter-start="opacity-0 blur-sm translate-y-10"
+                    x-transition:enter-end="opacity-100 blur-0 translate-y-0"
+                    class="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 py-24 flex flex-col items-center justify-center text-center bg-pm-dark rounded-3xl border-4 border-white/10 neo-brutal relative overflow-hidden group">
+
+                    <!-- Background Effect -->
+                    <div class="absolute inset-0 bg-[url('/noise.png')] opacity-10 pointer-events-none"></div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent pointer-events-none">
                     </div>
-                </template>
+
+                    <!-- Crown Icon -->
+                    <div
+                        class="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mb-8 border-2 border-white/10 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="crown" class="w-10 h-10 text-[var(--green)]"></i>
+                    </div>
+
+                    <h3 class="text-4xl md:text-6xl font-black uppercase text-white mb-4 tracking-tighter">
+                        <span x-text="$store.lang.t('coming_soon_title')">COMING </span><span
+                            class="text-[var(--green)]" x-text="$store.lang.t('coming_soon_word')">SOON</span>
+                    </h3>
+
+                    <p class="text-slate-400 font-bold text-lg md:text-xl max-w-2xl px-6 mb-8"
+                        x-text="$store.lang.t('coming_soon_desc')">
+                        We are curating a collection of our most ambitious, high-budget work.
+                        Detailed 3D environments, complex storytelling, and extreme visual engineering.
+                    </p>
+
+                    <div
+                        class="inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full border border-white/20">
+                        <span class="w-2 h-2 bg-[var(--green)] rounded-full animate-pulse"></span>
+                        <span class="text-xs font-black uppercase tracking-widest text-white"
+                            x-text="$store.lang.t('under_construction')">Under Construction</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Load More / Collapse Buttons -->
             <div class="flex justify-center mt-12" x-show="galleryTab === 'essential'">
                 <!-- Load More -->
                 <button x-show="limit < essentialImages.length"
-                    @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); window.initIcons(); })"
+                    @click="limit += 9; $nextTick(() => { window.initRevealAnimations(); lucide.createIcons(); })"
                     class="reveal-blur bg-[var(--green)] text-pm-dark w-20 h-20 rounded-full border-4 border-pm-dark flex items-center justify-center hover:bg-[var(--green-dark)] transition-all cursor-pointer neo-brutal shadow-[4px_4px_0px_0px_#191B32] btn-press-anim">
                     <i data-lucide="arrow-down" class="w-10 h-10"></i>
                 </button>
@@ -732,138 +753,45 @@
                     </button>
                 </div>
 
-                <!-- PRO GRID -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 lg:gap-12 pb-12">
-                    <!-- APEX -->
+                <!-- PRO Pricing Coming Soon -->
+                <div
+                    class="w-full py-24 flex flex-col items-center justify-center text-center bg-black/40 backdrop-blur-md rounded-3xl border-4 border-white/10 neo-brutal relative overflow-hidden group mb-12">
+
+                    <div class="absolute inset-0 bg-[url('/noise.png')] opacity-10 pointer-events-none"></div>
+
+                    <!-- Crown Icon -->
                     <div
-                        class="bg-white/5 backdrop-blur-sm border-2 border-white/10 p-6 md:p-10 flex flex-col h-full rounded-2xl hover:bg-white/10 transition-colors">
-                        <h3 class="font-black text-2xl md:text-3xl mb-1 uppercase no-text-shadow text-white">APEX</h3>
-                        <p class="text-sm font-bold text-slate-400 mb-6" x-text="$store.lang.t('apex_credits')">1 PRO
-                            thumbnail credit</p>
-                        <div class="text-4xl md:text-6xl font-black mb-8 text-[var(--green)]">$200 <span
-                                class="text-base md:text-xl text-white">USD</span></div>
-                        <ul class="space-y-4 mb-10 text-sm font-bold flex-grow text-slate-300">
-                            <template x-for="feature in $store.lang.t('apex_features')">
-                                <li class="flex items-start gap-2">
-                                    <div
-                                        class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[3]"></i>
-                                    </div>
-                                    <span x-text="feature.replace('✓', '').trim()"></span>
-                                </li>
-                            </template>
-                        </ul>
-                        <button @click="setInquiry('APEX')"
-                            class="w-full py-4 bg-white text-pm-dark neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green)] rounded-2xl btn-press-anim"
-                            x-text="$store.lang.t('select_plan')">Select Plan</button>
+                        class="w-24 h-24 bg-[var(--purple)]/20 rounded-full flex items-center justify-center mb-8 border-2 border-[var(--purple)]/30 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="crown" class="w-10 h-10 text-[var(--purple)]"></i>
                     </div>
 
-                    <!-- EMPIRE -->
-                    <div class="relative group">
-                        <div class="glow-animated"></div>
-                        <div
-                            class="relative bg-[#3b0764] border-2 border-[var(--green)] p-6 md:p-10 flex flex-col h-full rounded-2xl">
-                            <div
-                                class="absolute top-0 right-0 md:right-10 bg-[var(--green)] text-pm-dark px-4 md:px-6 py-1 md:py-2 rounded-bl-xl rounded-tr-xl md:rounded-t-none md:rounded-b-xl text-xs md:text-sm font-black flex items-center gap-2">
-                                <i data-lucide="crown" class="w-4 h-4 text-pm-dark fill-pm-dark"></i>
-                                <span x-text="$store.lang.t('best_value')">BEST VALUE</span>
-                            </div>
+                    <h3 class="text-4xl md:text-6xl font-black uppercase text-white mb-4 tracking-tighter">
+                        <span x-text="$store.lang.t('elite_tiers_title')">ELITE TIERS </span><span
+                            class="text-[var(--purple)]" x-text="$store.lang.t('elite_tiers_word')">EVOLVING</span>
+                    </h3>
 
-                            <div class="flex items-center gap-3 mb-1">
-                                <h3 class="font-black text-2xl md:text-3xl uppercase text-[var(--green)]">EMPIRE</h3>
-                            </div>
+                    <p class="text-slate-300 font-bold text-lg md:text-xl max-w-2xl px-6 mb-8"
+                        x-text="$store.lang.t('elite_tiers_desc')">
+                        The Apex and Empire tiers are being reconstructed to offer an even more
+                        comprehensive service for top-tier creators.
+                    </p>
 
-                            <p class="text-sm font-bold text-purple-200 mb-6" x-text="$store.lang.t('empire_credits')">4
-                                PRO thumbnail credits</p>
-                            <div class="text-4xl md:text-6xl font-black mb-8 text-white">$432 <span
-                                    class="text-base md:text-xl text-[var(--cream)]">USD</span></div>
-                            <ul class="space-y-4 mb-10 text-sm font-bold flex-grow text-white">
-                                <template x-for="feature in $store.lang.t('empire_features')">
-                                    <li class="flex items-start gap-2 max-w-full"
-                                        :class="feature === 'EXCLUSIVE_EMPIRE_BUNDLE' ? 'w-full' : ''">
-                                        <!-- Standard Feature -->
-                                        <template x-if="feature !== 'EXCLUSIVE_EMPIRE_BUNDLE'">
-                                            <div class="contents">
-                                                <div
-                                                    class="w-5 h-5 rounded-full bg-[var(--green)] flex items-center justify-center flex-shrink-0">
-                                                    <i data-lucide="check" class="w-3 h-3 text-pm-dark stroke-[4]"></i>
-                                                </div>
-                                                <span x-text="feature.replace('✓', '').trim()"></span>
-                                            </div>
-                                        </template>
-
-                                        <!-- EXCLUSIVE BUNDLE BOX (Empire Style) -->
-                                        <template x-if="feature === 'EXCLUSIVE_EMPIRE_BUNDLE'">
-                                            <div
-                                                class="w-full mt-2 bg-black/40 backdrop-blur-sm rounded-xl p-3 border border-[var(--green)]/30 overflow-hidden shadow-lg flex flex-col gap-1">
-
-                                                <!-- Item 1: RUSH -->
-                                                <div
-                                                    class="w-full p-2 ps-3 rounded-lg bg-white/5 flex items-center justify-between gap-3 group/item hover:bg-white/10 transition-colors">
-                                                    <div class="flex items-center gap-2 relative z-10 overflow-hidden">
-                                                        <div class="bg-[var(--green)]/20 p-1 rounded-md flex-shrink-0">
-                                                            <i data-lucide="timer"
-                                                                class="w-4 h-4 text-[var(--green)] stroke-[3]"></i>
-                                                        </div>
-                                                        <div class="flex flex-col leading-none overflow-hidden">
-                                                            <span
-                                                                class="text-[var(--green)] font-black text-xs uppercase tracking-wider truncate"
-                                                                x-text="$store.lang.t('rush_title')">Priority Rush
-                                                                Rate</span>
-                                                            <span
-                                                                class="text-[10px] text-white/60 font-bold uppercase truncate"
-                                                                x-text="$store.lang.t('rush_desc')">Exclusive discount
-                                                                for urgent delivery</span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="bg-[var(--purple)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide shadow-sm flex-shrink-0">
-                                                        -10%
-                                                    </div>
-                                                </div>
-
-                                                <!-- Separator -->
-                                                <div class="h-px bg-[var(--green)]/20 mx-3"></div>
-
-                                                <!-- Item 2: ZAP -->
-                                                <div
-                                                    class="w-full p-2 ps-3 bg-white/5 rounded-lg flex items-center justify-between gap-3 group/item hover:bg-white/10 transition-colors">
-                                                    <div class="flex items-center gap-2 relative z-10 overflow-hidden">
-                                                        <div class="bg-[var(--green)]/20 p-1 rounded-md flex-shrink-0">
-                                                            <i data-lucide="zap"
-                                                                class="w-4 h-4 text-[var(--green)] fill-[var(--green)]"></i>
-                                                        </div>
-                                                        <div class="flex flex-col leading-none overflow-hidden">
-                                                            <span
-                                                                class="text-[var(--green)] font-black text-xs uppercase tracking-wider truncate"
-                                                                x-text="$store.lang.t('access_zap')">Access to
-                                                                ZAP</span>
-                                                            <span
-                                                                class="text-[10px] text-white/60 font-bold uppercase truncate"
-                                                                x-text="$store.lang.t('by_prominiaturas')">By Pro
-                                                                Miniaturas</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="bg-[var(--green)] text-pm-dark text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-wide shadow-sm flex-shrink-0"
-                                                        x-text="$store.lang.t('soon')">
-                                                        SOON
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </template>
-                                    </li>
-                                </template>
-                            </ul>
-                            <button @click="setInquiry('EMPIRE')"
-                                class="w-full py-4 bg-[var(--green)] text-pm-dark neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green-dark)] rounded-2xl btn-press-anim"
-                                class="w-full py-4 bg-[var(--green)] text-pm-dark neo-brutal-sm font-black text-xl uppercase transition-colors hover:bg-[var(--green-dark)] rounded-2xl"
-                                x-text="$store.lang.t('select_plan')">Select Plan</button>
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <div class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-xs font-black uppercase text-slate-400"
+                            x-text="$store.lang.t('feat_3d_env')">
+                            3D Environments
+                        </div>
+                        <div class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-xs font-black uppercase text-slate-400"
+                            x-text="$store.lang.t('feat_custom_model')">
+                            Custom Modeling
+                        </div>
+                        <div class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-xs font-black uppercase text-slate-400"
+                            x-text="$store.lang.t('feat_art_dir')">
+                            Art Direction
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- FAQ SECTION -->
