@@ -37,13 +37,16 @@ window.Alpine = Alpine;
 Alpine.start();
 
 // ── Lucide icons ─────────────────────────────────────────────────────────────
-// Expose globally so inline Alpine handlers (e.g. "Load More") can re-scan
 window.initIcons = initIcons;
 
-// Run after Alpine.start() so dynamically rendered x-for icons are present
-document.addEventListener('alpine:initialized', () => {
-    initIcons();
-});
+// Multi-pass icon initialization to capture everything
+function refreshIcons(delay = 0) {
+    if (delay > 0) {
+        setTimeout(() => window.initIcons(), delay);
+    } else {
+        window.initIcons();
+    }
+}
 
 // ── Animations ───────────────────────────────────────────────────────────────
 function startApp() {
@@ -53,15 +56,21 @@ function startApp() {
     initInteractiveBubble();
     initRevealAnimations();
     initFooterStars();
+
+    // First pass
+    refreshIcons();
 }
 
 // Module scripts are deferred by default — run immediately
 startApp();
 
-// Re-scan reveal targets after Alpine renders x-for loops
+// Second and third pass for reliability with Alpine's dynamic DOM
 document.addEventListener('alpine:initialized', () => {
-    setTimeout(() => initRevealAnimations(), 100);
+    refreshIcons(100);
+    refreshIcons(500); // Fail-safe for slower renders
 });
 
-// Fallback for any remaining load-timing edge cases
-window.addEventListener('load', startApp);
+// Final pass on full page load
+window.addEventListener('load', () => {
+    refreshIcons(200);
+});
